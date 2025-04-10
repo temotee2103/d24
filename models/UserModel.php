@@ -22,6 +22,26 @@ class UserModel {
         return $this->db->resultSet();
     }
     
+    // 获取所有用户（确保没有重复）
+    public function getAllUsersDistinct() {
+        $this->db->query("SELECT * FROM users GROUP BY id ORDER BY id ASC");
+        return $this->db->resultSet();
+    }
+    
+    // 获取所有用户，排除特定角色
+    public function getAllUsersExceptRole($role) {
+        $this->db->query("SELECT * FROM users WHERE role != :role ORDER BY id ASC");
+        $this->db->bind(':role', $role);
+        return $this->db->resultSet();
+    }
+    
+    // 获取管理员和代理用户（用于用户报表）
+    public function getAllAdminAndAgentUsers() {
+        // 查询所有用户，只排除super_admin角色
+        $this->db->query("SELECT * FROM users WHERE role != 'super_admin' ORDER BY id ASC");
+        return $this->db->resultSet();
+    }
+    
     // 获取用户总数
     public function getTotalUsers() {
         $this->db->query("SELECT COUNT(*) as total FROM users");
@@ -88,7 +108,7 @@ class UserModel {
     // 获取最活跃的用户排行
     public function getTopActiveUsers($start_date, $end_date, $limit = 10) {
         $this->db->query("
-            SELECT u.id, u.username, u.email, u.role, COUNT(l.id) as login_count 
+            SELECT u.id, u.username, u.role, COUNT(l.id) as login_count 
             FROM users u 
             JOIN user_logs l ON u.id = l.user_id 
             WHERE l.action = 'login' AND l.created_at BETWEEN :start_date AND :end_date 
@@ -242,9 +262,21 @@ class UserModel {
         return $this->db->execute();
     }
     
-    // 获取下线用户
-    public function getSubagents($parent_id) {
-        $this->db->query("SELECT * FROM users WHERE parent_id = :parent_id");
+    // 获取下线用户，并支持排序
+    public function getSubagents($parent_id, $sort = 'id', $order = 'asc') {
+        $validSortFields = ['id', 'username', 'balance', 'created_at'];
+        $validOrders = ['asc', 'desc'];
+        
+        // 验证排序字段和顺序
+        if (!in_array($sort, $validSortFields)) {
+            $sort = 'id';
+        }
+        
+        if (!in_array($order, $validOrders)) {
+            $order = 'asc';
+        }
+        
+        $this->db->query("SELECT * FROM users WHERE parent_id = :parent_id ORDER BY {$sort} {$order}");
         $this->db->bind(':parent_id', $parent_id);
         return $this->db->resultSet();
     }
@@ -266,11 +298,13 @@ class UserModel {
     public function updateBalance($id, $amount, $action = 'add') {
         try {
             // 获取当前用户信息
-            $this->db->query("SELECT balance FROM users WHERE id = :id");
+            $this->db->query("SELECT id, username, balance FROM users WHERE id = :id FOR UPDATE");
             $this->db->bind(':id', $id);
             $user = $this->db->single();
             
             if (!$user) {
+                // 用户不存在
+                Logger::log('Error in updateBalance: User not found', ['user_id' => $id]);
                 return false;
             }
             
@@ -279,6 +313,11 @@ class UserModel {
             
             // 如果是减少余额，检查余额是否充足
             if ($action === 'subtract' && $new_balance < 0) {
+                Logger::log('Error in updateBalance: Insufficient balance', [
+                    'user_id' => $id,
+                    'current_balance' => $balance,
+                    'amount_to_subtract' => $amount
+                ]);
                 return false;
             }
             
@@ -287,12 +326,33 @@ class UserModel {
             $this->db->bind(':balance', $new_balance);
             $this->db->bind(':id', $id);
             
-            if ($this->db->execute()) {
+            $result = $this->db->execute();
+            
+            if ($result) {
+                Logger::log('Balance updated successfully', [
+                    'user_id' => $id,
+                    'username' => $user['username'],
+                    'old_balance' => $balance,
+                    'new_balance' => $new_balance,
+                    'action' => $action,
+                    'amount' => $amount
+                ]);
                 return $new_balance;
             } else {
+                Logger::log('Error in updateBalance: Update failed', [
+                    'user_id' => $id,
+                    'username' => $user['username']
+                ]);
                 return false;
             }
         } catch (Exception $e) {
+            Logger::log('Exception in updateBalance', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'user_id' => $id,
+                'amount' => $amount,
+                'action' => $action
+            ]);
             return false;
         }
     }
@@ -341,5 +401,53 @@ class UserModel {
             $this->db->rollBack();
             return false;
         }
+    }
+    
+    // 获取所有用户（排除当前用户），并支持排序
+    public function getAllUsersExceptCurrent($current_user_id, $sort = 'id', $order = 'asc') {
+        $validSortFields = ['id', 'username', 'balance', 'created_at'];
+        $validOrders = ['asc', 'desc'];
+        
+        // 验证排序字段和顺序
+        if (!in_array($sort, $validSortFields)) {
+            $sort = 'id';
+        }
+        
+        if (!in_array($order, $validOrders)) {
+            $order = 'asc';
+        }
+        
+        $this->db->query("SELECT * FROM users WHERE id != :current_user_id ORDER BY {$sort} {$order}");
+        $this->db->bind(':current_user_id', $current_user_id);
+        return $this->db->resultSet();
+    }
+    
+    // 获取用户活动日志
+    public function getUserLogs($user_id, $action = null, $limit = null) {
+        $sql = "SELECT * FROM user_logs WHERE user_id = :user_id";
+        $params = [':user_id' => $user_id];
+        
+        if ($action !== null) {
+            $sql .= " AND action = :action";
+            $params[':action'] = $action;
+        }
+        
+        $sql .= " ORDER BY created_at DESC";
+        
+        if ($limit !== null && is_numeric($limit)) {
+            $sql .= " LIMIT :limit";
+            $this->db->query($sql);
+            foreach ($params as $key => $value) {
+                $this->db->bind($key, $value);
+            }
+            $this->db->bind(':limit', $limit, PDO::PARAM_INT);
+        } else {
+            $this->db->query($sql);
+            foreach ($params as $key => $value) {
+                $this->db->bind($key, $value);
+            }
+        }
+        
+        return $this->db->resultSet();
     }
 } 

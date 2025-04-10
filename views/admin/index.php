@@ -131,7 +131,7 @@
                         <div class="alert alert-info">暂无订单数据</div>
                     <?php else: ?>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-hover modern-table">
                                 <thead>
                                     <tr>
                                         <th>订单号</th>

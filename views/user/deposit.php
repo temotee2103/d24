@@ -54,28 +54,42 @@
                         <div class="alert alert-danger"><?php echo $error; ?></div>
                     <?php endif; ?>
                     
-                    <?php if (isset($success) && !empty($success)): ?>
-                        <div class="alert alert-success"><?php echo $success; ?></div>
+                    <?php if (!empty($success)): ?>
+                        <div class="alert alert-success">
+                            <?php echo $success; ?>
+                        </div>
                     <?php endif; ?>
                     
-                    <form method="post" action="<?php echo url('user/deposit/' . $depositUser['id']); ?>">
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">金额</label>
-                            <div class="input-group">
-                                <span class="input-group-text">MYR</span>
-                                <input type="number" class="form-control" id="amount" name="amount" min="0.01" step="0.01" required>
+                    <div class="modern-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="icon-circle me-3" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+                            <div>
+                                <h4 class="mb-1"><?php echo $_SESSION['user']['role'] === 'super_admin' ? '代理充值' : '代理转账'; ?></h4>
+                                <p class="text-muted mb-0">为代理 <strong><?php echo h($depositUser['username']); ?></strong> <?php echo $_SESSION['user']['role'] === 'super_admin' ? '充值' : '转账'; ?></p>
                             </div>
                         </div>
                         
-                        <div class="d-grid gap-2">
-                            <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                                <button type="submit" class="btn btn-primary">充值</button>
-                            <?php else: ?>
-                                <button type="submit" class="btn btn-primary">转账</button>
-                            <?php endif; ?>
-                            <a href="<?php echo url('user/view/' . $depositUser['id']); ?>" class="btn btn-secondary">返回</a>
-                        </div>
-                    </form>
+                        <form method="post" action="<?php echo url('user/deposit/' . $depositUser['id']); ?>" id="depositForm">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">金额</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">MYR</span>
+                                    <input type="number" class="form-control" id="amount" name="amount" min="0.01" step="0.01" required>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
+                                    <button type="submit" class="btn btn-primary">充值</button>
+                                <?php else: ?>
+                                    <button type="submit" class="btn btn-primary">转账</button>
+                                <?php endif; ?>
+                                <a href="<?php echo url('user/view/' . $depositUser['id']); ?>" class="btn btn-secondary">返回</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

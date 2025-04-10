@@ -6,6 +6,19 @@ ini_set('display_errors', 1);
 // 加载初始化文件
 require_once __DIR__ . '/includes/init.php';
 
+// Include necessary files
+require_once 'config/config.php';
+require_once 'includes/functions.php';
+require_once 'includes/Logger.php';  // Add the Logger class include
+require_once 'includes/DB.php';
+require_once 'includes/BetParser.php';
+require_once 'models/UserModel.php';
+require_once 'models/OrderModel.php';
+require_once 'controllers/AuthController.php';
+require_once 'controllers/UserController.php';
+require_once 'controllers/OrderController.php';
+require_once 'controllers/HomeController.php';
+
 // 获取请求的URL路径
 $request_uri = $_SERVER['REQUEST_URI'];
 $script_name = $_SERVER['SCRIPT_NAME'];
@@ -49,6 +62,8 @@ $router->add('user/migrateCredit', 'User', 'migrateCredit');
 $router->add('user/check_balance', 'User', 'check_balance');
 $router->add('user/sync_balance', 'User', 'sync_balance');
 $router->add('user/delete', 'User', 'delete');
+$router->add('user/batch_action', 'User', 'batch_action');
+$router->add('user/toggle_status', 'User', 'toggle_status');
 
 // 订单路由
 $router->add('order', 'Order', 'index');

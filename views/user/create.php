@@ -22,77 +22,85 @@
                 </div>
             <?php endif; ?>
             
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" action="<?php echo url('user/create'); ?>">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="username" class="form-label">用户名 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="password" class="form-label">密码 <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
+            <div class="modern-card">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle me-3" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #22D3EE 0%, #0EA5E9 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        <i class="bi bi-person-plus"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-1">填写代理信息</h4>
+                        <p class="text-muted mb-0">请填写新代理账户的必要信息</p>
+                    </div>
+                </div>
+                
+                <form method="post" action="<?php echo url('user/create'); ?>">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="username" class="form-label">用户名 <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="username" name="username" required>
                         </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="nickname" class="form-label">昵称</label>
-                                <input type="text" class="form-control" id="nickname" name="nickname">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">手机号码</label>
-                                <input type="text" class="form-control" id="phone" name="phone">
-                            </div>
+                        <div class="col-md-6">
+                            <label for="password" class="form-label">密码 <span class="text-danger">*</span></label>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="commission_rate" class="form-label">佣金比例 (%)</label>
-                                <input type="number" class="form-control" id="commission_rate" name="commission_rate" min="0" max="<?php echo isset($_SESSION['user']['commission_rate']) ? $_SESSION['user']['commission_rate'] : 0; ?>" value="0">
-                                <div class="form-text">最大不能超过您的佣金比例 (<?php echo isset($_SESSION['user']['commission_rate']) ? $_SESSION['user']['commission_rate'] : 0; ?>%)</div>
-                            </div>
-                            <div class="col-md-6">
-                                <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                                <label for="role" class="form-label">用户角色</label>
-                                <select class="form-select" id="role" name="role">
-                                    <option value="agent">代理</option>
-                                    <option value="admin">管理员</option>
-                                </select>
-                                <?php else: ?>
-                                <label class="form-label">&nbsp;</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="can_create_subagent" name="can_create_subagent" value="1">
-                                    <label class="form-check-label" for="can_create_subagent">
-                                        允许该代理创建下线
-                                    </label>
-                                </div>
-                                <?php endif; ?>
-                            </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="nickname" class="form-label">昵称</label>
+                            <input type="text" class="form-control" id="nickname" name="nickname">
                         </div>
-                        
-                        <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                        <div class="mb-3">
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">手机号码</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="commission_rate" class="form-label">佣金比例 (%)</label>
+                            <input type="number" class="form-control" id="commission_rate" name="commission_rate" min="0" max="<?php echo isset($_SESSION['user']['commission_rate']) ? $_SESSION['user']['commission_rate'] : 0; ?>" value="0">
+                            <div class="form-text">最大不能超过您的佣金比例 (<?php echo isset($_SESSION['user']['commission_rate']) ? $_SESSION['user']['commission_rate'] : 0; ?>%)</div>
+                        </div>
+                        <div class="col-md-6">
+                            <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
+                            <label for="role" class="form-label">用户角色</label>
+                            <select class="form-select" id="role" name="role">
+                                <option value="agent">代理</option>
+                                <option value="admin">管理员</option>
+                            </select>
+                            <?php else: ?>
+                            <label class="form-label">&nbsp;</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="can_create_subagent" name="can_create_subagent" value="1">
                                 <label class="form-check-label" for="can_create_subagent">
-                                    允许该用户创建下线
+                                    允许该代理创建下线
                                 </label>
                             </div>
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
-                        
-                        <div class="mb-3">
-                            <label for="notes" class="form-label">备注</label>
-                            <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="can_create_subagent" name="can_create_subagent" value="1">
+                            <label class="form-check-label" for="can_create_subagent">
+                                允许该用户创建下线
+                            </label>
                         </div>
-                        
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">创建代理</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">备注</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-gradient-primary btn-lg">创建代理</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

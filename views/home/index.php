@@ -6,25 +6,19 @@
             <img src="<?php echo asset('images/logo.png'); ?>" alt="D24 Logo" class="img-fluid mb-3" style="max-width: 120px; filter: brightness(0) invert(1);">
         </div>
         <div class="col-md-10">
+            <h2 class="mb-4">系统概览</h2>
             <div class="row">
-                <div class="col-md-6">
-                    <h2 class="mb-3">系统概览</h2>
-                    <p class="mb-1"><i class="bi bi-calendar-check me-2"></i> 当前日期: <?php echo date('Y-m-d'); ?></p>
-                    <p class="mb-1"><i class="bi bi-clock me-2"></i> 系统时间: <span id="currentTime"></span></p>
+                <div class="col-md-6 mb-3">
+                    <div class="date-display p-3 rounded-3" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);">
+                        <h5 class="mb-2"><i class="bi bi-calendar-check me-2"></i> 当前日期</h5>
+                        <h2 style="font-size: 2.2rem; font-weight: 600;"><?php echo date('Y-m-d'); ?></h2>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-6 mb-3">
-                            <div class="p-2 rounded-3" style="background: rgba(255,255,255,0.1);">
-                                <h6 class="mb-1">今日订单</h6>
-                                <h3 class="mb-0"><?php echo isset($stats['orders_today']) ? $stats['orders_today'] : '0'; ?></h3>
-                            </div>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <div class="p-2 rounded-3" style="background: rgba(255,255,255,0.1);">
-                                <h6 class="mb-1">在线用户</h6>
-                                <h3 class="mb-0"><?php echo isset($stats['online_users']) ? $stats['online_users'] : '0'; ?></h3>
-                            </div>
+                <div class="col-md-6 mb-3">
+                    <div class="clock-display p-3 rounded-3" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);">
+                        <h5 class="mb-2"><i class="bi bi-clock me-2"></i> 系统时间</h5>
+                        <div class="digital-clock">
+                            <h2 id="digitalClock" style="font-size: 2.2rem; font-weight: 600; font-family: 'Courier New', monospace;">00:00:00</h2>
                         </div>
                     </div>
                 </div>
@@ -39,7 +33,7 @@
             <h4 class="mb-4">账户信息</h4>
             <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless modern-table">
                         <tbody>
                             <tr>
                                 <td style="width: 40%; font-weight: 500;">用户名</td>
@@ -69,13 +63,12 @@
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless modern-table">
                         <tbody>
                             <tr>
                                 <td style="width: 40%; font-weight: 500;">余额</td>
-                                <td class="fw-bold" style="color: #10B981;">
-                                    MYR <?php echo isset($user['balance']) ? number_format($user['balance'], 2) : '0.00'; ?>
-                                    <a href="<?php echo url('user/check_balance'); ?>" class="btn btn-sm btn-outline-secondary ms-2" title="检查余额"><i class="bi bi-arrow-repeat"></i></a>
+                                <td class="fw-bold text-success">
+                                    RM <?php echo isset($user['balance']) ? number_format($user['balance'], 2) : '0.00'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -94,32 +87,55 @@
     <div class="col-md-12">
         <div class="card mb-4">
             <div class="card-body">
-                <h4 class="mb-4">奖金信息 <small class="text-muted">(以MYR 1.00为单位)</small></h4>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">一等奖</h5>
-                                <p class="card-text display-6 fw-bold text-primary">MYR 3,000.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">二等奖</h5>
-                                <p class="card-text display-6 fw-bold text-success">MYR 1,000.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">三等奖</h5>
-                                <p class="card-text display-6 fw-bold text-warning">MYR 500.00</p>
-                            </div>
-                        </div>
-                    </div>
+                <h4 class="mb-0 pb-3">奖金信息 <small class="text-muted">(以RM 1.00为单位)</small></h4>
+                
+                <div class="table-responsive">
+                    <table class="table modern-table">
+                        <thead>
+                            <tr class="text-center">
+                                <th>奖项</th>
+                                <th>大 (RM)</th>
+                                <th>小 (RM)</th>
+                                <th>头二三奖A (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge bg-primary">头奖</span></td>
+                                <td class="text-center fw-bold">2,500.00</td>
+                                <td class="text-center fw-bold">3,500.00</td>
+                                <td class="text-center fw-bold">4A: 6,000.00</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-success">二奖</span></td>
+                                <td class="text-center fw-bold">1,000.00</td>
+                                <td class="text-center fw-bold">2,000.00</td>
+                                <td class="text-center fw-bold">4B: 6,000.00</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-warning text-dark">三奖</span></td>
+                                <td class="text-center fw-bold">500.00</td>
+                                <td class="text-center fw-bold">1,000.00</td>
+                                <td class="text-center fw-bold">4C: 6,000.00</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-info text-white">特别奖</span></td>
+                                <td class="text-center fw-bold">200.00</td>
+                                <td class="text-center fw-bold">-</td>
+                                <td class="text-center fw-bold">-</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-secondary">安慰奖</span></td>
+                                <td class="text-center fw-bold">60.00</td>
+                                <td class="text-center fw-bold">-</td>
+                                <td class="text-center fw-bold">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-3 small text-muted">
+                    <p class="mb-1">* 所有开彩种类统一使用以上奖金制度</p>
                 </div>
             </div>
         </div>
@@ -194,24 +210,24 @@
 
 <div class="row">
     <?php if ($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['role'] === 'super_admin'): ?>
-    <div class="col-md-3 mb-4">
+    <div class="col-md-4 mb-4">
         <div class="modern-card h-100">
             <div class="d-flex align-items-center">
-                <div class="icon-box me-3" style="width: 50px; height: 50px; border-radius: 12px; background: rgba(99, 102, 241, 0.1); display: flex; align-items: center; justify-content: center; color: #6366F1; font-size: 1.5rem;">
-                    <i class="bi bi-bar-chart"></i>
+                <div class="icon-box me-3" style="width: 50px; height: 50px; border-radius: 12px; background: rgba(236, 72, 153, 0.1); display: flex; align-items: center; justify-content: center; color: #EC4899; font-size: 1.5rem;">
+                    <i class="bi bi-currency-exchange"></i>
                 </div>
                 <div>
-                    <h5 class="mb-1">销售报表</h5>
-                    <p class="text-muted mb-0">查看销售数据分析</p>
+                    <h5 class="mb-1">财务报表</h5>
+                    <p class="text-muted mb-0">综合财务数据统计</p>
                 </div>
             </div>
             <div class="mt-3">
-                <a href="<?php echo url('report/sales'); ?>" class="btn btn-sm w-100" style="background: rgba(99, 102, 241, 0.1); color: #6366F1; border: none; border-radius: var(--button-border-radius);">查看报表</a>
+                <a href="<?php echo url('report/financial'); ?>" class="btn btn-sm w-100" style="background: rgba(236, 72, 153, 0.1); color: #EC4899; border: none; border-radius: var(--button-border-radius);">查看报表</a>
             </div>
         </div>
     </div>
     
-    <div class="col-md-3 mb-4">
+    <div class="col-md-4 mb-4">
         <div class="modern-card h-100">
             <div class="d-flex align-items-center">
                 <div class="icon-box me-3" style="width: 50px; height: 50px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center; color: #10B981; font-size: 1.5rem;">
@@ -227,26 +243,8 @@
             </div>
         </div>
     </div>
-    <?php endif; ?>
     
-    <div class="col-md-3 mb-4">
-        <div class="modern-card h-100">
-            <div class="d-flex align-items-center">
-                <div class="icon-box me-3" style="width: 50px; height: 50px; border-radius: 12px; background: rgba(244, 63, 94, 0.1); display: flex; align-items: center; justify-content: center; color: #F43F5E; font-size: 1.5rem;">
-                    <i class="bi bi-currency-dollar"></i>
-                </div>
-                <div>
-                    <h5 class="mb-1">佣金报表</h5>
-                    <p class="text-muted mb-0">佣金收入统计</p>
-                </div>
-            </div>
-            <div class="mt-3">
-                <a href="<?php echo url('report/commission'); ?>" class="btn btn-sm w-100" style="background: rgba(244, 63, 94, 0.1); color: #F43F5E; border: none; border-radius: var(--button-border-radius);">查看报表</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-3 mb-4">
+    <div class="col-md-4 mb-4">
         <div class="modern-card h-100">
             <div class="d-flex align-items-center">
                 <div class="icon-box me-3" style="width: 50px; height: 50px; border-radius: 12px; background: rgba(59, 130, 246, 0.1); display: flex; align-items: center; justify-content: center; color: #3B82F6; font-size: 1.5rem;">
@@ -262,28 +260,52 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 
 <?php include_once ROOT_PATH . '/views/layout/footer.php'; ?> 
 
 <script>
-function updateCurrentTime() {
+function updateDigitalClock() {
     const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let seconds = now.getSeconds();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
     
-    // 添加前导零
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    document.getElementById('digitalClock').innerText = timeString;
     
-    const timeString = hours + ':' + minutes + ':' + seconds;
-    document.getElementById('currentTime').textContent = timeString;
+    // Blink the separators
+    const hasColons = document.getElementById('digitalClock').classList.contains('blink');
+    document.getElementById('digitalClock').style.textShadow = hasColons ? 
+        '0 0 10px rgba(255, 255, 255, 0.8)' : 
+        '0 0 20px rgba(255, 255, 255, 0.4)';
+    document.getElementById('digitalClock').classList.toggle('blink');
 }
 
-// 页面加载时更新时间
-updateCurrentTime();
-// 每秒更新时间
-setInterval(updateCurrentTime, 1000);
+// Update clock immediately and then every second
+updateDigitalClock();
+setInterval(updateDigitalClock, 500); // Update every 500ms for a better blinking effect
+
+// 切换彩票类型的脚本
+document.addEventListener('DOMContentLoaded', function() {
+    const lotterBtns = document.querySelectorAll('.lottery-type-btn');
+    lotterBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('data-target');
+            // 隐藏所有奖金信息
+            document.querySelectorAll('.lottery-prize-info').forEach(el => {
+                el.classList.add('d-none');
+            });
+            // 显示目标奖金信息
+            document.getElementById(target).classList.remove('d-none');
+            // 更新按钮激活状态
+            lotterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            // 更新下拉菜单标题
+            document.getElementById('lotteryTypeDropdown').textContent = this.textContent;
+        });
+    });
+});
 </script> 

@@ -1,0 +1,2698 @@
+[2025-04-11 01:23:30] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:23:30] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:23:30] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:23:30] User authenticated
+Array
+(
+    [user_id] => 
+    [balance] => 
+)
+
+-------------------------------------------
+[2025-04-11 01:23:30] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:24:26] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:24:26] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:24:26] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:24:26] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:24:26] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:30:42] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:30:42] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:30:42] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:30:42] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:30:42] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:30:58] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:30:58] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:30:58] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:30:58] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:30:58] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:48:30] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:48:30] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:48:30] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:48:30] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:48:30] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:48:31] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:48:31] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:48:31] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:48:31] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:48:31] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:55:31] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:55:31] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:55:31] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:55:31] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:55:31] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:55:32] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:55:32] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:55:32] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:55:32] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:55:32] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 01:56:19] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:56:19] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 01:56:19] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 01:56:19] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 01:56:19] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:17] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:17] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:17] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:17] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:17] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:31] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:31] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:31] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:31] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:31] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:34] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:34] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:34] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:34] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:34] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:37] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:37] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:37] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:37] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:37] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:39] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:39] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:39] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:39] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:39] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:41] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:41] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:41] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:41] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:41] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:43] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:43] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:43] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:43] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:43] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:46] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:46] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:46] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:46] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:46] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:50] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:50] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:50] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:50] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:50] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:52] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:52] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:52] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:52] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:52] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:54] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:54] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:54] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:54] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:54] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:56] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:56] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:56] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:56] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:56] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:07:58] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:58] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:07:58] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:07:58] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:07:58] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:08:14] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:14] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:08:14] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:14] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:08:14] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:08:18] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:18] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:08:18] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:18] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:08:18] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:08:22] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:22] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:08:22] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:22] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:08:22] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:08:25] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:25] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:08:25] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:08:25] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:08:25] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:10:13] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [preview] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:10:13] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:13] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 1
+    [confirm] => 0
+)
+
+-------------------------------------------
+[2025-04-11 02:10:13] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:13] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:10:13] Showing bet preview
+Array
+(
+    [bet_data] => Array
+        (
+            [valid] => 1
+            [total] => 1
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [type] => bet
+                            [number] => 1234
+                            [bet_type] => 大
+                            [lottery_type] => Array
+                                (
+                                    [0] => 1
+                                )
+
+                            [periods] => 1
+                            [amount] => 1
+                            [description] => 1234 - 大
+                            [original_amount] => 1
+                        )
+
+                )
+
+            [lottery_types] => M
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Creating new order
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1
+1234#1
+    [total] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Generated order number
+Array
+(
+    [order_number] => 202504115977
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Order inserted
+Array
+(
+    [order_id] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Balance updated successfully
+Array
+(
+    [user_id] => 2
+    [username] => test
+    [old_balance] => 200.00
+    [new_balance] => 199
+    [action] => subtract
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] User balance updated
+Array
+(
+    [new_balance] => 199
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Transaction record created
+-------------------------------------------
+[2025-04-11 02:10:14] Balance updated successfully
+Array
+(
+    [user_id] => 1
+    [username] => admin
+    [old_balance] => 0.00
+    [new_balance] => 0.7
+    [action] => add
+    [amount] => 0.7
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 02:10:14] Order created successfully
+Array
+(
+    [order_id] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Order created successfully
+Array
+(
+    [order_id] => 1
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 1
+            [order_number] => 202504115977
+            [user_id] => 2
+            [content] => D
+#1
+1234#1
+            [total_amount] => 1.00
+            [status] => pending
+            [created_at] => 2025-04-11 02:10:14
+            [updated_at] => 2025-04-11 02:10:14
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:10:14] Order created successfully
+Array
+(
+    [order_id] => 1
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:10:42] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:19:36] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] 确认下注请求
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [user_balance] => 200.00
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+            [password] => $2y$10$dKNDTCxInep/zw9Wofmx7ON1Yufch5KjIYE9KcgQk5whGC7NCOVZK
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 200.00
+            [parent_id] => 1
+            [created_at] => 2025-04-10 02:53:08
+            [updated_at] => 2025-04-10 14:04:46
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Creating new order
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1
+1234#1
+    [total] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Generated order number
+Array
+(
+    [order_number] => 202504118367
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Order inserted
+Array
+(
+    [order_id] => 2
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Balance updated successfully
+Array
+(
+    [user_id] => 2
+    [username] => test
+    [old_balance] => 200.00
+    [new_balance] => 199
+    [action] => subtract
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] User balance updated
+Array
+(
+    [new_balance] => 199
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Transaction record created
+-------------------------------------------
+[2025-04-11 02:19:43] Balance updated successfully
+Array
+(
+    [user_id] => 1
+    [username] => admin
+    [old_balance] => 0.70
+    [new_balance] => 1.4
+    [action] => add
+    [amount] => 0.7
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 02:19:43] Order created successfully
+Array
+(
+    [order_id] => 2
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Order created successfully
+Array
+(
+    [order_id] => 2
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 2
+            [order_number] => 202504118367
+            [user_id] => 2
+            [content] => D
+#1
+1234#1
+            [total_amount] => 1.00
+            [status] => pending
+            [created_at] => 2025-04-11 02:19:43
+            [updated_at] => 2025-04-11 02:19:43
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:19:43] Order created successfully
+Array
+(
+    [order_id] => 2
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:20:21] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:39:26] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 199.00
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] 确认下注请求
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [user_balance] => 199.00
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => test
+            [password] => $2y$10$dKNDTCxInep/zw9Wofmx7ON1Yufch5KjIYE9KcgQk5whGC7NCOVZK
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 200.00
+            [parent_id] => 1
+            [created_at] => 2025-04-10 02:53:08
+            [updated_at] => 2025-04-10 14:04:46
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Creating new order
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1
+1234#1
+    [total] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Generated order number
+Array
+(
+    [order_number] => 202504116260
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Order inserted
+Array
+(
+    [order_id] => 3
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Balance updated successfully
+Array
+(
+    [user_id] => 2
+    [username] => test
+    [old_balance] => 199.00
+    [new_balance] => 198
+    [action] => subtract
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] User balance updated
+Array
+(
+    [new_balance] => 198
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Transaction record created
+-------------------------------------------
+[2025-04-11 02:39:34] Balance updated successfully
+Array
+(
+    [user_id] => 1
+    [username] => admin
+    [old_balance] => 1.40
+    [new_balance] => 2.1
+    [action] => add
+    [amount] => 0.7
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 02:39:34] Order created successfully
+Array
+(
+    [order_id] => 3
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Order created successfully
+Array
+(
+    [order_id] => 3
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 3
+            [order_number] => 202504116260
+            [user_id] => 2
+            [content] => D
+#1
+1234#1
+            [total_amount] => 1.00
+            [status] => pending
+            [created_at] => 2025-04-11 02:39:34
+            [updated_at] => 2025-04-11 02:39:34
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 02:39:34] Order created successfully
+Array
+(
+    [order_id] => 3
+    [amount] => 1
+)
+
+-------------------------------------------

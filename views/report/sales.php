@@ -1,4 +1,5 @@
 <?php include_once ROOT_PATH . '/views/layout/header.php'; ?>
+<?php include_once ROOT_PATH . '/includes/transaction_helpers.php'; ?>
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

@@ -1,0 +1,355 @@
+/* 现代化表格样式 - 用于整个系统 */
+.modern-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* 表头样式 */
+.modern-table thead tr {
+    background-color: #f8f9fa;
+}
+
+.modern-table thead th {
+    padding: 1rem;
+    font-weight: 600;
+    color: #1E293B;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modern-table thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.modern-table thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* 表格内容样式 */
+.modern-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.modern-table tbody tr:hover {
+    background-color: rgba(99, 102, 241, 0.04);
+}
+
+.modern-table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* 表格底部样式 */
+.modern-table tfoot tr {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.modern-table tfoot td {
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modern-table tfoot td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.modern-table tfoot td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+/* 用户头像样式 */
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+}
+
+/* 表格内金额样式 */
+.modern-table .text-end {
+    text-align: right;
+}
+
+.modern-table .fw-medium {
+    font-weight: 500;
+}
+
+/* 角色徽章样式 */
+.modern-table .badge {
+    padding: 0.35rem 0.65rem;
+    font-weight: 500;
+}
+
+/* 响应式表格包装器 */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+}
+
+/* 表格上方标题栏样式 */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.table-header h5 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.table-header .text-muted {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}
+
+/* 表格底部统计行样式 */
+.sum-row td {
+    font-weight: 600;
+}
+
+/* 空状态样式 */
+.table-empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #6c757d;
+}
+
+.table-empty-state i {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+}
+
+/* 支持无边框表格 */
+.table-borderless.modern-table tbody tr td {
+    border-bottom: none;
+}
+
+.table-borderless.modern-table thead th {
+    border-bottom: none;
+}
+
+.table-borderless.modern-table tfoot td {
+    border-top: none;
+}
+
+/* 调整表格内容垂直对齐 */
+.modern-table td,
+.modern-table th {
+    vertical-align: middle;
+}
+
+/* 管理页面的操作按钮组 */
+.modern-table .btn-group-sm > .btn,
+.modern-table .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.modern-table .badge {
+    padding: 0.35rem 0.65rem;
+    font-weight: 500;
+    text-transform: none;
+}
+
+/* 管理页面的操作按钮组 - 增强选择器优先级 */
+.modern-table td .btn-sm,
+.modern-table td .btn-group-sm > .btn,
+.modern-table td .btn {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.875rem !important;
+    border-radius: 0.2rem !important;
+    margin-right: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+    display: inline-block !important;
+}
+
+/* 角色徽章样式 - 增强选择器优先级 */
+.modern-table td .badge,
+.modern-table tbody .badge {
+    padding: 0.35rem 0.65rem !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    font-size: 0.75rem !important;
+}
+
+/* 确保表格内容垂直居中 */
+.modern-table td {
+    vertical-align: middle !important;
+}
+
+/* 确保表格内的操作按钮正确显示 */
+.modern-table td.text-nowrap {
+    white-space: nowrap !important;
+    padding: 0.75rem !important;
+}
+
+/* 特定类型的单元格样式 */
+.modern-table td:first-child {
+    font-weight: 500;
+}
+
+/* 操作列专用样式 */
+.modern-table td.actions-column {
+    min-width: 220px !important;
+    text-align: left !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.modern-table td.actions-column .btn {
+    margin-bottom: 0.25rem !important;
+    margin-right: 0.25rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 68px !important;
+}
+
+.modern-table td.actions-column .btn i {
+    margin-right: 0.25rem !important;
+}
+
+/* 表格行高度和字体大小 */
+.modern-table thead th {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+}
+
+.modern-table tbody td {
+    font-size: 0.875rem !important;
+    padding: 0.75rem 1rem !important;
+}
+
+/* 用户管理页面专用样式 */
+.modern-table tr.user-row {
+    height: 60px !important;
+}
+
+.modern-table tr.user-row td {
+    vertical-align: middle !important;
+}
+
+.modern-table tr.user-row .btn {
+    padding: 0.3rem 0.5rem !important;
+    line-height: 1.2 !important;
+}
+
+/* 用户角色和状态徽章样式 */
+.modern-table .user-badge,
+.modern-table .status-badge {
+    padding: 0.35rem 0.75rem !important;
+    font-weight: 500 !important;
+    font-size: 0.75rem !important;
+    border-radius: 20px !important;
+    display: inline-block !important;
+    min-width: 60px !important;
+    text-align: center !important;
+}
+
+/* 覆盖ID列的默认加粗样式 */
+.modern-table td:first-child {
+    font-weight: normal !important;
+}
+
+/* 代理管理页面表格专用样式，提高优先级 */
+.card .table.modern-table,
+.card .table.table-hover.modern-table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+.card .table.modern-table thead th,
+.card .table.table-hover.modern-table thead th {
+    background-color: #f8f9fa !important;
+    padding: 1rem !important;
+    font-weight: 600 !important;
+    color: #1E293B !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.card .table.modern-table thead th:first-child,
+.card .table.table-hover.modern-table thead th:first-child {
+    border-top-left-radius: 8px !important;
+}
+
+.card .table.modern-table thead th:last-child,
+.card .table.table-hover.modern-table thead th:last-child {
+    border-top-right-radius: 8px !important;
+}
+
+.card .table.modern-table tbody tr.user-row:hover,
+.card .table.table-hover.modern-table tbody tr.user-row:hover {
+    background-color: rgba(99, 102, 241, 0.04) !important;
+}
+
+/* 强制应用按钮样式 */
+.actions-column .btn.btn-sm {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.25rem 0.5rem !important;
+    margin: 0.125rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+    min-width: auto !important;
+}
+
+/* 用户管理表格专用样式（强制覆盖） */
+table.user-management-table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+table.user-management-table thead th {
+    background-color: #f8f9fa !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 600 !important;
+    color: #1E293B !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+table.user-management-table thead th:first-child {
+    border-top-left-radius: 8px !important;
+}
+
+table.user-management-table thead th:last-child {
+    border-top-right-radius: 8px !important;
+}
+
+table.user-management-table tbody tr {
+    transition: all 0.2s ease !important;
+}
+
+table.user-management-table tbody tr:hover {
+    background-color: rgba(99, 102, 241, 0.04) !important;
+}
+
+table.user-management-table tbody td {
+    vertical-align: middle !important;
+    padding: 0.75rem 1rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03) !important;
+}
+
+/* 用户管理表格按钮样式 */
+table.user-management-table .btn {
+    margin: 2px !important;
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.75rem !important;
+}

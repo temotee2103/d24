@@ -13,6 +13,13 @@ header('Content-Type: text/html; charset=utf-8');
 // 加载配置
 $config = require_once __DIR__ . '/../config/config.php';
 
+// 加载日志工具
+require_once __DIR__ . '/Logger.php';
+
+// 加载投注系统
+require_once __DIR__ . '/BettingSystem.php';
+require_once __DIR__ . '/BetParser.php';
+
 // 设置时区
 date_default_timezone_set($config['timezone']);
 
@@ -23,12 +30,39 @@ function custom_error_handler($errno, $errstr, $errfile, $errline) {
         return false;
     }
 
-    // 记录错误到日志
-    error_log("PHP Error [$errno]: $errstr in $errfile on line $errline", 0);
+    // 创建自定义错误日志目录（如果不存在）
+    $log_dir = ROOT_PATH . '/logs';
+    if (!is_dir($log_dir)) {
+        mkdir($log_dir, 0777, true);
+    }
+    
+    // 记录详细错误到日志文件
+    $error_message = sprintf("[%s] PHP Error [$errno]: %s in %s on line %d", 
+        date('Y-m-d H:i:s'), $errstr, $errfile, $errline);
+    
+    $debug_backtrace = debug_backtrace();
+    $backtrace_info = '';
+    if (!empty($debug_backtrace)) {
+        foreach ($debug_backtrace as $index => $trace) {
+            if ($index > 8) break; // 限制堆栈深度
+            $file = isset($trace['file']) ? $trace['file'] : '[internal function]';
+            $line = isset($trace['line']) ? $trace['line'] : '';
+            $function = isset($trace['function']) ? $trace['function'] : '';
+            $class = isset($trace['class']) ? $trace['class'] . '::' : '';
+            $backtrace_info .= sprintf("\n  #%d %s%s() called at [%s:%s]", 
+                $index, $class, $function, $file, $line);
+        }
+    }
+    
+    // 将错误和堆栈跟踪写入日志文件
+    error_log($error_message . $backtrace_info . "\n\n", 3, $log_dir . '/error.log');
     
     // 开发模式下显示错误
     if(isset($GLOBALS['config']['debug_mode']) && $GLOBALS['config']['debug_mode']) {
         echo "<b>PHP Error [$errno]</b>: $errstr in <b>$errfile</b> on line <b>$errline</b><br>";
+        if (!empty($backtrace_info)) {
+            echo "<pre>Backtrace: $backtrace_info</pre>";
+        }
     }
     
     // 不执行PHP内部错误处理
@@ -38,8 +72,21 @@ set_error_handler("custom_error_handler");
 
 // 自定义异常处理函数
 function custom_exception_handler($exception) {
-    // 记录异常到日志
-    error_log("Uncaught Exception: " . $exception->getMessage() . " in " . $exception->getFile() . " on line " . $exception->getLine(), 0);
+    // 创建自定义错误日志目录（如果不存在）
+    $log_dir = ROOT_PATH . '/logs';
+    if (!is_dir($log_dir)) {
+        mkdir($log_dir, 0777, true);
+    }
+    
+    // 记录异常到日志文件
+    $error_message = sprintf("[%s] Uncaught Exception: %s in %s on line %d", 
+        date('Y-m-d H:i:s'), $exception->getMessage(), $exception->getFile(), $exception->getLine());
+    
+    // 获取异常栈跟踪
+    $trace = $exception->getTraceAsString();
+    
+    // 写入日志文件
+    error_log($error_message . "\nStack trace:\n" . $trace . "\n\n", 3, $log_dir . '/error.log');
     
     // 开发模式下显示异常
     if(isset($GLOBALS['config']['debug_mode']) && $GLOBALS['config']['debug_mode']) {

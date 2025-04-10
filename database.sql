@@ -33,6 +33,7 @@ CREATE TABLE orders (
     user_id INT NOT NULL,
     content TEXT NOT NULL,
     total_amount DECIMAL(12,2) NOT NULL,
+    lottery_types VARCHAR(10) DEFAULT 'MPTS',
     status ENUM('pending', 'completed', 'cancelled') DEFAULT 'pending',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

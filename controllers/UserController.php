@@ -22,9 +22,31 @@ class UserController {
     // 显示下线用户
     public function subagents() {
         $user_id = $_SESSION['user']['id'];
+        $user_role = $_SESSION['user']['role'] ?? '';
         
-        // 获取当前用户的下级代理
-        $subagents = $this->userModel->getSubagents($user_id);
+        // 处理排序
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'id';
+        $order = isset($_GET['order']) ? $_GET['order'] : 'asc';
+        
+        // 验证排序字段和顺序
+        $validSortFields = ['id', 'username', 'balance', 'created_at'];
+        $validOrders = ['asc', 'desc'];
+        
+        if (!in_array($sort, $validSortFields)) {
+            $sort = 'id';
+        }
+        
+        if (!in_array($order, $validOrders)) {
+            $order = 'asc';
+        }
+        
+        // 如果是超级管理员，获取所有用户（排除自己）
+        if ($user_role === 'super_admin') {
+            $subagents = $this->userModel->getAllUsersExceptCurrent($user_id, $sort, $order);
+        } else {
+            // 获取当前用户的下级代理
+            $subagents = $this->userModel->getSubagents($user_id, $sort, $order);
+        }
         
         // 加载视图
         include_once ROOT_PATH . '/views/user/subagents.php';
@@ -445,6 +467,130 @@ class UserController {
             set_flash_message('success', '用户 ' . $user['username'] . ' 已成功删除');
         } else {
             set_flash_message('error', '删除用户失败，请稍后再试');
+        }
+        
+        redirect('user/subagents');
+    }
+    
+    // 处理批量操作
+    public function batch_action() {
+        // 检查是否是超级管理员
+        if ($_SESSION['user']['role'] !== 'super_admin') {
+            set_flash_message('error', '只有超级管理员可以执行批量操作');
+            redirect('user/subagents');
+            return;
+        }
+        
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('user/subagents');
+            return;
+        }
+        
+        $action = $_POST['batch_action'] ?? '';
+        $selected_users = $_POST['selected_users'] ?? [];
+        
+        if (empty($action) || empty($selected_users)) {
+            set_flash_message('error', '请选择操作和用户');
+            redirect('user/subagents');
+            return;
+        }
+        
+        $current_user_id = $_SESSION['user']['id'];
+        $success_count = 0;
+        $error_count = 0;
+        
+        // 从选中用户中移除当前用户（防止自己操作自己）
+        $selected_users = array_filter($selected_users, function($id) use ($current_user_id) {
+            return $id != $current_user_id;
+        });
+        
+        foreach ($selected_users as $user_id) {
+            switch ($action) {
+                case 'activate':
+                    $userData = ['status' => 'active'];
+                    if ($this->userModel->updateUser($user_id, $userData)) {
+                        $success_count++;
+                    } else {
+                        $error_count++;
+                    }
+                    break;
+                
+                case 'deactivate':
+                    $userData = ['status' => 'inactive'];
+                    if ($this->userModel->updateUser($user_id, $userData)) {
+                        $success_count++;
+                    } else {
+                        $error_count++;
+                    }
+                    break;
+                
+                case 'delete':
+                    // 检查是否有下级代理
+                    $subagentCount = $this->userModel->countSubagents($user_id);
+                    if ($subagentCount > 0) {
+                        $error_count++;
+                        continue 2; // 修改为continue 2，指向外部的foreach循环
+                    }
+                    
+                    if ($this->userModel->deleteUser($user_id)) {
+                        $success_count++;
+                    } else {
+                        $error_count++;
+                    }
+                    break;
+            }
+        }
+        
+        if ($success_count > 0) {
+            set_flash_message('success', "成功处理了 {$success_count} 个用户");
+        }
+        
+        if ($error_count > 0) {
+            set_flash_message('error', "有 {$error_count} 个用户处理失败");
+        }
+        
+        redirect('user/subagents');
+    }
+    
+    // 切换用户状态
+    public function toggle_status($id = null) {
+        // 检查是否是超级管理员
+        if ($_SESSION['user']['role'] !== 'super_admin') {
+            set_flash_message('error', '只有超级管理员可以更改用户状态');
+            redirect('user/subagents');
+            return;
+        }
+        
+        if ($id === null) {
+            set_flash_message('error', '未指定用户');
+            redirect('user/subagents');
+            return;
+        }
+        
+        // 获取用户信息
+        $user = $this->userModel->getUserById($id);
+        
+        if (!$user) {
+            set_flash_message('error', '用户不存在');
+            redirect('user/subagents');
+            return;
+        }
+        
+        // 确保不操作自己
+        if ($id == $_SESSION['user']['id']) {
+            set_flash_message('error', '不能更改当前登录账户的状态');
+            redirect('user/subagents');
+            return;
+        }
+        
+        // 切换状态
+        $new_status = $user['status'] === 'active' ? 'inactive' : 'active';
+        
+        $userData = ['status' => $new_status];
+        if ($this->userModel->updateUser($id, $userData)) {
+            set_flash_message('success', '用户状态已更改为 ' . ($new_status === 'active' ? '激活' : '停用'));
+        } else {
+            set_flash_message('error', '状态更改失败');
         }
         
         redirect('user/subagents');

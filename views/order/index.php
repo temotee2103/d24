@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-hover modern-table">
                                 <thead>
                                     <tr>
                                         <th>订单号</th>

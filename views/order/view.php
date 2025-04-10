@@ -76,7 +76,7 @@
                         <div class="alert alert-info">订单内容为空</div>
                     <?php else: ?>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table modern-table">
                                 <thead>
                                     <tr>
                                         <th>类型</th>
@@ -96,7 +96,7 @@
                                             <td><?php echo $item['amount']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
-                                    <tr class="table-info">
+                                    <tr class="fw-bold">
                                         <th colspan="2" class="text-end">总计</th>
                                         <th><?php echo $total; ?></th>
                                     </tr>

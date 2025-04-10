@@ -87,4 +87,11 @@ class Database {
     public function rollBack() {
         return $this->conn->rollBack();
     }
+    
+    /**
+     * 获取数据库连接对象
+     */
+    public function getConnection() {
+        return $this->conn;
+    }
 } 

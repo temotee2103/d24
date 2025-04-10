@@ -1,0 +1,121 @@
+[2025-04-10 21:53:42] PHP Error [2]: error_log(C:\xampp\htdocs\d24/logs/betting.log): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\controllers\OrderController.php on line 30
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 error_log() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:30]
+  #2 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:91]
+
+[2025-04-10 23:19:11] Uncaught Exception: Undefined constant "DEBUG_MODE" in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
+#1 {main}
+
+[2025-04-10 23:19:16] Uncaught Exception: Undefined constant "DEBUG_MODE" in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
+#1 {main}
+
+[2025-04-10 23:19:29] Uncaught Exception: Undefined constant "DEBUG_MODE" in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
+#1 {main}
+
+[2025-04-10 23:29:12] Uncaught Exception: Class "Logger" not found in C:\xampp\htdocs\d24\includes\BetParser.php on line 11
+Stack trace:
+#0 C:\xampp\htdocs\d24\controllers\OrderController.php(66): BetParser->parse('D\r\n#1\r\n1234#1')
+#1 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
+#2 {main}
+
+[2025-04-10 23:37:39] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-10 23:37:39] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:43] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:43] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:46] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:46] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:50] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:50] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:51] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:51] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
+  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+
+[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+Stack trace:
+#0 {main}
+
+[2025-04-11 00:42:59] Uncaught Exception: Call to undefined method OrderController::render() in C:\xampp\htdocs\d24\controllers\OrderController.php on line 177
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(104): OrderController->create()
+#1 {main}
+
+[2025-04-11 01:23:30] PHP Error [2]: Attempt to read property "id" on array in C:\xampp\htdocs\d24\controllers\OrderController.php on line 104
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:104]
+  #1 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:104]
+
+[2025-04-11 01:23:30] PHP Error [2]: Attempt to read property "balance" on array in C:\xampp\htdocs\d24\controllers\OrderController.php on line 105
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:105]
+  #1 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:104]
+
+[2025-04-11 02:43:00] Uncaught Exception: Call to undefined method Logger::debug() in C:\xampp\htdocs\d24\controllers\OrderController.php on line 27
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(104): OrderController->create()
+#1 {main}
+
+[2025-04-11 02:50:21] Uncaught Exception: Class "Period" not found in C:\xampp\htdocs\d24\controllers\OrderController.php on line 21
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(96): OrderController->__construct()
+#1 {main}
+

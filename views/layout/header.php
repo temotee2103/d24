@@ -9,6 +9,67 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo asset('css/modern-table.css'); ?>">
+    
+    <!-- 页面专用样式 -->
+    <?php if (strpos($_SERVER['REQUEST_URI'], '/user/subagents') !== false): ?>
+    <style>
+        /* 用户管理页面专用内联样式 */
+        table.user-management-table {
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
+        }
+        
+        table.user-management-table thead th {
+            background-color: #f8f9fa !important;
+            padding: 0.75rem 1rem !important;
+            font-weight: 600 !important;
+            color: #1E293B !important;
+            border: none !important;
+        }
+        
+        table.user-management-table thead th:first-child {
+            border-top-left-radius: 8px !important;
+        }
+        
+        table.user-management-table thead th:last-child {
+            border-top-right-radius: 8px !important;
+        }
+        
+        table.user-management-table .actions-column .btn {
+            padding: 0.25rem 0.5rem !important;
+            margin: 0.125rem !important;
+            font-size: 0.75rem !important;
+        }
+        
+        table.user-management-table .user-badge,
+        table.user-management-table .status-badge {
+            padding: 0.35rem 0.75rem !important;
+            font-weight: 500 !important;
+            font-size: 0.75rem !important;
+            border-radius: 20px !important;
+            display: inline-block !important;
+            min-width: 60px !important;
+            text-align: center !important;
+        }
+        
+        /* 强制覆盖Bootstrap表格样式 */
+        .card .table.modern-table {
+            margin-bottom: 0 !important;
+        }
+        
+        .card .table.modern-table tr td,
+        .card .table.modern-table tr th {
+            vertical-align: middle !important;
+            border-color: rgba(0, 0, 0, 0.03) !important;
+        }
+        
+        .card .table.modern-table tr:hover {
+            background-color: rgba(99, 102, 241, 0.04) !important;
+        }
+    </style>
+    <?php endif; ?>
+    
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
@@ -177,6 +238,34 @@
             border-radius: 0 4px 4px 0;
         }
         
+        /* 完全修复报表菜单项的紫色指示线 */
+        .sidebar-menu a[href="#reportSubmenu"] {
+            position: relative;
+            background-image: none !important;
+        }
+        
+        .sidebar-menu a[href="#reportSubmenu"].active {
+            background: var(--sidebar-active) !important;
+            background-image: none !important;
+        }
+        
+        .sidebar-menu a[href="#reportSubmenu"].active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-gradient);
+            border-radius: 0 4px 4px 0;
+            transform: none;
+        }
+        
+        .sidebar-menu a[href="#reportSubmenu"]::before {
+            background: transparent;
+            display: none;
+        }
+        
         .sidebar-menu i {
             margin-right: 12px;
             font-size: 1.25rem;
@@ -214,6 +303,26 @@
         
         .sidebar-submenu li {
             margin-bottom: 2px;
+        }
+        
+        .sidebar-menu-section {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 1.2rem 0.5rem;
+            position: relative;
+        }
+        
+        .sidebar-menu-section:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            bottom: 0.5rem;
+            width: 3px;
+            background: #8B5CF6;
+            border-radius: 0 3px 3px 0;
         }
         
         .sidebar-submenu a {
@@ -345,6 +454,38 @@
             color: white;
             font-weight: 600;
             box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+        }
+        
+        /* 下拉菜单样式优化 */
+        .dropdown-menu {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 0;
+            margin-top: 10px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+        }
+        
+        .dropdown-item {
+            padding: 0.6rem 1.2rem;
+            color: #1E293B;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(99, 102, 241, 0.08);
+            color: #6366F1;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item i {
+            color: #6366F1;
+            margin-right: 8px;
         }
         
         /* 响应式侧边栏折叠 */
@@ -519,36 +660,28 @@
                 
                 <li>
                     <a href="#reportSubmenu" class="dropdown-toggle <?php echo strpos($_SERVER['REQUEST_URI'], '/report') !== false ? 'active' : ''; ?>" data-bs-toggle="collapse" aria-expanded="<?php echo strpos($_SERVER['REQUEST_URI'], '/report') !== false ? 'true' : 'false'; ?>">
-                        <i class="bi bi-graph-up"></i>
+                        <i class="bi bi-graph-up" style="display: inline-flex; width: 24px; height: 24px; justify-content: center; align-items: center; flex-shrink: 0;"></i>
                         <span>报表</span>
                     </a>
                     <ul class="sidebar-submenu collapse <?php echo strpos($_SERVER['REQUEST_URI'], '/report') !== false ? 'show' : ''; ?>" id="reportSubmenu">
                         <?php if ($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['role'] === 'super_admin'): ?>
+                            <li class="sidebar-menu-section">报表 & 统计</li>
                             <li>
-                                <a href="<?php echo url('report/sales'); ?>" class="<?php echo strpos($_SERVER['REQUEST_URI'], '/report/sales') !== false ? 'active' : ''; ?>">
-                                    <i class="bi bi-bar-chart"></i>
-                                    <span>销售报表</span>
+                                <a href="<?php echo url('report/financial'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/financial') !== false ? 'class="active"' : ''; ?>>
+                                    <i class="bi bi-currency-exchange"></i> 财务报表
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo url('report/user'); ?>" class="<?php echo strpos($_SERVER['REQUEST_URI'], '/report/user') !== false ? 'active' : ''; ?>">
-                                    <i class="bi bi-person-lines-fill"></i>
-                                    <span>用户报表</span>
+                                <a href="<?php echo url('report/user'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/user') !== false ? 'class="active"' : ''; ?>>
+                                    <i class="bi bi-people"></i> 用户报表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo url('report/transactions'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/transactions') !== false ? 'class="active"' : ''; ?>>
+                                    <i class="bi bi-clipboard-data"></i> 交易记录
                                 </a>
                             </li>
                         <?php endif; ?>
-                        <li>
-                            <a href="<?php echo url('report/commission'); ?>" class="<?php echo strpos($_SERVER['REQUEST_URI'], '/report/commission') !== false ? 'active' : ''; ?>">
-                                <i class="bi bi-currency-dollar"></i>
-                                <span>佣金报表</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo url('report/transactions'); ?>" class="<?php echo strpos($_SERVER['REQUEST_URI'], '/report/transactions') !== false ? 'active' : ''; ?>">
-                                <i class="bi bi-clock-history"></i>
-                                <span>交易记录</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
             <?php endif; ?>
@@ -583,7 +716,7 @@
                     <i class="bi bi-chevron-down ms-2"></i>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="<?php echo url('auth/logout'); ?>"><i class="bi bi-box-arrow-right me-2"></i>退出登录</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="<?php echo url('auth/logout'); ?>"><i class="bi bi-box-arrow-right me-2"></i>退出登录</a></li>
                 </ul>
             <?php else: ?>
                 <a href="<?php echo url('auth/login'); ?>" class="btn-gradient-primary">

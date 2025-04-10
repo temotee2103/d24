@@ -1,89 +1,105 @@
 <?php
+// Define DEBUG_MODE if not already defined
+if (!defined('DEBUG_MODE')) {
+    define('DEBUG_MODE', true);
+}
+
+// At the top of the file, require the Logger if it's not already autoloaded
+if (!class_exists('Logger')) {
+    require_once __DIR__ . '/../includes/Logger.php';
+}
+
 class OrderController {
     private $orderModel;
     private $betParser;
+    private $periodModel;
+    private $logger;
     
     public function __construct() {
         $this->orderModel = new OrderModel();
         $this->betParser = new BetParser();
+        $this->periodModel = new Period();
+        $this->logger = new Logger('OrderController');
         AuthController::requireLogin();
     }
     
-    // 显示下注表单
+    /**
+     * 创建订单
+     */
     public function create() {
-        $error = '';
-        $success = '';
-        $parsed_result = null;
-        $bet_content = '';
+        // 检查是否为POST请求
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $currentPeriod = $this->periodModel->getCurrentPeriod();
+            include_once 'views/order/create.php';
+            return;
+        }
+
+        // 获取当前用户ID
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
         
-        // 获取当前期数信息
-        $current_period = $this->getCurrentPeriod();
-        $next_periods = $this->getNextPeriods(3);
-        
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $bet_content = $_POST['bet_content'] ?? '';
-            
-            if (empty($bet_content)) {
-                $error = '下注内容不能为空';
-            } else {
-                // 解析下注内容
-                $parsed_result = $this->betParser->parse($bet_content);
-                
-                if (!$parsed_result['valid']) {
-                    $error = '下注格式错误: ' . $parsed_result['error'];
-                } else {
-                    $user_id = $_SESSION['user']['id'];
-                    $userModel = new UserModel();
-                    $user = $userModel->getUserById($user_id);
-                    
-                    // 检查余额是否足够
-                    if ($user['balance'] < $parsed_result['total']) {
-                        $error = '余额不足，当前余额: ' . $user['balance'] . '，需要: ' . $parsed_result['total'];
-                    } else {
-                        // 如果是确认提交
-                        if (isset($_POST['confirm'])) {
-                            // 获取彩种类型
-                            $lottery_types = [];
-                            foreach ($parsed_result['items'] as $item) {
-                                if (isset($item['lottery_type'])) {
-                                    $lottery_types = array_merge($lottery_types, $item['lottery_type']);
-                                }
-                            }
-                            $lottery_types = array_unique($lottery_types);
-                            
-                            // 创建订单
-                            $order_data = [
-                                'user_id' => $user_id,
-                                'content' => json_encode($parsed_result['items']),
-                                'total_amount' => $parsed_result['total'],
-                                'lottery_types' => implode('', $lottery_types)
-                            ];
-                            
-                            $order_id = $this->orderModel->createOrder($order_data);
-                            
-                            if ($order_id) {
-                                // 计算佣金
-                                $this->orderModel->calculateCommission($user_id, $parsed_result['total']);
-                                
-                                $success = '下注成功，订单号: ' . $order_id;
-                                // 不重置bet_content，保持当前内容以展示收据
-                            } else {
-                                $error = '下注失败，请稍后再试';
-                                $parsed_result = null; // 清空解析结果
-                            }
-                        }
-                        // 如果是预览，不执行下注，只显示解析结果（默认情况）
-                    }
-                }
-            }
-        } else {
-            // GET请求，设置默认值
-            $bet_content = 'D
-#';
+        // 获取当前期数
+        $period = $this->periodModel->getCurrentPeriod();
+        if (!$period) {
+            $_SESSION['error'] = '当前没有开放的期数';
+            header('Location: ?controller=order&action=create');
+            exit;
         }
         
-        // 加载视图
-        include_once ROOT_PATH . '/views/order/create.php';
+        $this->logger->debug("处理订单创建请求: period_id={$period['id']}, user_id=$user_id");
+        
+        // 获取下注内容
+        $bet_content = isset($_POST['bet_content']) ? trim($_POST['bet_content']) : '';
+        if (empty($bet_content)) {
+            $this->logger->error("下注内容为空");
+            $_SESSION['error'] = '下注内容不能为空';
+            header('Location: ?controller=order&action=create');
+            exit;
+        }
+        
+        $this->logger->debug("原始下注内容: $bet_content");
+        
+        // 解析下注内容
+        $betParser = new BetParser();
+        try {
+            $this->logger->debug("开始解析下注内容");
+            $parsedData = $betParser->parse($bet_content);
+            
+            if (!$parsedData['success']) {
+                $this->logger->error("解析下注内容失败: " . $parsedData['message']);
+                $_SESSION['error'] = '下注内容格式错误: ' . $parsedData['message'];
+                header('Location: ?controller=order&action=create');
+                exit;
+            }
+            
+            $this->logger->debug("解析结果: " . print_r($parsedData, true));
+            
+            // 创建订单
+            $result = $this->orderModel->create(
+                $user_id, 
+                $period['id'], 
+                $bet_content, 
+                $parsedData['total_amount'], 
+                $parsedData['items']
+            );
+            
+            if ($result['success']) {
+                $this->logger->debug("订单创建成功: order_id=" . $result['order_id']);
+                $_SESSION['success'] = '下注成功，订单号: ' . $result['order_id'];
+                header('Location: ?controller=order&action=view&id=' . $result['order_id']);
+                exit;
+            } else {
+                $this->logger->error("订单创建失败: " . $result['message']);
+                $_SESSION['error'] = '下注失败: ' . $result['message'];
+                header('Location: ?controller=order&action=create');
+                exit;
+            }
+        } catch (Exception $e) {
+            $this->logger->error("处理订单时发生异常: " . $e->getMessage());
+            $this->logger->error("异常堆栈: " . $e->getTraceAsString());
+            $_SESSION['error'] = '系统错误，请稍后再试';
+            header('Location: ?controller=order&action=create');
+            exit;
+        }
     }
     
     // 获取当前最近的期数
@@ -254,5 +270,140 @@ class OrderController {
         }
         
         redirect('order/view/' . $id);
+    }
+
+    /**
+     * Create a new betting order
+     *
+     * @param int $userId User ID
+     * @param string $betContent Raw bet content
+     * @param array $parsedData Parsed bet data
+     * @return object|false Order object if successful, false otherwise
+     */
+    private function createOrder($userId, $betContent, $parsedData) {
+        try {
+            Logger::log('Creating new order', [
+                'user_id' => $userId,
+                'bet_content' => $betContent,
+                'total' => $parsedData['total']
+            ]);
+            
+            // 检查用户ID是否有效
+            if (empty($userId) || !is_numeric($userId)) {
+                Logger::log('无效的用户ID', ['user_id' => $userId]);
+                return false;
+            }
+            
+            // Extract lottery types from parsed data
+            $lotteryTypes = isset($parsedData['lottery_types']) ? $parsedData['lottery_types'] : '';
+            
+            // Create order data structure expected by the OrderModel
+            $orderData = [
+                'user_id' => $userId,
+                'content' => $betContent,
+                'total_amount' => $parsedData['total'],
+                'lottery_types' => $lotteryTypes
+            ];
+            
+            // Create the order in the database
+            Logger::log('Calling OrderModel->createOrder', $orderData);
+            $orderId = $this->orderModel->createOrder($orderData);
+            
+            if (!$orderId) {
+                Logger::log('Failed to create order - OrderModel returned false', ['order_data' => $orderData]);
+                
+                // 检查数据库连接
+                try {
+                    $db = Database::getInstance();
+                    $stmt = $db->prepare("SELECT 1");
+                    $testResult = $stmt->execute();
+                    Logger::log('数据库测试查询', ['result' => $testResult ? 'succeeded' : 'failed']);
+                } catch (Exception $dbEx) {
+                    Logger::log('数据库测试异常', [
+                        'error' => $dbEx->getMessage(),
+                        'trace' => $dbEx->getTraceAsString()
+                    ]);
+                }
+                return false;
+            }
+            
+            Logger::log('Order created successfully', [
+                'order_id' => $orderId,
+                'amount' => $parsedData['total']
+            ]);
+            
+            // Fetch the created order
+            $order = $this->orderModel->getOrderById($orderId);
+            
+            if (!$order) {
+                Logger::log('Failed to retrieve the created order', ['order_id' => $orderId]);
+                return false;
+            }
+            
+            Logger::log('Order retrieved successfully', ['order' => $order]);
+            return $order;
+        } catch (Exception $e) {
+            Logger::log('Exception in createOrder', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'user_id' => $userId,
+                'data' => $parsedData
+            ]);
+            return false;
+        }
+    }
+
+    /**
+     * Render a view with data
+     * 
+     * @param string $view View path
+     * @param array $data Data to pass to the view
+     * @return void
+     */
+    private function render($view, $data = []) {
+        // Include error and success messages if they exist
+        if (isset($GLOBALS['error'])) {
+            $data['error'] = $GLOBALS['error'];
+        }
+        
+        if (isset($GLOBALS['success'])) {
+            $data['success'] = $GLOBALS['success'];
+        }
+        
+        // Extract data to make variables available in the view
+        extract($data);
+        
+        // Include the view file
+        include_once ROOT_PATH . '/views/' . $view . '.php';
+    }
+    
+    /**
+     * Set error message
+     * 
+     * @param string $message Error message
+     * @return void
+     */
+    private function setError($message) {
+        $GLOBALS['error'] = $message;
+    }
+    
+    /**
+     * Set success message
+     * 
+     * @param string $message Success message
+     * @return void
+     */
+    private function setSuccess($message) {
+        $GLOBALS['success'] = $message;
+    }
+    
+    /**
+     * Redirect to a URL
+     * 
+     * @param string $url URL to redirect to
+     * @return void
+     */
+    private function redirect($url) {
+        redirect($url);
     }
 } 

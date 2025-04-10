@@ -3,193 +3,171 @@
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">用户报表</h1>
-    </div>
-    
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5 class="card-title">用户统计</h5>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card bg-primary text-white mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-title">总用户数</h6>
-                                    <h2 class="display-4"><?php echo $totalUsers; ?></h2>
-                                </div>
-                                <i class="fas fa-users fa-3x opacity-50"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-success text-white mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-title">活跃用户</h6>
-                                    <h2 class="display-4"><?php echo $activeUsers; ?></h2>
-                                </div>
-                                <i class="fas fa-user-check fa-3x opacity-50"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-info text-white mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-title">今日新增</h6>
-                                    <h2 class="display-4"><?php echo $newUsersToday; ?></h2>
-                                </div>
-                                <i class="fas fa-user-plus fa-3x opacity-50"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.print()">
+                <i class="bi bi-printer"></i> 打印
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="exportTableToExcel('userTable', 'user_report')">
+                <i class="bi bi-file-earmark-excel"></i> 导出
+            </button>
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title">用户增长趋势</h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="userGrowthChart" width="400" height="200"></canvas>
-                </div>
+    <!-- 筛选条件 -->
+    <div class="modern-card mb-4">
+        <h5 class="mb-3">筛选条件</h5>
+        <form method="get" action="<?php echo url('report/user'); ?>" class="row g-3">
+            <div class="col-md-4">
+                <label for="start_date" class="form-label">开始日期</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-01'); ?>">
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title">用户类型分布</h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="userTypeChart" width="400" height="200"></canvas>
-                </div>
+            <div class="col-md-4">
+                <label for="end_date" class="form-label">结束日期</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-t'); ?>">
             </div>
-        </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-gradient-primary">查询</button>
+            </div>
+        </form>
     </div>
     
-    <div class="card mt-4">
-        <div class="card-header">
-            <h5>最活跃用户排行</h5>
+    <!-- 用户表格 - 优化设计 -->
+    <div class="modern-card">
+        <div class="table-header">
+            <div>
+                <h5 class="mb-0">用户数据</h5>
+                <p class="text-muted small mb-0 mt-1">共 <?php echo count($displayUsers); ?> 条记录</p>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped">
+        
+        <div class="table-responsive">
+            <?php if (!empty($displayUsers)): ?>
+                <table class="table table-hover modern-table" id="userTable">
                     <thead>
                         <tr>
-                            <th>排名</th>
-                            <th>用户ID</th>
+                            <th class="text-center">ID</th>
                             <th>用户名</th>
-                            <th>交易数量</th>
-                            <th>交易金额</th>
-                            <th>最近活动</th>
+                            <th class="text-center">角色</th>
+                            <th class="text-end">充值总额</th>
+                            <th class="text-end">佣金余额</th>
+                            <th class="text-end">消费总额</th>
+                            <th class="text-center">登录次数</th>
+                            <th class="text-center">注册时间</th>
+                            <th class="text-center">最后登录</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($topActiveUsers)): ?>
-                            <?php $rank = 1; ?>
-                            <?php foreach ($topActiveUsers as $user): ?>
-                                <tr>
-                                    <td><?php echo $rank++; ?></td>
-                                    <td><?php echo $user['id']; ?></td>
-                                    <td><?php echo $user['username']; ?></td>
-                                    <td><?php echo $user['transaction_count']; ?></td>
-                                    <td><?php echo number_format($user['transaction_amount'], 2); ?> 元</td>
-                                    <td><?php echo $user['last_active']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
+                        <?php foreach ($displayUsers as $user): ?>
                             <tr>
-                                <td colspan="6" class="text-center">暂无数据</td>
+                                <td class="text-center"><?= $user['id'] ?></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm me-2 d-flex align-items-center justify-content-center rounded-circle" style="width: 32px; height: 32px; background-color: #f8f9fa;">
+                                            <i class="bi bi-person text-muted"></i>
+                                        </div>
+                                        <?= htmlspecialchars($user['username']) ?>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <?php if ($user['role'] == 'admin'): ?>
+                                        <span class="badge rounded-pill bg-danger">管理员</span>
+                                    <?php elseif ($user['role'] == 'agent'): ?>
+                                        <span class="badge rounded-pill bg-primary">代理</span>
+                                    <?php elseif ($user['role'] == 'user'): ?>
+                                        <span class="badge rounded-pill bg-success">普通用户</span>
+                                    <?php else: ?>
+                                        <span class="badge rounded-pill bg-info"><?= htmlspecialchars($user['role']) ?></span>
+                                    <?php endif; ?>
+                                </td>
+                                <td class="text-end fw-medium"><?= 'RM'.number_format($user['total_deposits'], 2) ?></td>
+                                <td class="text-end fw-medium"><?= 'RM'.number_format($user['commission_balance'], 2) ?></td>
+                                <td class="text-end fw-medium"><?= 'RM'.number_format($user['total_spent'], 2) ?></td>
+                                <td class="text-center">
+                                    <span class="badge bg-light text-dark"><?= $user['login_count'] ?></span>
+                                </td>
+                                <td class="text-center small"><?= $user['created_at'] ?></td>
+                                <td class="text-center small">
+                                    <?php if (empty($user['last_login'])): ?>
+                                        <span class="text-muted">从未登录</span>
+                                    <?php else: ?>
+                                        <?= $user['last_login'] ?>
+                                    <?php endif; ?>
+                                </td>
                             </tr>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                     </tbody>
+                    <tfoot>
+                        <tr class="fw-bold">
+                            <td colspan="3" class="text-end">合计:</td>
+                            <td class="text-end">
+                                <?php 
+                                    $totalDeposits = 0;
+                                    foreach ($displayUsers as $user) {
+                                        $totalDeposits += $user['total_deposits'];
+                                    }
+                                    echo 'RM'.number_format($totalDeposits, 2);
+                                ?>
+                            </td>
+                            <td class="text-end">
+                                <?php 
+                                    $totalCommission = 0;
+                                    foreach ($displayUsers as $user) {
+                                        $totalCommission += $user['commission_balance'];
+                                    }
+                                    echo 'RM'.number_format($totalCommission, 2);
+                                ?>
+                            </td>
+                            <td class="text-end">
+                                <?php 
+                                    $totalSpent = 0;
+                                    foreach ($displayUsers as $user) {
+                                        $totalSpent += $user['total_spent'];
+                                    }
+                                    echo 'RM'.number_format($totalSpent, 2);
+                                ?>
+                            </td>
+                            <td colspan="3"></td>
+                        </tr>
+                    </tfoot>
                 </table>
-            </div>
+            <?php else: ?>
+                <div class="table-empty-state">
+                    <i class="bi bi-info-circle"></i>
+                    没有找到用户数据。请调整筛选条件重试。
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 用户增长图表
-    var growthCtx = document.getElementById('userGrowthChart').getContext('2d');
-    var userGrowthChart = new Chart(growthCtx, {
-        type: 'line',
-        data: {
-            labels: <?php echo json_encode(array_column($userGrowthData, 'date')); ?>,
-            datasets: [{
-                label: '新增用户',
-                data: <?php echo json_encode(array_column($userGrowthData, 'count')); ?>,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 2,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: '用户数'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: '日期'
-                    }
-                }
-            }
-        }
-    });
+// 导出表格到Excel函数
+function exportTableToExcel(tableID, filename = '') {
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
     
-    // 用户类型分布图表
-    var typeCtx = document.getElementById('userTypeChart').getContext('2d');
-    var userTypeChart = new Chart(typeCtx, {
-        type: 'pie',
-        data: {
-            labels: <?php echo json_encode(array_column($userTypeDistribution, 'role')); ?>,
-            datasets: [{
-                data: <?php echo json_encode(array_column($userTypeDistribution, 'count')); ?>,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 206, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(153, 102, 255, 0.7)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
-                }
-            }
-        }
-    });
+    // 指定文件名
+    filename = filename ? filename + '.xls' : 'excel_data.xls';
     
-    // 处理时间范围变化
-    document.getElementById('timeRange').addEventListener('change', function() {
-        // 实际应用中应该提交表单或通过AJAX更新数据
-        alert('时间范围已变更为: ' + this.value + '天，在实际应用中，此处应刷新数据。');
-    });
-});
+    // 创建下载链接
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if (navigator.msSaveOrOpenBlob) {
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+        // 创建一个链接到模拟文件下载
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+        downloadLink.download = filename;
+        downloadLink.click();
+    }
+}
 </script>
 
 <?php include_once ROOT_PATH . '/views/layout/footer.php'; ?> 

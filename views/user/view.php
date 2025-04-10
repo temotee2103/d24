@@ -25,141 +25,144 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title">基本信息</h5>
+            <div class="modern-card mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-circle me-3" style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem;">
+                        <i class="bi bi-person-badge"></i>
+                    </div>
+                    <h5 class="card-title mb-0">基本信息</h5>
                 </div>
-                <div class="card-body">
-                    <table class="table">
-                        <tr>
-                            <th width="30%">用户名</th>
-                            <td><?php echo h($viewUser['username']); ?></td>
-                        </tr>
-                        <tr>
-                            <th>昵称</th>
-                            <td><?php echo h($viewUser['nickname']); ?></td>
-                        </tr>
-                        <tr>
-                            <th>手机号码</th>
-                            <td><?php echo h($viewUser['phone']); ?></td>
-                        </tr>
-                        <tr>
-                            <th>用户级别</th>
-                            <td>
-                                <?php 
-                                    switch ($viewUser['role']) {
-                                        case 'super_admin':
-                                            echo '超级管理员';
-                                            break;
-                                        case 'admin':
-                                            echo '管理员';
-                                            break;
-                                        default:
-                                            echo '代理';
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>状态</th>
-                            <td><?php echo $viewUser['status'] === 'active' ? '<span class="badge bg-success">激活</span>' : '<span class="badge bg-danger">停用</span>'; ?></td>
-                        </tr>
-                        <tr>
-                            <th>佣金比例</th>
-                            <td><?php echo $viewUser['commission_rate']; ?>%</td>
-                        </tr>
-                        <tr>
-                            <th>可开下线</th>
-                            <td><?php echo $viewUser['can_create_subagent'] ? '<span class="badge bg-success">可以</span>' : '<span class="badge bg-secondary">不可以</span>'; ?></td>
-                        </tr>
-                        <tr>
-                            <th>备注</th>
-                            <td><?php echo h($viewUser['notes']); ?></td>
-                        </tr>
-                        <tr>
-                            <th>创建时间</th>
-                            <td><?php echo date('Y-m-d H:i:s', strtotime($viewUser['created_at'])); ?></td>
-                        </tr>
-                    </table>
-                </div>
+                <table class="table modern-table">
+                    <tr>
+                        <th width="30%">用户名</th>
+                        <td><?php echo h($viewUser['username']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>昵称</th>
+                        <td><?php echo h($viewUser['nickname']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>手机号码</th>
+                        <td><?php echo h($viewUser['phone']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>用户级别</th>
+                        <td>
+                            <?php 
+                                switch ($viewUser['role']) {
+                                    case 'super_admin':
+                                        echo '超级管理员';
+                                        break;
+                                    case 'admin':
+                                        echo '管理员';
+                                        break;
+                                    default:
+                                        echo '代理';
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>状态</th>
+                        <td><?php echo $viewUser['status'] === 'active' ? '<span class="badge bg-success">激活</span>' : '<span class="badge bg-danger">停用</span>'; ?></td>
+                    </tr>
+                    <tr>
+                        <th>佣金比例</th>
+                        <td><?php echo $viewUser['commission_rate']; ?>%</td>
+                    </tr>
+                    <tr>
+                        <th>可开下线</th>
+                        <td><?php echo $viewUser['can_create_subagent'] ? '<span class="badge bg-success">可以</span>' : '<span class="badge bg-secondary">不可以</span>'; ?></td>
+                    </tr>
+                    <tr>
+                        <th>备注</th>
+                        <td><?php echo h($viewUser['notes']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>创建时间</th>
+                        <td><?php echo date('Y-m-d H:i:s', strtotime($viewUser['created_at'])); ?></td>
+                    </tr>
+                </table>
             </div>
         </div>
         
         <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title">账户信息</h5>
+            <div class="modern-card mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-circle me-3" style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem;">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+                    <h5 class="card-title mb-0">账户信息</h5>
                 </div>
-                <div class="card-body">
-                    <table class="table">
-                        <tr>
-                            <th width="30%">账户余额</th>
-                            <td><?php echo number_format($viewUser['balance'], 2); ?></td>
-                        </tr>
-                        <tr>
-                            <th>下线代理数</th>
-                            <td><?php echo $subagentCount; ?></td>
-                        </tr>
-                    </table>
-                </div>
+                <table class="table modern-table">
+                    <tr>
+                        <th width="30%">账户余额</th>
+                        <td><?php echo number_format($viewUser['balance'], 2); ?></td>
+                    </tr>
+                    <tr>
+                        <th>下线代理数</th>
+                        <td><?php echo $subagentCount; ?></td>
+                    </tr>
+                </table>
             </div>
             
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">最近订单</h5>
+            <div class="modern-card">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-circle me-3" style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #F43F5E 0%, #EC4899 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem;">
+                        <i class="bi bi-receipt"></i>
+                    </div>
+                    <h5 class="card-title mb-0">最近订单</h5>
                 </div>
-                <div class="card-body">
-                    <?php if (empty($orders)): ?>
-                        <div class="alert alert-info">暂无订单记录</div>
-                    <?php else: ?>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-sm">
-                                <thead>
+                <?php if (empty($orders)): ?>
+                    <div class="alert alert-info">暂无订单记录</div>
+                <?php else: ?>
+                    <div class="table-responsive">
+                        <table class="table table-hover modern-table">
+                            <thead>
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>金额</th>
+                                    <th>状态</th>
+                                    <th>时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $count = 0;
+                                foreach ($orders as $order): 
+                                    if ($count >= 5) break; // 只显示最近5条
+                                    $count++;
+                                ?>
                                     <tr>
-                                        <th>订单号</th>
-                                        <th>金额</th>
-                                        <th>状态</th>
-                                        <th>时间</th>
+                                        <td><a href="<?php echo url('order/view/' . $order['id']); ?>"><?php echo $order['order_number']; ?></a></td>
+                                        <td><?php echo $order['total_amount']; ?></td>
+                                        <td>
+                                            <?php 
+                                                switch ($order['status']) {
+                                                    case 'completed':
+                                                        echo '<span class="badge bg-success">已完成</span>';
+                                                        break;
+                                                    case 'pending':
+                                                        echo '<span class="badge bg-warning">处理中</span>';
+                                                        break;
+                                                    case 'cancelled':
+                                                        echo '<span class="badge bg-danger">已取消</span>';
+                                                        break;
+                                                }
+                                            ?>
+                                        </td>
+                                        <td><?php echo date('Y-m-d H:i', strtotime($order['created_at'])); ?></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                    $count = 0;
-                                    foreach ($orders as $order): 
-                                        if ($count >= 5) break; // 只显示最近5条
-                                        $count++;
-                                    ?>
-                                        <tr>
-                                            <td><a href="<?php echo url('order/view/' . $order['id']); ?>"><?php echo $order['order_number']; ?></a></td>
-                                            <td><?php echo $order['total_amount']; ?></td>
-                                            <td>
-                                                <?php 
-                                                    switch ($order['status']) {
-                                                        case 'completed':
-                                                            echo '<span class="badge bg-success">已完成</span>';
-                                                            break;
-                                                        case 'pending':
-                                                            echo '<span class="badge bg-warning">处理中</span>';
-                                                            break;
-                                                        case 'cancelled':
-                                                            echo '<span class="badge bg-danger">已取消</span>';
-                                                            break;
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td><?php echo date('Y-m-d H:i', strtotime($order['created_at'])); ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <?php if (count($orders) > 5): ?>
+                        <div class="mt-2 text-center">
+                            <a href="<?php echo url('order'); ?>" class="btn btn-sm btn-outline-primary">查看更多订单</a>
                         </div>
-                        <?php if (count($orders) > 5): ?>
-                            <div class="mt-2 text-center">
-                                <a href="<?php echo url('order'); ?>" class="btn btn-sm btn-outline-primary">查看更多订单</a>
-                            </div>
-                        <?php endif; ?>
                     <?php endif; ?>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
