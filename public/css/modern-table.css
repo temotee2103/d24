@@ -109,7 +109,7 @@
 
 .table-header .text-muted {
     margin-top: 0.25rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 /* 表格底部统计行样式 */
@@ -156,7 +156,7 @@
 .modern-table .btn-group-sm > .btn,
 .modern-table .btn-sm {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     border-radius: 0.2rem;
     margin-right: 0.25rem;
     margin-bottom: 0.25rem;
@@ -173,7 +173,7 @@
 .modern-table td .btn-group-sm > .btn,
 .modern-table td .btn {
     padding: 0.25rem 0.5rem !important;
-    font-size: 0.875rem !important;
+    font-size: 1rem !important;
     border-radius: 0.2rem !important;
     margin-right: 0.25rem !important;
     margin-bottom: 0.25rem !important;
@@ -186,7 +186,7 @@
     padding: 0.35rem 0.65rem !important;
     font-weight: 500 !important;
     text-transform: none !important;
-    font-size: 0.75rem !important;
+    font-size: 1rem !important;
 }
 
 /* 确保表格内容垂直居中 */
@@ -227,12 +227,12 @@
 
 /* 表格行高度和字体大小 */
 .modern-table thead th {
-    font-size: 0.875rem !important;
+    font-size: 1rem !important;
     font-weight: 600 !important;
 }
 
 .modern-table tbody td {
-    font-size: 0.875rem !important;
+    font-size: 1rem !important;
     padding: 0.75rem 1rem !important;
 }
 
@@ -255,7 +255,7 @@
 .modern-table .status-badge {
     padding: 0.35rem 0.75rem !important;
     font-weight: 500 !important;
-    font-size: 0.75rem !important;
+    font-size: 1rem !important;
     border-radius: 20px !important;
     display: inline-block !important;
     min-width: 60px !important;
@@ -305,7 +305,7 @@
     justify-content: center !important;
     padding: 0.25rem 0.5rem !important;
     margin: 0.125rem !important;
-    font-size: 0.75rem !important;
+    font-size: 1rem !important;
     line-height: 1.2 !important;
     min-width: auto !important;
 }
@@ -351,5 +351,5 @@ table.user-management-table tbody td {
 table.user-management-table .btn {
     margin: 2px !important;
     padding: 0.25rem 0.5rem !important;
-    font-size: 0.75rem !important;
+    font-size: 1rem !important;
 }

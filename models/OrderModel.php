@@ -226,36 +226,55 @@ class OrderModel {
                 return true; // 如果没有佣金，直接返回成功
             }
             
+            /* // -- REMOVED: Do not add commission directly to user balance --
             // 更新上级代理余额
             $new_balance = $userModel->updateBalance($parent['id'], $commission_amount, 'add');
             
             if ($new_balance === false) {
-                return false;
+                Logger::log('Error updating parent balance for commission', ['parent_id' => $parent['id'], 'amount' => $commission_amount]);
+                // return false; 
             }
+            */ // -- END REMOVED --
             
-            // 创建交易记录
+            // 创建交易记录 (Re-enabled, but reflects NO balance change)
+            // This transaction serves reporting purposes for financial details
             $stmt = $this->db->prepare("
                 INSERT INTO transactions (user_id, order_id, type, amount, balance_before, balance_after, notes) 
                 VALUES (?, ?, 'commission', ?, ?, ?, ?)
             ");
             
-            $stmt->execute([
+            // Get the parent's current balance to record (balance doesn't change due to this tx)
+            $current_balance = $parent['balance']; // Assuming $parent array has the up-to-date balance
+            
+            $transResult = $stmt->execute([
                 $parent['id'],
                 $order_id,
                 $commission_amount,
-                $new_balance - $commission_amount,
-                $new_balance,
-                '下级代理 ' . $user['username'] . ' 的佣金'
+                $current_balance, // balance_before is the current balance
+                $current_balance, // balance_after is THE SAME (balance doesn't change here)
+                '佣金入账(未计入余额): 下级代理 ' . $user['username'] // Updated note
             ]);
+
+            if (!$transResult) {
+                 Logger::log('Failed to create commission transaction record', ['error' => $stmt->errorInfo(), 'parent_id' => $parent['id'], 'order_id' => $order_id]);
+                 // Decide if this failure should cause rollback
+                 // return false; 
+            }
             
-            // 创建佣金记录
+            // 创建佣金记录 (This part remains)
             $commissionModel = new CommissionModel();
-            $commissionModel->addCommission(
+            $addCommResult = $commissionModel->addCommission(
                 $parent['id'], 
                 $commission_amount, 
                 $order_id, 
                 '来自订单的佣金 - 下级代理: ' . $user['username']
             );
+
+            if (!$addCommResult) {
+                Logger::log('Failed to add commission record', ['parent_id' => $parent['id'], 'amount' => $commission_amount, 'order_id' => $order_id]);
+                // Depending on requirements, failure to add commission record might need to rollback the order.
+                // return false; // <-- Decide if this failure should cause rollback
+            }
             
             return true;
         } catch (Exception $e) {

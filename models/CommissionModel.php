@@ -96,4 +96,18 @@ class CommissionModel {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? floatval($result['total']) : 0;
     }
+
+    /**
+     * 计算用户佣金总额 (所有时间)
+     */
+    public function getTotalUserCommission($userId) {
+        $db = Database::getInstance();
+        
+        $query = "SELECT SUM(amount) as total FROM commissions WHERE user_id = ?";
+        $stmt = $db->getConnection()->prepare($query);
+        $stmt->execute([$userId]);
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? floatval($result['total']) : 0;
+    }
 } 

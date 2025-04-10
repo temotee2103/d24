@@ -58,7 +58,7 @@ CREATE TABLE transactions (
 -- 奖金规则表
 CREATE TABLE prize_rules (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    prize_type ENUM('头奖', '二将', '三将', '特别奖', '安慰奖') NOT NULL,
+    prize_type ENUM('头奖', '二奖', '三奖', '特别奖', '安慰奖') NOT NULL,
     size_type VARCHAR(10) NOT NULL,
     amount DECIMAL(12,2) NOT NULL,
     UNIQUE KEY (prize_type, size_type)
@@ -69,12 +69,12 @@ INSERT INTO prize_rules (prize_type, size_type, amount) VALUES
 ('头奖', '大', 2500),
 ('头奖', '小', 3500),
 ('头奖', '4A', 6000),
-('二将', '大', 1000),
-('二将', '小', 2000),
-('二将', '4B', 6000),
-('三将', '大', 500),
-('三将', '小', 1000),
-('三将', '4C', 6000),
+('二奖', '大', 1000),
+('二奖', '小', 2000),
+('二奖', '4B', 6000),
+('三奖', '大', 500),
+('三奖', '小', 1000),
+('三奖', '4C', 6000),
 ('特别奖', '大', 200),
 ('特别奖', '小', 0),
 ('安慰奖', '大', 60),

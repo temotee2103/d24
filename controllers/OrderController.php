@@ -12,94 +12,236 @@ if (!class_exists('Logger')) {
 class OrderController {
     private $orderModel;
     private $betParser;
-    private $periodModel;
-    private $logger;
     
     public function __construct() {
         $this->orderModel = new OrderModel();
         $this->betParser = new BetParser();
-        $this->periodModel = new Period();
-        $this->logger = new Logger('OrderController');
         AuthController::requireLogin();
     }
     
-    /**
-     * 创建订单
-     */
+    // 显示下注表单
     public function create() {
-        // 检查是否为POST请求
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $currentPeriod = $this->periodModel->getCurrentPeriod();
-            include_once 'views/order/create.php';
-            return;
+        // Initialize the Logger
+        Logger::init();
+        Logger::setDebugMode(defined('DEBUG_MODE') && DEBUG_MODE);
+        
+        // 添加更详细的日志
+        Logger::log('========== 开始处理下注请求 ==========', [
+            'request_method' => $_SERVER['REQUEST_METHOD'],
+            'request_uri' => $_SERVER['REQUEST_URI'],
+            'post_data' => $_POST,
+            'session_user' => isset($_SESSION['user']) ? ['id' => $_SESSION['user']['id'], 'username' => $_SESSION['user']['username']] : 'not logged in'
+        ]);
+        
+        $error = '';
+        $success = '';
+        $parsed_result = null;
+        $bet_content = '';
+        $debug_info = '';
+        $user = auth()->user(); // Get user data early
+        $popup_message = null; // Initialize popup message
+        
+        // Get current and next periods
+        $current_period = $this->getCurrentPeriod();
+        $next_periods = $this->getNextPeriods(3);
+        
+        // Ensure log directory exists
+        $log_dir = ROOT_PATH . DIRECTORY_SEPARATOR . 'logs';
+        if (!is_dir($log_dir)) {
+            mkdir($log_dir, 0777, true);
         }
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            Logger::log('POST request received in order/create', $_POST);
+            
+            // Check for required fields
+            $bet_content = isset($_POST['bet_content']) ? trim($_POST['bet_content']) : '';
+            $preview = isset($_POST['preview']) ? (int)$_POST['preview'] : 0;
+            $confirm = isset($_POST['confirm']) ? (int)$_POST['confirm'] : 0;
+            
+            Logger::log('Processing bet submission', [
+                'bet_content' => $bet_content,
+                'preview' => $preview,
+                'confirm' => $confirm
+            ]);
+            
+            // Validate bet content
+            if (empty($bet_content)) {
+                Logger::log('Error: Empty bet content', ['error' => 'Bet content cannot be empty']);
+                $popup_message = ['type' => 'error', 'text' => '下注内容不能为空'];
+                return $this->render('order/create', [
+                    'bet_content' => $bet_content,
+                    'current_period' => $current_period,
+                    'next_periods' => $next_periods,
+                    'user' => $user,
+                    'popup_message' => $popup_message
+                ]);
+            }
+            
+            try {
+                // Parse bet content using our new BetParser
+                $parser = new BetParser();
+                $parsed = $parser->parse($bet_content);
+                
+                Logger::log('Bet parsing result', [
+                    'valid' => $parsed['valid'] ?? false,
+                    'total' => $parsed['total'] ?? 0,
+                    'items_count' => count($parsed['items'] ?? [])
+                ]);
+                
+                if (!isset($parsed['valid']) || !$parsed['valid']) {
+                    $error_message = isset($parsed['message']) ? $parsed['message'] : '解析下注内容失败';
+                    Logger::log('Error parsing bet', ['error' => $error_message]);
+                    $popup_message = ['type' => 'error', 'text' => $error_message];
+                    return $this->render('order/create', [
+                        'bet_content' => $bet_content,
+                        'current_period' => $current_period,
+                        'next_periods' => $next_periods,
+                        'user' => $user,
+                        'popup_message' => $popup_message
+                    ]);
+                }
+                
+                // Get current user
+                $user = auth()->user();
+                if (!$user) {
+                    Logger::log('Error: User not authenticated');
+                    $popup_message = ['type' => 'error', 'text' => '请先登录'];
+                    return $this->render('order/create', [
+                        'bet_content' => $bet_content,
+                        'current_period' => $current_period,
+                        'next_periods' => $next_periods,
+                        'user' => null, // Pass null user
+                        'popup_message' => $popup_message
+                    ]);
+                }
+                
+                Logger::log('User authenticated', [
+                    'user_id' => $user['id'],
+                    'balance' => $user['balance']
+                ]);
+                
+                // Check if user has enough balance
+                $total_amount = $parsed['total'];
+                if ($confirm && $user['balance'] < $total_amount) {
+                    Logger::log('Error: Insufficient balance', [
+                        'user_balance' => $user['balance'],
+                        'required_amount' => $total_amount
+                    ]);
+                    $popup_message = ['type' => 'error', 'text' => '余额不足，请充值'];
+                    return $this->render('order/create', [
+                        'bet_content' => $bet_content,
+                        'parsed_result' => $parsed,
+                        'current_period' => $current_period,
+                        'next_periods' => $next_periods,
+                        'user' => $user,
+                        'popup_message' => $popup_message
+                    ]);
+                }
+                
+                // If confirming, create the order
+                if ($confirm) {
+                    Logger::log('确认下注请求', [
+                        'user_id' => $user['id'],
+                        'bet_content' => $bet_content,
+                        'total_amount' => $parsed['total'],
+                        'user_balance' => $user['balance']
+                    ]);
 
-        // 获取当前用户ID
-        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
-        
-        // 获取当前期数
-        $period = $this->periodModel->getCurrentPeriod();
-        if (!$period) {
-            $_SESSION['error'] = '当前没有开放的期数';
-            header('Location: ?controller=order&action=create');
-            exit;
-        }
-        
-        $this->logger->debug("处理订单创建请求: period_id={$period['id']}, user_id=$user_id");
-        
-        // 获取下注内容
-        $bet_content = isset($_POST['bet_content']) ? trim($_POST['bet_content']) : '';
-        if (empty($bet_content)) {
-            $this->logger->error("下注内容为空");
-            $_SESSION['error'] = '下注内容不能为空';
-            header('Location: ?controller=order&action=create');
-            exit;
-        }
-        
-        $this->logger->debug("原始下注内容: $bet_content");
-        
-        // 解析下注内容
-        $betParser = new BetParser();
-        try {
-            $this->logger->debug("开始解析下注内容");
-            $parsedData = $betParser->parse($bet_content);
-            
-            if (!$parsedData['success']) {
-                $this->logger->error("解析下注内容失败: " . $parsedData['message']);
-                $_SESSION['error'] = '下注内容格式错误: ' . $parsedData['message'];
-                header('Location: ?controller=order&action=create');
-                exit;
+                    // 详细记录用户数据
+                    Logger::log('用户详情', [
+                        'user_data_type' => gettype($user),
+                        'user_keys' => is_array($user) ? array_keys($user) : 'not array',
+                        'auth_check' => auth()->check(),
+                        'session_user' => isset($_SESSION['user']) ? $_SESSION['user'] : 'no session user'
+                    ]);
+                    
+                    $order = $this->createOrder($user['id'], $bet_content, $parsed);
+                    
+                    if ($order) {
+                        Logger::log('Order created successfully', [
+                            'order_id' => $order['id'],
+                            'amount' => $total_amount
+                        ]);
+                        
+                        // Set popup message instead of flash message
+                        $popup_message = ['type' => 'success', 'text' => '下注成功！'];
+                        
+                        // Return current page with order data and popup
+                        return $this->render('order/create', [
+                            'bet_content' => $bet_content, // Keep original content for reference maybe?
+                            'parsed_result' => $parsed,
+                            'order' => $order,
+                            'current_period' => $current_period,
+                            'next_periods' => $next_periods,
+                            'user' => $user,
+                            'popup_message' => $popup_message
+                        ]);
+                    } else {
+                        Logger::log('Error creating order', ['error' => 'Failed to create order']);
+                        // 检查数据库连接是否正常
+                        try {
+                            $db = Database::getInstance();
+                            $connected = $db && $db->getConnection() ? true : false;
+                            Logger::log('数据库连接检查', ['connected' => $connected]);
+                        } catch (Exception $dbEx) {
+                            Logger::log('数据库连接异常', [
+                                'error' => $dbEx->getMessage(),
+                                'trace' => $dbEx->getTraceAsString()
+                            ]);
+                        }
+                        
+                        $popup_message = ['type' => 'error', 'text' => '创建订单失败，请检查日志了解详情'];
+                        return $this->render('order/create', [
+                            'bet_content' => $bet_content,
+                            'current_period' => $current_period,
+                            'next_periods' => $next_periods,
+                            'user' => $user,
+                            'popup_message' => $popup_message
+                        ]);
+                    }
+                }
+                
+                // If just previewing, show the preview
+                if ($preview) {
+                    Logger::log('Showing bet preview', ['bet_data' => $parsed]);
+                    return $this->render('order/create', [
+                        'preview' => true,
+                        'parsed_result' => $parsed,
+                        'bet_content' => $bet_content,
+                        'current_period' => $current_period,
+                        'next_periods' => $next_periods,
+                        'user' => $user 
+                    ]);
+                }
+                
+            } catch (Exception $e) {
+                Logger::log('Exception in bet processing', [
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+                $popup_message = ['type' => 'error', 'text' => '处理下注时出错: ' . $e->getMessage()];
+                return $this->render('order/create', [
+                    'bet_content' => $bet_content,
+                    'current_period' => $current_period,
+                    'next_periods' => $next_periods,
+                    'user' => $user,
+                    'popup_message' => $popup_message
+                ]);
             }
-            
-            $this->logger->debug("解析结果: " . print_r($parsedData, true));
-            
-            // 创建订单
-            $result = $this->orderModel->create(
-                $user_id, 
-                $period['id'], 
-                $bet_content, 
-                $parsedData['total_amount'], 
-                $parsedData['items']
-            );
-            
-            if ($result['success']) {
-                $this->logger->debug("订单创建成功: order_id=" . $result['order_id']);
-                $_SESSION['success'] = '下注成功，订单号: ' . $result['order_id'];
-                header('Location: ?controller=order&action=view&id=' . $result['order_id']);
-                exit;
-            } else {
-                $this->logger->error("订单创建失败: " . $result['message']);
-                $_SESSION['error'] = '下注失败: ' . $result['message'];
-                header('Location: ?controller=order&action=create');
-                exit;
-            }
-        } catch (Exception $e) {
-            $this->logger->error("处理订单时发生异常: " . $e->getMessage());
-            $this->logger->error("异常堆栈: " . $e->getTraceAsString());
-            $_SESSION['error'] = '系统错误，请稍后再试';
-            header('Location: ?controller=order&action=create');
-            exit;
+        } else {
+            // Default content for GET request
+            $bet_content = "D\n#";
         }
+        
+        // Load the view for GET request or if no other return happened
+        return $this->render('order/create', [
+            'bet_content' => $bet_content,
+            'current_period' => $current_period,
+            'next_periods' => $next_periods,
+            'user' => $user, // Pass user data for GET request too
+            'popup_message' => $popup_message // Pass null if no message set
+        ]);
     }
     
     // 获取当前最近的期数
@@ -224,9 +366,10 @@ class OrderController {
         }
         
         // 解析订单内容
-        $content_items = json_decode($order['content'], true);
+        // $content_items = json_decode($order['content'], true); // Keep original raw content if needed
+        $parsed_content = $this->betParser->parse($order['content']);
         
-        // 加载视图
+        // 加载视图, 传递解析后的内容
         include_once ROOT_PATH . '/views/order/view.php';
     }
     

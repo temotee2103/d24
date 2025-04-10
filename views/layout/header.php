@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo asset('css/modern-table.css'); ?>">
+    <link rel="stylesheet" href="<?php echo url('public/css/modern-table.css'); ?>">
     
     <!-- 页面专用样式 -->
     <?php if (strpos($_SERVER['REQUEST_URI'], '/user/subagents') !== false): ?>
@@ -77,7 +77,7 @@
             --accent-gradient: linear-gradient(135deg, #F43F5E 0%, #EC4899 100%);
             --sidebar-width: 280px;
             --sidebar-collapsed-width: 80px;
-            --header-height: 70px;
+            --header-height: 90px;
             --card-border-radius: 16px;
             --button-border-radius: 12px;
             --body-bg: #F5F7FA;
@@ -153,7 +153,7 @@
         }
         
         .sidebar-logo img {
-            height: 70px;
+            height: 140px;
             width: auto;
             transition: all 0.3s ease;
             position: relative;
@@ -618,7 +618,7 @@
     <!-- 侧边栏 -->
     <div class="sidebar">
         <div class="sidebar-logo">
-            <img src="<?php echo asset('images/logo.png'); ?>" alt="D24 Logo">
+            <img src="<?php echo asset('images/logo-white.png'); ?>" alt="D24 Logo">
         </div>
         
         <ul class="sidebar-menu">
@@ -664,23 +664,36 @@
                         <span>报表</span>
                     </a>
                     <ul class="sidebar-submenu collapse <?php echo strpos($_SERVER['REQUEST_URI'], '/report') !== false ? 'show' : ''; ?>" id="reportSubmenu">
-                        <?php if ($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['role'] === 'super_admin'): ?>
+                        <?php if (isset($_SESSION['user']['role']) && in_array($_SESSION['user']['role'], ['admin', 'super_admin', 'agent'])):
+                            $user_role = $_SESSION['user']['role'];
+                        ?>
                             <li class="sidebar-menu-section">报表 & 统计</li>
+                            <?php if ($user_role === 'admin' || $user_role === 'super_admin'): ?>
                             <li>
                                 <a href="<?php echo url('report/financial'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/financial') !== false ? 'class="active"' : ''; ?>>
                                     <i class="bi bi-currency-exchange"></i> 财务报表
                                 </a>
                             </li>
+                            <?php endif; ?>
+                            
                             <li>
                                 <a href="<?php echo url('report/user'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/user') !== false ? 'class="active"' : ''; ?>>
                                     <i class="bi bi-people"></i> 用户报表
                                 </a>
                             </li>
+
                             <li>
                                 <a href="<?php echo url('report/transactions'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/transactions') !== false ? 'class="active"' : ''; ?>>
                                     <i class="bi bi-clipboard-data"></i> 交易记录
                                 </a>
                             </li>
+                            <?php /* Remove Commission Report Link
+                            <li>
+                                <a href="<?php echo url('report/commission'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/commission') !== false ? 'class="active"' : ''; ?>>
+                                    <i class="bi bi-wallet2"></i> 佣金记录
+                                </a>
+                            </li>
+                            */ ?>
                         <?php endif; ?>
                     </ul>
                 </li>

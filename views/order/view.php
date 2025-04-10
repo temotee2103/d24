@@ -72,37 +72,53 @@
                     <h5 class="card-title">订单内容</h5>
                 </div>
                 <div class="card-body">
-                    <?php if (empty($content_items)): ?>
-                        <div class="alert alert-info">订单内容为空</div>
-                    <?php else: ?>
-                        <div class="table-responsive">
-                            <table class="table modern-table">
-                                <thead>
-                                    <tr>
-                                        <th>类型</th>
-                                        <th>描述</th>
-                                        <th>金额</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                    $total = 0;
-                                    foreach ($content_items as $item): 
-                                        $total += $item['amount'];
-                                    ?>
-                                        <tr>
-                                            <td><?php echo h($item['type']); ?></td>
-                                            <td><?php echo h($item['description']); ?></td>
-                                            <td><?php echo $item['amount']; ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    <tr class="fw-bold">
-                                        <th colspan="2" class="text-end">总计</th>
-                                        <th><?php echo $total; ?></th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <?php 
+                    // Check if parsed_content exists and is valid
+                    if (isset($parsed_content) && $parsed_content['valid'] && !empty($parsed_content['items'])):
+                        // Generate receipt-like format
+                        $lottery_types = [];
+                        foreach ($parsed_content['items'] as $item) {
+                            if (isset($item['lottery_type'])) {
+                                $lottery_types = array_merge($lottery_types, $item['lottery_type']);
+                            }
+                        }
+                        $lottery_types = array_unique($lottery_types);
+                        $lottery_str = count($lottery_types) > 0 ? '*' . implode('', $lottery_types) : '*MPTS';
+
+                        $grouped_bets = [];
+                        foreach ($parsed_content['items'] as $item) {
+                            if (isset($item['number'])) {
+                                $number = $item['number'];
+                                $displayBetType = $item['bet_type_code'] ?? $item['bet_type'] ?? '?';
+                                $amount = $item['original_amount'];
+                                if (!isset($grouped_bets[$number])) {
+                                    $grouped_bets[$number] = [];
+                                }
+                                $grouped_bets[$number][] = $displayBetType . $amount;
+                            }
+                        }
+                        $bet_details = [];
+                        foreach ($grouped_bets as $number => $details) {
+                            $bet_details[] = $number . '= ' . implode(' ', $details);
+                        }
+                        $bet_str = implode("\n", $bet_details);
+                        $total = $parsed_content['total'] ?? $order['total_amount']; // Use parsed total if available
+
+                        // Display as preformatted text
+                        echo "<pre class=\"border p-3 bg-light\" style=\"white-space: pre-wrap; word-wrap: break-word;\">";
+                        echo h($order['order_number']) . "\n";
+                        echo h($order['username']) . "\n";
+                        echo date('d/m', strtotime($order['created_at'])) . "\n"; // Use order creation date
+                        echo h($lottery_str) . "\n";
+                        echo h($bet_str) . "\n";
+                        echo "\n";
+                        echo "GT=" . h($total);
+                        echo "</pre>";
+
+                    else: 
+                        // Fallback if parsing fails or no items
+                    ?>
+                        <div class="alert alert-info">订单内容无法解析或为空</div>
                     <?php endif; ?>
                 </div>
             </div>

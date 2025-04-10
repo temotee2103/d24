@@ -156,6 +156,7 @@ class BetParser {
             'type' => 'bet',
             'number' => $number,
             'bet_type' => $betTypeName,
+            'bet_type_code' => $betType,
             'lottery_type' => $formattedLotteryTypes,
             'periods' => $periods,
             'amount' => $itemAmount,

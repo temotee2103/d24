@@ -1,14 +1,16 @@
 <?php
-// 启用错误报告便于调试
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// 加载初始化文件 (如果存在，通常包含 autoloading 和基本设置)
+if (file_exists(__DIR__ . '/includes/init.php')) {
+    require_once __DIR__ . '/includes/init.php'; // init.php 内部会启动 session
+}
 
-// 加载初始化文件
-require_once __DIR__ . '/includes/init.php';
-
-// Include necessary files
-require_once 'config/config.php';
-require_once 'includes/functions.php';
+// Include necessary files (即使 init.php 中有 autoload，显式包含可以避免一些问题)
+if (file_exists(__DIR__ . '/config/config.php')) {
+    require_once __DIR__ . '/config/config.php';
+}
+if (file_exists(__DIR__ . '/includes/functions.php')) {
+    require_once __DIR__ . '/includes/functions.php';
+}
 require_once 'includes/Logger.php';  // Add the Logger class include
 require_once 'includes/DB.php';
 require_once 'includes/BetParser.php';
@@ -73,7 +75,7 @@ $router->add('order/cancel', 'Order', 'cancel');
 
 // 报表路由
 $router->add('report/sales', 'Report', 'sales');
-$router->add('report/commission', 'Report', 'commission');
+// $router->add('report/commission', 'Report', 'commission'); // Removed route
 $router->add('report/transactions', 'Report', 'transactions');
 $router->add('report/user', 'Report', 'user');
 

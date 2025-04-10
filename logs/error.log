@@ -1,121 +1,794 @@
-[2025-04-10 21:53:42] PHP Error [2]: error_log(C:\xampp\htdocs\d24/logs/betting.log): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\controllers\OrderController.php on line 30
-  #0 custom_error_handler() called at [[internal function]:]
-  #1 error_log() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:30]
-  #2 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:91]
-
-[2025-04-10 23:19:11] Uncaught Exception: Undefined constant "DEBUG_MODE" in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
+[2025-04-11 04:56:14] Uncaught Exception: Unclosed '{' on line 141 in C:\xampp\htdocs\d24\views\order\create.php on line 527
 Stack trace:
-#0 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
-#1 {main}
-
-[2025-04-10 23:19:16] Uncaught Exception: Undefined constant "DEBUG_MODE" in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
-Stack trace:
-#0 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
-#1 {main}
-
-[2025-04-10 23:19:29] Uncaught Exception: Undefined constant "DEBUG_MODE" in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
-Stack trace:
-#0 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
-#1 {main}
-
-[2025-04-10 23:29:12] Uncaught Exception: Class "Logger" not found in C:\xampp\htdocs\d24\includes\BetParser.php on line 11
-Stack trace:
-#0 C:\xampp\htdocs\d24\controllers\OrderController.php(66): BetParser->parse('D\r\n#1\r\n1234#1')
-#1 C:\xampp\htdocs\d24\index.php(91): OrderController->create()
+#0 C:\xampp\htdocs\d24\controllers\OrderController.php(221): OrderController->render('order/create', Array)
+#1 C:\xampp\htdocs\d24\index.php(111): OrderController->create()
 #2 {main}
 
-[2025-04-10 23:37:39] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
-
-[2025-04-10 23:37:39] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+[2025-04-11 04:58:08] Uncaught Exception: Undefined constant "n" in C:\xampp\htdocs\d24\views\order\create.php on line 180
 Stack trace:
-#0 {main}
+#0 C:\xampp\htdocs\d24\controllers\OrderController.php(500): include_once()
+#1 C:\xampp\htdocs\d24\controllers\OrderController.php(161): OrderController->render('order/create', Array)
+#2 C:\xampp\htdocs\d24\index.php(111): OrderController->create()
+#3 {main}
 
-[2025-04-11 00:24:43] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
-
-[2025-04-11 00:24:43] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+[2025-04-11 04:58:24] Uncaught Exception: syntax error, unexpected identifier "n", expecting "," or ";" in C:\xampp\htdocs\d24\views\order\create.php on line 180
 Stack trace:
-#0 {main}
+#0 C:\xampp\htdocs\d24\controllers\OrderController.php(161): OrderController->render('order/create', Array)
+#1 C:\xampp\htdocs\d24\index.php(111): OrderController->create()
+#2 {main}
 
-[2025-04-11 00:24:46] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
-
-[2025-04-11 00:24:46] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
+[2025-04-11 05:01:35] Uncaught Exception: syntax error, unexpected token "echo", expecting "," or ";" in C:\xampp\htdocs\d24\views\order\create.php on line 185
 Stack trace:
-#0 {main}
+#0 C:\xampp\htdocs\d24\controllers\OrderController.php(161): OrderController->render('order/create', Array)
+#1 C:\xampp\htdocs\d24\index.php(111): OrderController->create()
+#2 {main}
 
-[2025-04-11 00:24:50] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+[2025-04-11 05:19:26] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:50] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
-Stack trace:
-#0 {main}
+[2025-04-11 05:19:26] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:51] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+[2025-04-11 05:20:13] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:51] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
-Stack trace:
-#0 {main}
+[2025-04-11 05:20:13] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+[2025-04-11 05:26:52] PHP Error [8192]: Automatic conversion of false to array is deprecated in C:\xampp\htdocs\d24\controllers\HomeController.php on line 23
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:23]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
-Stack trace:
-#0 {main}
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
-Stack trace:
-#0 {main}
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+[2025-04-11 05:26:52] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
-Stack trace:
-#0 {main}
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] PHP Error [2]: require_once(includes/config.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\d24\index.php on line 10
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\index.php:10]
-  #1 require_once() called at [C:\xampp\htdocs\d24\index.php:10]
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:24:52] Uncaught Exception: Failed opening required 'includes/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\d24\index.php on line 10
-Stack trace:
-#0 {main}
+[2025-04-11 05:26:52] PHP Error [2]: Undefined array key "username" in C:\xampp\htdocs\d24\views\home\index.php on line 40
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 00:42:59] Uncaught Exception: Call to undefined method OrderController::render() in C:\xampp\htdocs\d24\controllers\OrderController.php on line 177
-Stack trace:
-#0 C:\xampp\htdocs\d24\index.php(104): OrderController->create()
-#1 {main}
+[2025-04-11 05:26:52] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 01:23:30] PHP Error [2]: Attempt to read property "id" on array in C:\xampp\htdocs\d24\controllers\OrderController.php on line 104
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:104]
-  #1 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:104]
+[2025-04-11 05:26:52] PHP Error [2]: Undefined array key "role" in C:\xampp\htdocs\d24\views\home\index.php on line 44
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 01:23:30] PHP Error [2]: Attempt to read property "balance" on array in C:\xampp\htdocs\d24\controllers\OrderController.php on line 105
-  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:105]
-  #1 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:104]
+[2025-04-11 05:26:52] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 02:43:00] Uncaught Exception: Call to undefined method Logger::debug() in C:\xampp\htdocs\d24\controllers\OrderController.php on line 27
-Stack trace:
-#0 C:\xampp\htdocs\d24\index.php(104): OrderController->create()
-#1 {main}
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
 
-[2025-04-11 02:50:21] Uncaught Exception: Class "Period" not found in C:\xampp\htdocs\d24\controllers\OrderController.php on line 21
-Stack trace:
-#0 C:\xampp\htdocs\d24\index.php(96): OrderController->__construct()
-#1 {main}
+[2025-04-11 05:26:52] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\HomeController.php on line 14
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:14]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [8192]: Automatic conversion of false to array is deprecated in C:\xampp\htdocs\d24\controllers\HomeController.php on line 23
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:23]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Undefined array key "username" in C:\xampp\htdocs\d24\views\home\index.php on line 40
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Undefined array key "role" in C:\xampp\htdocs\d24\views\home\index.php on line 44
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:03] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\UserController.php on line 24
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\UserController.php:24]
+  #1 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #4 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 8
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:8]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:06] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 22
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:22]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\HomeController.php on line 14
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:14]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [8192]: Automatic conversion of false to array is deprecated in C:\xampp\htdocs\d24\controllers\HomeController.php on line 23
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:23]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Undefined array key "username" in C:\xampp\htdocs\d24\views\home\index.php on line 40
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Undefined array key "role" in C:\xampp\htdocs\d24\views\home\index.php on line 44
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:11] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\UserController.php on line 24
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\UserController.php:24]
+  #1 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #4 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 8
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:8]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:12] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 22
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:22]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:33]
+  #1 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\OrderController.php on line 33
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:33]
+  #1 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\order\create.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:519]
+  #3 OrderController::render() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:238]
+  #4 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\order\create.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:519]
+  #3 OrderController::render() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:238]
+  #4 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\order\create.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:519]
+  #3 OrderController::render() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:238]
+  #4 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\order\create.php:1]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:519]
+  #4 OrderController::render() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:238]
+  #5 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\order\create.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:519]
+  #3 OrderController::render() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:238]
+  #4 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:14] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\order\create.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:519]
+  #3 OrderController::render() called at [C:\xampp\htdocs\d24\controllers\OrderController.php:238]
+  #4 OrderController::create() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\UserController.php on line 24
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\UserController.php:24]
+  #1 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #4 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 8
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:8]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 22
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:22]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\UserController.php on line 24
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\UserController.php:24]
+  #1 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #4 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 8
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:8]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:16] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 22
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:22]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\HomeController.php on line 14
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:14]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [8192]: Automatic conversion of false to array is deprecated in C:\xampp\htdocs\d24\controllers\HomeController.php on line 23
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:23]
+  #1 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\home\index.php:1]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #3 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Undefined array key "username" in C:\xampp\htdocs\d24\views\home\index.php on line 40
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:40]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Undefined array key "role" in C:\xampp\htdocs\d24\views\home\index.php on line 44
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\includes\init.php on line 154
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 htmlspecialchars() called at [C:\xampp\htdocs\d24\includes\init.php:154]
+  #2 h() called at [C:\xampp\htdocs\d24\views\home\index.php:44]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #4 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:28] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\home\index.php on line 212
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\home\index.php:212]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\HomeController.php:33]
+  #2 HomeController::index() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\UserController.php on line 24
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\UserController.php:24]
+  #1 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #4 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 8
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:8]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:36] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 22
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:22]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\controllers\UserController.php on line 24
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\UserController.php:24]
+  #1 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 667
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:667]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [8192]: substr(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\d24\views\layout\header.php on line 710
+  #0 custom_error_handler() called at [[internal function]:]
+  #1 substr() called at [C:\xampp\htdocs\d24\views\layout\header.php:710]
+  #2 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #3 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #4 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 713
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:713]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\layout\header.php on line 714
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\layout\header.php:714]
+  #1 include_once() called at [C:\xampp\htdocs\d24\views\user\subagents.php:2]
+  #2 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #3 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 8
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:8]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:27:39] PHP Error [2]: Trying to access array offset on value of type bool in C:\xampp\htdocs\d24\views\user\subagents.php on line 22
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\user\subagents.php:22]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\UserController.php:52]
+  #2 UserController::subagents() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:31:53] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:31:53] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:32:40] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:32:40] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:37:33] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:37:33] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:38:00] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:38:00] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:40:59] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:40:59] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:46:11] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:46:11] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:46:22] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:46:22] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:46:51] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 05:46:51] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
 
