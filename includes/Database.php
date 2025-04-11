@@ -5,23 +5,49 @@ class Database {
     private $stmt;
     
     public function __construct() {
+        error_log("DEBUG: Database __construct started."); // Checkpoint DB1
         $config = require_once __DIR__ . '/../config/database.php';
+        error_log("DEBUG: Database config loaded: " . print_r($config, true)); // Checkpoint DB2
         try {
+            $dsn = "mysql:host={$config['host']};dbname={$config['database']};charset=utf8mb4";
+            error_log("DEBUG: PDO DSN: " . $dsn); // Checkpoint DB3
             $this->conn = new PDO(
-                "mysql:host={$config['host']};dbname={$config['database']};charset=utf8mb4",
+                $dsn,
                 $config['username'],
                 $config['password'],
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
+            error_log("DEBUG: PDO connection successful."); // Checkpoint DB4
+
+            // SET TIME ZONE for the connection
+            $this->conn->exec("SET time_zone = '+8:00'"); // Set to GMT+8 for this session
+            error_log("DEBUG: PDO connection time_zone set to +8:00."); 
+
         } catch (PDOException $e) {
-            die("数据库连接失败: " . $e->getMessage());
+            error_log("FATAL: PDO Connection Error in Database __construct: " . $e->getMessage()); // Log fatal error
+            // We should probably re-throw or handle more gracefully than die
+            throw $e; // Re-throw exception
+            // die("数据库连接失败: " . $e->getMessage()); 
         }
+        error_log("DEBUG: Database __construct finished."); // Checkpoint DB5
     }
     
     public static function getInstance() {
+        error_log("DEBUG: Database getInstance called."); // Checkpoint DB6
         if (self::$instance === null) {
-            self::$instance = new self();
+            error_log("DEBUG: Database instance is null, creating new instance."); // Checkpoint DB7
+            try {
+                self::$instance = new self();
+                 error_log("DEBUG: Database new instance created successfully."); // Checkpoint DB8
+            } catch (Exception $e) {
+                 error_log("FATAL: Exception during new self() in getInstance: " . $e->getMessage()); // Log fatal error
+                 self::$instance = null; // Ensure instance remains null on failure
+                 throw $e; // Re-throw
+            }
+        } else {
+             error_log("DEBUG: Database instance already exists, returning existing."); // Checkpoint DB9
         }
+        error_log("DEBUG: Database getInstance returning instance. Is it null? " . (self::$instance === null ? 'YES' : 'NO')); // Checkpoint DB10
         return self::$instance;
     }
     

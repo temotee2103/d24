@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /d24/
+RewriteBase /
 
 # 如果不是现有文件或目录，重定向到index.php
 RewriteCond %{REQUEST_FILENAME} !-f

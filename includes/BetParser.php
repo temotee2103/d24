@@ -65,9 +65,13 @@ class BetParser {
             'W' => '7'  // 砂拉越
         ];
         
-        // Format lottery types string for database
-        $lotteryTypeString = implode('', array_values($lotteryTypes));
-        $result['lottery_types'] = $lotteryTypeString;
+        // Format lottery types string for database (numeric)
+        $lotteryTypeString = implode('', array_map(function($type) use ($lotteryTypeMap) {
+            return $lotteryTypeMap[$type] ?? '';
+        }, $lotteryTypes));
+        $result['lottery_types_numeric'] = $lotteryTypeString;
+        // Also add the original letters array
+        $result['lottery_types_letters'] = $lotteryTypes;
         
         // Process each bet
         foreach ($bets as $bet) {

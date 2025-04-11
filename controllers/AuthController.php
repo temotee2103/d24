@@ -3,45 +3,45 @@ class AuthController {
     private $userModel;
     
     public function __construct() {
+        // echo "DEBUG: Checkpoint CONSTRUCT - Inside AuthController Constructor"; exit(); // REMOVE CHECKPOINT
         $this->userModel = new UserModel();
     }
     
     // 显示登录页面
     public function login() {
-        // 如果已经登录，跳转到首页
         if (isset($_SESSION['user'])) {
             redirect('home');
         }
-
         $error = '';
-        
-        // 检查表单是否已提交
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['username']) || empty($_POST['password'])) {
-                $error = '请输入用户名和密码';
-            } else {
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                
-                // 尝试认证用户
-                $user = $this->userModel->getUserByUsername($username);
-                
-                if ($user && $this->userModel->verifyPassword($password, $user['password'])) {
-                    // 设置用户会话 - 存储完整的用户信息
-                    $_SESSION['user'] = $user;
-                    
-                    // 记录登录活动
-                    $this->userModel->logUserActivity($user['id'], 'login', '用户登录成功');
-                    
-                    // 重定向到首页
-                    redirect('home');
-                } else {
-                    $error = '用户名或密码错误';
-                }
-            }
+            // echo "DEBUG: Login POST Reached - Method Start"; exit(); // REMOVED
+             
+             // Restore original logic
+             if (empty($_POST['username']) || empty($_POST['password'])) {
+                 $error = '请输入用户名和密码';
+                 // Use popup or error display method
+                 $popup_message = ['type' => 'error', 'text' => $error];
+                 include_once ROOT_PATH . '/views/auth/login.php'; // Need to include view to show error
+                 return; // Stop execution here if error
+             } else {
+                 $username = $_POST['username'];
+                 $password = $_POST['password'];
+                 
+                 $user = $this->userModel->getUserByUsername($username);
+                 
+                 if ($user && $this->userModel->verifyPassword($password, $user['password'])) {
+                     $_SESSION['user'] = $user;
+                     $this->userModel->logUserActivity($user['id'], 'login', '用户登录成功');
+                     redirect('home');
+                 } else {
+                     $error = '用户名或密码错误';
+                     $popup_message = ['type' => 'error', 'text' => $error];
+                     include_once ROOT_PATH . '/views/auth/login.php'; // Need to include view to show error
+                     return; // Stop execution here if error
+                 }
+             }
         }
-        
-        // 显示登录表单
+        // GET request shows form or if errors occurred in POST
         include_once ROOT_PATH . '/views/auth/login.php';
     }
     

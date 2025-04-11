@@ -13,172 +13,187 @@ class ReportController {
      * 显示综合财务报表
      */
     public function financial() {
-        // 检查是否为管理员
-        if ($_SESSION['user']['role'] !== 'admin' && $_SESSION['user']['role'] !== 'super_admin') {
-            redirect('home');
-        }
-        
+        $current_user_id = $_SESSION['user']['id'];
+        $current_user_role = $_SESSION['user']['role'];
+        $currentUser = $this->userModel->getUserById($current_user_id); // Fetch viewing user data
+        $currentUserRate = $currentUser['commission_rate'];
+
+        // Allow only logged-in users (can be refined later if needed)
+        // AuthController::requireLogin(); // Already called in constructor
+
+        // Date range setup
         $startDate = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-01');
         $endDate = isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-t');
-        
+
         try {
-            // 尝试创建commissions表（如果不存在）
-            try {
-                $db = Database::getInstance();
-                $conn = $db->getConnection();
-                
-                // 检查表是否存在
-                $stmt = $conn->prepare("SHOW TABLES LIKE 'commissions'");
-                $stmt->execute();
-                $tableExists = $stmt->rowCount() > 0;
-                
-                if (!$tableExists) {
-                    // 创建commissions表
-                    $createTableSQL = "CREATE TABLE IF NOT EXISTS `commissions` (
-                      `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `user_id` int(11) NOT NULL,
-                      `amount` decimal(10,2) NOT NULL,
-                      `order_id` int(11) DEFAULT NULL,
-                      `note` text DEFAULT NULL,
-                      `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-                      PRIMARY KEY (`id`),
-                      KEY `user_id` (`user_id`),
-                      KEY `order_id` (`order_id`)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
-                    
-                    $conn->exec($createTableSQL);
-                    
-                    // 添加外键（如果需要）
-                    try {
-                        $conn->exec("ALTER TABLE `commissions` 
-                                     ADD CONSTRAINT `fk_commission_user` 
-                                     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) 
-                                     ON DELETE CASCADE");
-                                     
-                        $conn->exec("ALTER TABLE `commissions` 
-                                     ADD CONSTRAINT `fk_commission_order` 
-                                     FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) 
-                                     ON DELETE SET NULL");
-                    } catch (Exception $e) {
-                        // 忽略外键错误，可能是数据库不支持或已存在
-                    }
-                }
-            } catch (Exception $e) {
-                // 忽略表创建错误，继续显示报表
-            }
-            
-            // 获取订单和佣金数据
             $orderModel = new OrderModel();
-            
-            // 获取所有订单
-            $orders = $orderModel->getOrdersByDateRange($startDate, $endDate);
-            
-            // 尝试获取佣金数据，如果表不存在则提供备用数据
-            try {
-                $commissionModel = new CommissionModel();
-                $commissions = $commissionModel->getCommissionsByDateRange($startDate, $endDate);
-            } catch (Exception $e) {
-                // 如果佣金表不存在，使用空数组
-                $commissions = [];
-            }
-            
-            // 处理数据，计算每个订单的佣金和利润
-            $financialRecords = [];
+            $commissionModel = new CommissionModel();
+            $userModel = $this->userModel; // Use injected model
+
+            $ordersForSales = []; // Orders relevant for sales calculation
             $totalSales = 0;
-            $totalCommission = 0;
-            $totalProfit = 0;
-            
-            // 按日期对数据进行分组（用于图表）
+            $reportProfit = 0; // Commission EARNED by viewer
+            $profitMargin = 0;
             $chartData = [
                 'dates' => [],
-                'sales' => [],
-                'commission' => [],
-                'profit' => []
+                'sales' => [], 
+                'profit' => []  // Represents Personal Commission Earned by viewer
             ];
-            
             $dateData = [];
+
+            // Fetch personal commission earned by the viewer (needed for chart, and for admin profit)
+            $personalCommissionRecords = $commissionModel->getCommissionsByDateRangeAndUser($startDate, $endDate, $current_user_id);
+            $personalCommissionTotalForChart = 0;
+            foreach($personalCommissionRecords as $c) { $personalCommissionTotalForChart += floatval($c['amount']); }
+            Logger::log('Financial Report: Personal Commission Total (from commission table)', ['user_id' => $current_user_id, 'start' => $startDate, 'end' => $endDate, 'commission' => $personalCommissionTotalForChart]);
+
+            if ($current_user_role === 'admin' || $current_user_role === 'super_admin') {
+                // --- Admin / Super Admin View --- 
+                // Sales = System-wide sales
+                $ordersForSales = $orderModel->getOrdersByDateRange($startDate, $endDate);
+                foreach ($ordersForSales as $order) {
+                    $totalSales += floatval($order['total_amount']);
+                }
+                // Profit for Admin = Personal Commission Earned (from commission table)
+                $reportProfit = $personalCommissionTotalForChart; 
+                Logger::log('Financial Report: Admin/SuperAdmin Data', ['total_orders' => count($ordersForSales), 'total_sales' => $totalSales, 'report_profit' => $reportProfit]);
             
-            foreach ($orders as $order) {
-                $orderAmount = floatval($order['total_amount']);
-                $orderCommission = 0;
+            } else { // Agent View
+                // --- Agent View ---
+                // Fetch Agent's OWN orders
+                $agentOrders = $orderModel->getUserOrdersByDateRange($current_user_id, $startDate, $endDate);
+                $agentSales = 0;
+                foreach ($agentOrders as $order) {
+                    $agentSales += floatval($order['total_amount']);
+                }
                 
-                // 查找与订单相关的佣金记录
-                foreach ($commissions as $commission) {
-                    if (isset($commission['order_id']) && $commission['order_id'] == $order['id']) {
-                        $orderCommission += floatval($commission['amount']);
+                // Fetch Subagent orders
+                $subagentOrders = $orderModel->getSubagentOrdersByDateRange($current_user_id, $startDate, $endDate);
+                $subagentSales = 0;
+                foreach ($subagentOrders as $order) {
+                    $subagentSales += floatval($order['total_amount']);
+                }
+
+                // Total Sales for Agent's view = Own Sales + Subagent Sales
+                $totalSales = $agentSales + $subagentSales;
+                
+                // --- Calculate Profit (Commission Earned by Agent) ---
+                $reportProfit = 0;
+                // 1. Commission from Own Sales (based on agent's own rate)
+                $reportProfit += $agentSales * $currentUserRate / 100;
+                Logger::log('Financial Report: Agent Profit - From Own Sales', ['profit_own' => $agentSales * $currentUserRate / 100]);
+
+                // 2. Commission from Direct Subagents
+                $directSubagents = $userModel->getSubagents($current_user_id);
+                $commissionFromSubs = 0;
+                foreach ($directSubagents as $subagent) {
+                    $subagentRate = $subagent['commission_rate'];
+                    $rateDiff = $currentUserRate - $subagentRate;
+                    if ($rateDiff > 0) {
+                        $subagentOrdersForComm = $orderModel->getUserOrdersByDateRange($subagent['id'], $startDate, $endDate);
+                        foreach ($subagentOrdersForComm as $order) {
+                            $commissionEarned = floatval($order['total_amount']) * $rateDiff / 100;
+                            $commissionFromSubs += $commissionEarned;
+                        }
                     }
                 }
-                
-                // 计算利润和利润率
-                $profit = $orderAmount - $orderCommission;
-                $profitMargin = $orderAmount > 0 ? ($profit / $orderAmount * 100) : 0;
-                
-                // 添加到记录数组
-                $financialRecords[] = [
-                    'order_number' => $order['order_number'],
-                    'username' => $order['username'],
-                    'amount' => $orderAmount,
-                    'commission' => $orderCommission,
-                    'profit' => $profit,
-                    'profit_margin' => $profitMargin,
-                    'created_at' => $order['created_at']
-                ];
-                
-                // 累计总额
-                $totalSales += $orderAmount;
-                $totalCommission += $orderCommission;
-                
-                // 按日期分组数据
-                $orderDate = date('Y-m-d', strtotime($order['created_at']));
-                if (!isset($dateData[$orderDate])) {
-                    $dateData[$orderDate] = [
-                        'sales' => 0,
-                        'commission' => 0,
-                        'profit' => 0
-                    ];
+                $reportProfit += $commissionFromSubs;
+                Logger::log('Financial Report: Agent Profit - From Sub Sales', ['profit_subs' => $commissionFromSubs]);
+
+                // Combine orders for chart grouping (Sales)
+                $ordersForSales = array_merge($agentOrders, $subagentOrders); 
+
+                Logger::log('Financial Report: Agent Data', [
+                    'agent_sales' => $agentSales,
+                    'subagent_sales' => $subagentSales,
+                    'total_sales' => $totalSales, 
+                    'report_profit' => $reportProfit // Includes commission from own + subagents
+                ]);
+            }
+
+            // Calculate Profit Margin (Viewer Earned Commission / Relevant Sales)
+            $profitMargin = $totalSales > 0 ? ($reportProfit / $totalSales * 100) : 0;
+            Logger::log('Financial Report: Calculated Margin', ['margin' => $profitMargin]);
+
+            // --- Chart Data Calculation ---
+            $dateData = []; // Reset dateData
+
+            // 1. Group Relevant Sales (System or Agent Scope)
+            foreach ($ordersForSales as $order) {
+                 $orderDate = date('Y-m-d', strtotime($order['created_at']));
+                 if (!isset($dateData[$orderDate])) {
+                    $dateData[$orderDate] = ['sales' => 0, 'earned_commission' => 0];
+                 }
+                 $dateData[$orderDate]['sales'] += floatval($order['total_amount']);
+            }
+
+            // 2. Group Personal Commission Earned by Date 
+            //    Use the already fetched records for admin, recalculate daily for agent
+            if ($current_user_role === 'admin' || $current_user_role === 'super_admin') {
+                 // Use the commission records fetched earlier
+                 foreach ($personalCommissionRecords as $commission) {
+                     $commDate = date('Y-m-d', strtotime($commission['created_at']));
+                     if (!isset($dateData[$commDate])) { $dateData[$commDate] = ['sales' => 0, 'earned_commission' => 0]; }
+                     $dateData[$commDate]['earned_commission'] += floatval($commission['amount']); 
+                 }
+            } else { // Agent
+                // Recalculate daily earned commission for agent
+                // Group Commission from Own Sales
+                foreach($agentOrders as $order) {
+                    $orderDate = date('Y-m-d', strtotime($order['created_at']));
+                    if (!isset($dateData[$orderDate])) { $dateData[$orderDate] = ['sales' => 0, 'earned_commission' => 0]; }
+                    $dateData[$orderDate]['earned_commission'] += floatval($order['total_amount']) * $currentUserRate / 100;
                 }
-                
-                $dateData[$orderDate]['sales'] += $orderAmount;
-                $dateData[$orderDate]['commission'] += $orderCommission;
-                $dateData[$orderDate]['profit'] += $profit;
+                // Group Commission from Subagents
+                foreach ($directSubagents as $subagent) {
+                    $subagentRate = $subagent['commission_rate'];
+                    $rateDiff = $currentUserRate - $subagentRate;
+                    if ($rateDiff > 0) {
+                        $subagentOrdersForComm = $orderModel->getUserOrdersByDateRange($subagent['id'], $startDate, $endDate);
+                        foreach ($subagentOrdersForComm as $order) {
+                            $orderDate = date('Y-m-d', strtotime($order['created_at']));
+                            if (!isset($dateData[$orderDate])) { $dateData[$orderDate] = ['sales' => 0, 'earned_commission' => 0]; }
+                            $dateData[$orderDate]['earned_commission'] += floatval($order['total_amount']) * $rateDiff / 100;
+                        }
+                    }
+                }
             }
+            Logger::log('Financial Report: Grouped Daily Data', $dateData);
             
-            // 计算总利润和利润率
-            $totalProfit = $totalSales - $totalCommission;
-            $profitMargin = $totalSales > 0 ? ($totalProfit / $totalSales * 100) : 0;
-            
-            // 准备图表数据
+            // 3. Prepare final chart data 
             $chartDates = array_keys($dateData);
-            sort($chartDates); // 按日期排序
-            
+            sort($chartDates);
+            $chartData = ['dates' => [], 'sales' => [], 'profit' => []]; 
             foreach ($chartDates as $date) {
+                $dailySales = $dateData[$date]['sales'] ?? 0;
+                $dailyEarnedComm = $dateData[$date]['earned_commission'] ?? 0; 
+
                 $chartData['dates'][] = "'" . date('m/d', strtotime($date)) . "'";
-                $chartData['sales'][] = $dateData[$date]['sales'];
-                $chartData['commission'][] = $dateData[$date]['commission'];
-                $chartData['profit'][] = $dateData[$date]['profit'];
+                $chartData['sales'][] = $dailySales;
+                $chartData['profit'][] = $dailyEarnedComm; 
             }
+            Logger::log('Financial Report: Final Chart Data', $chartData);
             
-            // 合并统计数据
+            // Final stats for the view
             $financialStats = [
-                'total_sales' => $totalSales,
-                'total_commission' => $totalCommission,
-                'net_profit' => $totalProfit,
-                'profit_margin' => $profitMargin
+                'total_sales' => $totalSales,      // Relevant Sales
+                'net_profit' => $reportProfit,     // Viewer's Earned Commission (Own + Subagents for Agent)
+                'profit_margin' => $profitMargin   // Margin based on above
             ];
+            Logger::log('Financial Report: Final Stats for View', $financialStats);
             
-            // 按创建时间排序记录
-            usort($financialRecords, function($a, $b) {
-                return strtotime($b['created_at']) - strtotime($a['created_at']);
-            });
+            $financialRecords = []; // Keep detailed records empty
             
-            // 渲染视图
+            // Render the view
             $data = [
                 'financialRecords' => $financialRecords,
                 'financialStats' => $financialStats,
-                'chartData' => $chartData
+                'chartData' => $chartData,
+                'report_title' => ($current_user_role === 'agent') ? '代理财务概览' : '综合财务报表' // Dynamic title
             ];
             
             include_once ROOT_PATH . '/views/report/financial.php';
+
         } catch (Exception $e) {
             // 发生错误时显示错误页面
             $_SESSION['error'] = "报表生成错误：" . $e->getMessage();
@@ -264,6 +279,7 @@ class ReportController {
         }
         
         $displayUsers = [];
+        $commissionModel = new CommissionModel(); // Instantiate CommissionModel here
         foreach ($uniqueUsers as $user) {
             // 获取用户充值总额
             $deposits = $this->transactionModel->getTransactionsByType('deposit', $user['id']);
@@ -282,7 +298,6 @@ class ReportController {
             $user['total_spent'] = $total_spent;
             
             // 获取用户佣金总额 (from commissions table is better)
-            $commissionModel = new CommissionModel(); // Assuming CommissionModel exists
             $commission_balance = $commissionModel->getTotalUserCommission($user['id']); // Method needs to exist
             $user['commission_balance'] = $commission_balance;
             

@@ -85,8 +85,8 @@
                     <tbody>
                         <?php foreach ($transactions as $transaction): ?>
                             <tr>
-                                <td class="text-center"><?php echo $transaction['id']; ?></td>
-                                <td>
+                                <td data-label="ID" class="text-center"><?php echo $transaction['id']; ?></td>
+                                <td data-label="用户">
                                     <div class="d-flex align-items-center">
                                         <div class="avatar-sm me-2 d-flex align-items-center justify-content-center rounded-circle" style="width: 32px; height: 32px; background-color: #f8f9fa;">
                                             <i class="bi bi-person text-muted"></i>
@@ -100,15 +100,15 @@
                                         ?>
                                     </div>
                                 </td>
-                                <td><?php echo $transaction['order_id'] ? $transaction['order_id'] : '-'; ?></td>
-                                <td class="text-center"><?php echo getTransactionTypeName($transaction['type']); ?></td>
-                                <td class="text-end fw-medium"><?php echo getAmountWithSign($transaction['amount'], $transaction['type']); ?></td>
-                                <td class="text-end">
+                                <td data-label="订单号"><?php echo $transaction['order_id'] ? $transaction['order_id'] : '-'; ?></td>
+                                <td data-label="类型" class="text-center"><?php echo getTransactionTypeName($transaction['type']); ?></td>
+                                <td data-label="金额" class="text-end fw-medium"><?php echo getAmountWithSign($transaction['amount'], $transaction['type']); ?></td>
+                                <td data-label="余额变化" class="text-end">
                                     <?php echo number_format($transaction['balance_before'], 2); ?> → 
                                     <?php echo number_format($transaction['balance_after'], 2); ?>
                                 </td>
-                                <td><?php echo h($transaction['notes']); ?></td>
-                                <td class="text-center small"><?php echo date('Y-m-d H:i:s', strtotime($transaction['created_at'])); ?></td>
+                                <td data-label="备注"><?php echo h($transaction['notes']); ?></td>
+                                <td data-label="交易时间" class="text-center small"><?php echo date('Y-m-d H:i:s', strtotime($transaction['created_at'])); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

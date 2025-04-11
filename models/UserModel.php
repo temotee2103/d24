@@ -3,7 +3,26 @@ class UserModel {
     private $db;
     
     public function __construct() {
-        $this->db = Database::getInstance();
+        // echo "<br>DEBUG: Entering UserModel Constructor<br>"; // REMOVED
+        try {
+            $this->db = Database::getInstance();
+            // echo "DEBUG: Value of UserModel::\$this->db after getInstance():<br><pre>"; // REMOVED
+            // var_dump($this->db); // REMOVED
+            // echo "</pre><br>"; // REMOVED
+        } catch (Exception $e) {
+            // echo "DEBUG: Exception during Database::getInstance() in UserModel: " . $e->getMessage() . "<br>"; // REMOVED
+            $this->db = null; 
+            error_log("Error getting DB instance in UserModel: " . $e->getMessage()); 
+            // It's better to throw the exception so the calling code knows about the failure
+            throw new Exception("Failed to initialize UserModel database connection: " . $e->getMessage());
+        }
+        if ($this->db === null) {
+             // echo "DEBUG: UserModel Constructor finished, but \$this->db is NULL.<br>"; // REMOVED
+             // Throw an exception if DB connection failed after try-catch (shouldn't happen if catch throws)
+             throw new Exception("UserModel database connection is null after constructor.");
+        } else {
+             // echo "DEBUG: UserModel Constructor finished, \$this->db seems OK.<br>"; // REMOVED
+        }
     }
     
     // 通过ID获取用户

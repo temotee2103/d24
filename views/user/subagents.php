@@ -95,83 +95,115 @@ include_once ROOT_PATH . '/models/UserModel.php';
                                         <?php foreach ($subagents as $agent): ?>
                                             <tr class="user-row">
                                                 <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                                                <td>
-                                                    <input type="checkbox" class="form-check-input user-checkbox" name="selected_users[]" value="<?php echo $agent['id']; ?>">
+                                                <td data-label="选中">
+                                                    <span class="value">
+                                                        <input type="checkbox" class="form-check-input user-checkbox" name="selected_users[]" value="<?php echo $agent['id']; ?>">
+                                                    </span>
                                                 </td>
                                                 <?php endif; ?>
-                                                <td><?php echo $agent['id']; ?></td>
-                                                <td><?php echo h($agent['username']); ?></td>
-                                                <td><?php echo h($agent['nickname']); ?></td>
+                                                <td data-label="ID"><span class="value"><?php echo $agent['id']; ?></span></td>
+                                                <td data-label="用户名"><span class="value"><?php echo h($agent['username']); ?></span></td>
+                                                <td data-label="昵称"><span class="value"><?php echo h($agent['nickname']); ?></span></td>
                                                 <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
-                                                <td>
-                                                    <?php 
-                                                        $roleLabels = [
-                                                            'user' => '<span class="badge bg-info user-badge">用户</span>',
-                                                            'agent' => '<span class="badge bg-primary user-badge">代理</span>',
-                                                            'admin' => '<span class="badge bg-warning user-badge">管理员</span>',
-                                                            'super_admin' => '<span class="badge bg-danger user-badge">超级管理员</span>'
-                                                        ];
-                                                        echo $roleLabels[$agent['role']] ?? $agent['role'];
-                                                    ?>
+                                                <td data-label="角色">
+                                                    <span class="value">
+                                                        <?php 
+                                                            $roleLabels = [
+                                                                'user' => '<span class="badge bg-info user-badge">用户</span>',
+                                                                'agent' => '<span class="badge bg-primary user-badge">代理</span>',
+                                                                'admin' => '<span class="badge bg-warning user-badge">管理员</span>',
+                                                                'super_admin' => '<span class="badge bg-danger user-badge">超级管理员</span>'
+                                                            ];
+                                                            echo $roleLabels[$agent['role']] ?? $agent['role'];
+                                                        ?>
+                                                    </span>
                                                 </td>
-                                                <td>
-                                                    <?php 
-                                                        if (!empty($agent['parent_id'])) {
-                                                            $parent = (new UserModel())->getUserById($agent['parent_id']);
-                                                            echo $parent ? h($parent['username']) : '未知';
-                                                        } else {
-                                                            echo '<span class="text-muted">无</span>';
-                                                        }
-                                                    ?>
+                                                <td data-label="上级">
+                                                    <span class="value">
+                                                        <?php 
+                                                            if (!empty($agent['parent_id'])) {
+                                                                $parent = (new UserModel())->getUserById($agent['parent_id']);
+                                                                echo $parent ? h($parent['username']) : '未知';
+                                                            } else {
+                                                                echo '<span class="text-muted">无</span>';
+                                                            }
+                                                        ?>
+                                                    </span>
                                                 </td>
                                                 <?php endif; ?>
-                                                <td><?php echo $agent['commission_rate']; ?>%</td>
-                                                <td>
-                                                    <?php if ($agent['can_create_subagent']): ?>
-                                                        <span class="badge bg-success status-badge">可以</span>
-                                                    <?php else: ?>
-                                                        <span class="badge bg-secondary status-badge">不可以</span>
-                                                    <?php endif; ?>
+                                                <td data-label="佣金 (%)"><span class="value"><?php echo $agent['commission_rate']; ?>%</span></td>
+                                                <td data-label="可开下线">
+                                                    <span class="value">
+                                                        <?php if ($agent['can_create_subagent']): ?>
+                                                            <span class="badge bg-success status-badge">可以</span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-secondary status-badge">不可以</span>
+                                                        <?php endif; ?>
+                                                    </span>
                                                 </td>
-                                                <td><?php echo number_format($agent['balance'], 2); ?></td>
-                                                <td>
-                                                    <?php if ($agent['status'] === 'active'): ?>
-                                                        <span class="badge bg-success status-badge">激活</span>
-                                                    <?php else: ?>
-                                                        <span class="badge bg-danger status-badge">停用</span>
-                                                    <?php endif; ?>
+                                                <td data-label="余额"><span class="value"><?php echo number_format($agent['balance'], 2); ?></span></td>
+                                                <td data-label="状态">
+                                                    <span class="value">
+                                                        <?php if ($agent['status'] === 'active'): ?>
+                                                            <span class="badge bg-success status-badge">激活</span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-danger status-badge">停用</span>
+                                                        <?php endif; ?>
+                                                    </span>
                                                 </td>
-                                                <td><?php echo date('Y-m-d', strtotime($agent['created_at'])); ?></td>
-                                                <td class="text-nowrap actions-column">
-                                                    <a href="<?php echo url('user/view/' . $agent['id']); ?>" class="btn btn-sm btn-primary">
+                                                <td data-label="创建时间"><span class="value"><?php echo date('Y-m-d', strtotime($agent['created_at'])); ?></span></td>
+                                                <td class="text-nowrap actions-column" data-label="操作">
+                                                    <!-- Desktop Buttons (Hidden on Mobile) -->
+                                                    <a href="<?php echo url('user/view/' . $agent['id']); ?>" class="btn btn-sm btn-primary d-none d-md-inline-block">
                                                         <i class="bi bi-eye"></i> 查看
                                                     </a>
-                                                    <a href="<?php echo url('user/edit/' . $agent['id']); ?>" class="btn btn-sm btn-warning">
+                                                    <a href="<?php echo url('user/edit/' . $agent['id']); ?>" class="btn btn-sm btn-warning d-none d-md-inline-block">
                                                         <i class="bi bi-pencil"></i> 编辑
                                                     </a>
-                                                    <a href="<?php echo url('user/deposit/' . $agent['id']); ?>" class="btn btn-sm btn-success">
+                                                    <a href="<?php echo url('user/deposit/' . $agent['id']); ?>" class="btn btn-sm btn-success d-none d-md-inline-block">
                                                         <i class="bi bi-cash"></i> <?php echo $_SESSION['user']['role'] === 'super_admin' ? '充值' : '转账'; ?>
                                                     </a>
                                                     <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
                                                         <?php if ($agent['status'] === 'active'): ?>
                                                         <a href="<?php echo url('user/toggle_status/' . $agent['id']); ?>" 
-                                                           class="btn btn-sm btn-secondary"
+                                                           class="btn btn-sm btn-secondary d-none d-md-inline-block"
                                                            onclick="return confirm('确定要停用用户 <?php echo h($agent['username']); ?> 吗？');">
                                                             <i class="bi bi-toggle-off"></i> 停用
                                                         </a>
                                                         <?php else: ?>
                                                         <a href="<?php echo url('user/toggle_status/' . $agent['id']); ?>" 
-                                                           class="btn btn-sm btn-success"
+                                                           class="btn btn-sm btn-success d-none d-md-inline-block"
                                                            onclick="return confirm('确定要激活用户 <?php echo h($agent['username']); ?> 吗？');">
                                                             <i class="bi bi-toggle-on"></i> 激活
                                                         </a>
                                                         <?php endif; ?>
                                                         <a href="<?php echo url('user/delete/' . $agent['id']); ?>" 
-                                                           class="btn btn-sm btn-danger" 
+                                                           class="btn btn-sm btn-danger d-none d-md-inline-block" 
                                                            onclick="return confirm('确定要删除用户 <?php echo h($agent['username']); ?> 吗？此操作不可恢复！');">
                                                             <i class="bi bi-trash"></i> 删除
                                                         </a>
                                                     <?php endif; ?>
+
+                                                    <!-- Mobile Dropdown Button (Visible on Mobile) -->
+                                                    <div class="dropdown d-inline-block d-md-none">
+                                                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="actionDropdown<?php echo $agent['id']; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            操作
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionDropdown<?php echo $agent['id']; ?>">
+                                                            <li><a class="dropdown-item" href="<?php echo url('user/view/' . $agent['id']); ?>"><i class="bi bi-eye me-2"></i>查看</a></li>
+                                                            <li><a class="dropdown-item" href="<?php echo url('user/edit/' . $agent['id']); ?>"><i class="bi bi-pencil me-2"></i>编辑</a></li>
+                                                            <li><a class="dropdown-item" href="<?php echo url('user/deposit/' . $agent['id']); ?>"><i class="bi bi-cash me-2"></i><?php echo $_SESSION['user']['role'] === 'super_admin' ? '充值' : '转账'; ?></a></li>
+                                                            <?php if ($_SESSION['user']['role'] === 'super_admin'): ?>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <?php if ($agent['status'] === 'active'): ?>
+                                                                    <li><a class="dropdown-item" href="<?php echo url('user/toggle_status/' . $agent['id']); ?>" onclick="return confirm('确定要停用用户 <?php echo h($agent['username']); ?> 吗？');"><i class="bi bi-toggle-off me-2"></i>停用</a></li>
+                                                                <?php else: ?>
+                                                                    <li><a class="dropdown-item" href="<?php echo url('user/toggle_status/' . $agent['id']); ?>" onclick="return confirm('确定要激活用户 <?php echo h($agent['username']); ?> 吗？');"><i class="bi bi-toggle-on me-2"></i>激活</a></li>
+                                                                <?php endif; ?>
+                                                                <li><a class="dropdown-item text-danger" href="<?php echo url('user/delete/' . $agent['id']); ?>" onclick="return confirm('确定要删除用户 <?php echo h($agent['username']); ?> 吗？此操作不可恢复！');"><i class="bi bi-trash me-2"></i>删除</a></li>
+                                                            <?php endif; ?>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

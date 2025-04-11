@@ -40,6 +40,7 @@
             padding: 0.25rem 0.5rem !important;
             margin: 0.125rem !important;
             font-size: 0.75rem !important;
+            display: inline-block !important;
         }
         
         table.user-management-table .user-badge,
@@ -77,7 +78,7 @@
             --accent-gradient: linear-gradient(135deg, #F43F5E 0%, #EC4899 100%);
             --sidebar-width: 280px;
             --sidebar-collapsed-width: 80px;
-            --header-height: 90px;
+            --header-height: 70px;
             --card-border-radius: 16px;
             --button-border-radius: 12px;
             --body-bg: #F5F7FA;
@@ -609,9 +610,390 @@
             50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
             100% { box-shadow: 0 0 0 rgba(139, 92, 246, 0); }
         }
+
+        /* Success Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1050; /* Ensure it's above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-icon {
+            margin-bottom: 20px;
+        }
+        .modal-content h4 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .modal-content p {
+            color: #6c757d;
+            margin-bottom: 25px;
+        }
+        .modal-content .btn {
+            padding: 10px 30px;
+            border-radius: 8px;
+        }
+
+        /* Checkmark Animation */
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #4CAF50;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            margin: 10px auto;
+            box-shadow: inset 0px 0px 0px #4CAF50;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke-width: 3;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 40px #4CAF50;
+            }
+        }
+
+        /* Error Modal Styles */
+        .error-modal .modal-content h4 {
+            color: #dc3545; /* Bootstrap danger color */
+        }
+        .error-cross__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #dc3545;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .error-cross {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            margin: 10px auto;
+            box-shadow: inset 0px 0px 0px #dc3545;
+            animation: fillError .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+        .error-cross__line1,
+        .error-cross__line2 {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke-width: 3;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes fillError {
+            100% {
+                box-shadow: inset 0px 0px 0px 40px #dc3545;
+            }
+        }
+
+        /* Responsive Card-based Table Styles (Grid Inside TD) */
+        @media (max-width: 767px) { 
+            .modern-table thead,
+            .user-management-table thead {
+                display: none !important; 
+            }
+            body main div.table-responsive table.modern-table tr.user-row,
+            body main div.table-responsive table.user-management-table tr {
+                display: block !important;
+                margin-bottom: 1em !important;
+                border: 1px solid #ddd !important;
+                border-radius: 8px !important;
+                padding: 0.5em !important; /* Padding on the card row */
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+                background: #fff !important;
+                width: 100%; 
+                box-sizing: border-box;
+                height: auto !important; 
+            }
+            body main div.table-responsive table.modern-table tr.user-row td,
+            body main div.table-responsive table.user-management-table tr td {
+                display: grid !important; /* TD is a grid container */
+                grid-template-columns: auto 1fr; /* Label takes auto, value takes rest */
+                gap: 0 10px; /* No row gap, 10px column gap */
+                align-items: center; /* Center items vertically */
+                border-bottom: 1px solid #eee !important;
+                padding: 0.6em 0.5em !important; /* Padding within the cell */
+                text-align: left !important; 
+                min-height: 30px !important; /* Minimum height */
+                height: auto !important;
+                box-sizing: border-box !important;
+            }
+            body main div.table-responsive table.modern-table tr.user-row td:last-child,
+            body main div.table-responsive table.user-management-table tr td:last-child {
+                border-bottom: 0 !important;
+            }
+
+            /* Label Style */
+            body main div.table-responsive table.modern-table tr.user-row td:before,
+            body main div.table-responsive table.user-management-table tr td:before {
+                content: attr(data-label) !important; 
+                grid-column: 1 / 2; /* Place in first column */
+                font-weight: bold !important;
+                font-size: 0.8em;
+                color: #555;
+                text-align: left !important;
+                white-space: nowrap;
+                /* Reset other properties */
+                display: inline !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                text-transform: none;
+                position: static !important;
+            }
+            
+            /* Value Styling */
+            body main div.table-responsive table.modern-table tr.user-row td span.value,
+            body main div.table-responsive table.user-management-table tr td span.value {
+                 grid-column: 2 / 3; /* Place in second column */
+                 display: block; /* Value content takes block */
+                 font-size: 0.9em; 
+                 word-wrap: break-word;
+                 text-align: right; /* Align value right */
+                 line-height: 1.4;
+                 width: 100%; /* Ensure it uses the grid column width */
+             }
+             /* Left align specific values */
+             body main div.table-responsive table.modern-table tr.user-row td[data-label="用户名"] span.value,
+             body main div.table-responsive table.user-management-table tr td[data-label="用户名"] span.value,
+             body main div.table-responsive table.modern-table tr.user-row td[data-label="昵称"] span.value,
+             body main div.table-responsive table.user-management-table tr td[data-label="昵称"] span.value,
+             body main div.table-responsive table.modern-table tr.user-row td[data-label="上级"] span.value,
+             body main div.table-responsive table.user-management-table tr td[data-label="上级"] span.value,
+             body main div.table-responsive table.modern-table tr.user-row td[data-label="创建时间"] span.value,
+             body main div.table-responsive table.user-management-table tr td[data-label="创建时间"] span.value {
+                  text-align: right !important;
+             }
+             /* Badge alignment */
+             body main div.table-responsive table.modern-table tr.user-row td span.value .badge,
+             body main div.table-responsive table.user-management-table tr td span.value .badge {
+                 display: inline-block;
+                 float: none; /* No float needed */
+                 margin-left: 5px;
+                 vertical-align: middle;
+             }
+             
+            /* Actions Column adjustments */
+            body main div.table-responsive table.modern-table tr.user-row td.actions-column {
+                 display: block !important; /* Override grid */
+                 text-align: center !important; 
+                 padding: 10px 5px !important; 
+                 grid-column: 1 / 3; /* Ensure it spans columns if grid wasn't overridden */
+            }
+             body main div.table-responsive table.modern-table tr.user-row td.actions-column:before,
+             body main div.table-responsive table.user-management-table tr td.actions-column:before {
+                  display: none !important;
+             }
+             
+             /* Force hide original buttons on mobile */
+             body main div.table-responsive .actions-column > a.d-md-inline-block {
+                 display: none !important;
+             }
+
+            .shadow-sm {
+                display: none !important;
+             }
+
+             /* Force show dropdown on mobile */
+             body main div.table-responsive .actions-column .dropdown.d-md-none {
+                 display: inline-block !important;
+             }
+        }
+        
+        /* Specific Mobile Styles for Order Create Page */
+        @media (max-width: 767px) {
+            /* Reduce main padding on betting page for more width */
+            body.page-order-create main {
+                padding: 1rem 0.5rem !important; /* Reduce left/right padding */
+            }
+
+            body.page-order-create .opening-dates-section,
+            body.page-order-create .user-info-section,
+            body.page-order-create .betting-instructions-section,
+            body.page-order-create .betting-area .receipt-column { /* Hide receipt column */
+                display: none !important; 
+            }
+
+            body.page-order-create .betting-area .input-column { /* Make input column full width */
+                width: 100% !important; 
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+             body.page-order-create .betting-area textarea#bet_content {
+                min-height: 300px; /* Increase height */
+                font-size: 1.1rem !important; /* Increase font size */
+             }
+             /* Ensure buttons are visible and sized appropriately */
+             body.page-order-create .betting-area .input-column .d-flex .btn {
+                 padding: 0.75rem 1rem;
+                 font-size: 1rem;
+             }
+        }
+
+        /* Specific Styles for Order List Table on Mobile */
+        @media (max-width: 767px) { 
+            .order-list-table thead {
+                display: none !important; 
+            }
+            body main div.table-responsive table.order-list-table tr {
+                display: block !important;
+                margin-bottom: 1em !important;
+                border: 1px solid #ddd !important;
+                border-radius: 8px !important;
+                padding: 0.8em !important; 
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+                background: #fff !important;
+                width: 100%; 
+                box-sizing: border-box;
+                height: auto !important; 
+            }
+            body main div.table-responsive table.order-list-table tr td {
+                display: grid !important; 
+                grid-template-columns: 40% auto; 
+                gap: 0 10px; 
+                align-items: center; 
+                border-bottom: 1px solid #eee !important;
+                padding: 0.6em 0.5em !important; 
+                text-align: left !important; 
+                min-height: 30px !important; 
+                height: auto !important;
+                box-sizing: border-box !important;
+            }
+            body main div.table-responsive table.order-list-table tr td:last-child {
+                border-bottom: 0 !important;
+            }
+            body main div.table-responsive table.order-list-table tr td:before {
+                content: attr(data-label) !important; 
+                grid-column: 1 / 2; 
+                font-weight: bold !important;
+                font-size: 1rem;
+                color: #555;
+                text-align: left !important;
+                white-space: nowrap;
+                display: inline !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                text-transform: none;
+                position: static !important;
+            }
+            body main div.table-responsive table.order-list-table tr td span.value,
+            body main div.table-responsive table.order-list-table tr td {
+                grid-column: 2 / 3 !important; 
+                text-align: right !important; 
+                word-wrap: break-word;
+            }
+             body main div.table-responsive table.order-list-table tr td[data-label="用户"] span.value,
+             body main div.table-responsive table.order-list-table tr td[data-label="创建时间"] span.value {
+                  text-align: right !important;
+             }
+             body main div.table-responsive table.order-list-table tr td span.value .badge {
+                 grid-column: 2 / 3; 
+                 text-align: center;
+                 display: inline-block; 
+                 width: auto;
+                 float: none; 
+                 justify-self: end; 
+                 margin-left: 5px; 
+             }
+            body main div.table-responsive table.order-list-table tr td.actions-column {
+                 display: block !important; 
+                 text-align: center !important; 
+                 padding: 10px 5px !important; 
+                 grid-column: 1 / 3; 
+            }
+             body main div.table-responsive table.order-list-table tr td.actions-column:before {
+                  display: none !important;
+             }
+             body main div.table-responsive table.order-list-table tr td.actions-column .btn,
+             body main div.table-responsive table.order-list-table tr td.actions-column > a {
+                 display: inline-block !important; 
+                 margin: 3px !important;
+                 /* Hide original buttons on mobile */
+                 &.d-md-inline-block {
+                     display: none !important;
+                 }
+             }
+             /* Ensure dropdown shows */
+             body main div.table-responsive table.order-list-table tr td.actions-column .dropdown.d-md-none {
+                 display: inline-block !important;
+             }
+        }
     </style>
 </head>
-<body>
+<?php 
+// Determine body class based on current page/controller
+$body_class = '';
+// Example: Detect if we are on the order create page
+if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/order/create') !== false) {
+    $body_class = 'page-order-create';
+}
+// Add more conditions for other pages if needed
+?>
+<body class="<?php echo $body_class; ?>">
     <div class="wave-bg"></div>
     <div class="sidebar-backdrop"></div>
     
@@ -668,13 +1050,11 @@
                             $user_role = $_SESSION['user']['role'];
                         ?>
                             <li class="sidebar-menu-section">报表 & 统计</li>
-                            <?php if ($user_role === 'admin' || $user_role === 'super_admin'): ?>
                             <li>
                                 <a href="<?php echo url('report/financial'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/financial') !== false ? 'class="active"' : ''; ?>>
                                     <i class="bi bi-currency-exchange"></i> 财务报表
                                 </a>
                             </li>
-                            <?php endif; ?>
                             
                             <li>
                                 <a href="<?php echo url('report/user'); ?>" <?php echo strpos($_SERVER['REQUEST_URI'], '/report/user') !== false ? 'class="active"' : ''; ?>>
@@ -741,13 +1121,3 @@
 
     <!-- 主内容区域 -->
     <main>
-        <?php 
-        // 显示Flash消息
-        $flash_message = get_flash_message();
-        if ($flash_message): 
-        ?>
-            <div class="alert alert-<?php echo $flash_message['type']; ?> alert-dismissible fade show glassmorphism" role="alert" style="border-radius: var(--card-border-radius);">
-                <?php echo $flash_message['message']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?> 

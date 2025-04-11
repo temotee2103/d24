@@ -21,20 +21,24 @@ require_once 'controllers/UserController.php';
 require_once 'controllers/OrderController.php';
 require_once 'controllers/HomeController.php';
 
-// 获取请求的URL路径
+// Define ROOT_PATH early, before dispatching
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__); 
+}
+
+// Restore original path parsing logic
 $request_uri = $_SERVER['REQUEST_URI'];
 $script_name = $_SERVER['SCRIPT_NAME'];
-
 // 去除脚本名称和查询字符串，获取纯路径
 $base_path = dirname($script_name);
 // 确保URL中的d24目录被正确处理
-if (strpos($request_uri, '/d24/') !== false) {
-    $path = str_replace('/d24/', '', $request_uri);
+if ($base_path !== '/' && strpos($request_uri, $base_path) === 0) {
+    $path = substr($request_uri, strlen($base_path));
 } else {
-    $path = str_replace($base_path, '', $request_uri);
+    $path = $request_uri;
 }
 $path = parse_url($path, PHP_URL_PATH);
-$path = trim($path, '/');
+$path = trim($path ?? '', '/'); 
 
 // 如果路径为空，使用默认控制器
 if (empty($path)) {
@@ -81,33 +85,37 @@ $router->add('report/user', 'Report', 'user');
 
 // 直接调度请求
 try {
+    // echo "DEBUG: Checkpoint 1 - Entering Dispatch Try Block"; exit(); // REMOVED
+
     $parts = explode('/', $path);
     $controller = !empty($parts[0]) ? $parts[0] : 'home';
     $action = isset($parts[1]) ? $parts[1] : 'index';
     $params = array_slice($parts, 2);
     
-    // 格式化控制器类名
     $controller_class = ucfirst($controller) . 'Controller';
     
-    // 检查控制器是否存在
     if (!class_exists($controller_class)) {
         throw new Exception("控制器 {$controller_class} 不存在");
     }
     
-    // 创建控制器实例
     $controller_instance = new $controller_class();
+    // echo "DEBUG: Checkpoint 2 - Controller {$controller_class} Instantiated"; exit(); // REMOVED
     
-    // 检查动作是否存在
     if (!method_exists($controller_instance, $action)) {
         throw new Exception("动作 {$action} 在控制器 {$controller_class} 中不存在");
     }
     
-    // 调用动作
     call_user_func_array([$controller_instance, $action], $params);
 } catch (Exception $e) {
-    // 错误处理
     http_response_code(500);
     $code = 500;
     $message = $e->getMessage();
-    include ROOT_PATH . '/views/error/error.php';
+    // Log the error before including the error view
+    error_log("Caught Exception in index.php: " . $message . "\nTrace: " . $e->getTraceAsString()); 
+    // Try including a simpler error message if error view fails
+    if (file_exists(ROOT_PATH . '/views/error/error.php')) {
+         include ROOT_PATH . '/views/error/error.php';
+    } else {
+        echo "<h1>Error {$code}</h1><p>{$message}</p>"; // Fallback error display
+    }
 } 

@@ -70,6 +70,7 @@ class UserController {
         
         $error = '';
         $success = '';
+        $popup_message = null; // Initialize popup message
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // 获取表单数据
@@ -86,13 +87,13 @@ class UserController {
             
             // 简单验证
             if (empty($username) || empty($password)) {
-                $error = '用户名和密码不能为空';
+                $popup_message = ['type' => 'error', 'text' => '用户名和密码不能为空'];
             } else if ($this->userModel->getUserByUsername($username)) {
-                $error = '用户名已存在';
+                $popup_message = ['type' => 'error', 'text' => '用户名已存在'];
             } else {
                 // 检查佣金比例是否合法（超级管理员不受限制）
                 if ($user['role'] !== 'super_admin' && ($commission_rate < 0 || $commission_rate > $user['commission_rate'])) {
-                    $error = '佣金比例不能大于您的佣金比例（' . $user['commission_rate'] . '%）';
+                    $popup_message = ['type' => 'error', 'text' => '佣金比例不能大于您的佣金比例（' . $user['commission_rate'] . '%）'];
                 } else {
                     // 创建用户
                     $userData = [
@@ -110,15 +111,18 @@ class UserController {
                     $result = $this->userModel->createUser($userData);
                     
                     if ($result) {
-                        $success = '用户创建成功';
+                        $popup_message = ['type' => 'success', 'text' => '用户创建成功'];
+                        // Clear form fields or reset page state if needed after success
+                        // Maybe unset POST data here to prevent re-populating form?
                     } else {
-                        $error = '创建失败，请稍后再试';
+                        $popup_message = ['type' => 'error', 'text' => '创建失败，请稍后再试'];
                     }
                 }
             }
         }
         
-        // 加载视图
+        // 加载视图, 传递 $popup_message
+        // Pass existing $error and $success as well if they might still be used elsewhere
         include_once ROOT_PATH . '/views/user/create.php';
     }
     

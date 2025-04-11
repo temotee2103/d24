@@ -119,8 +119,8 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
-// 定义应用程序根目录的绝对路径
-define('ROOT_PATH', realpath(__DIR__ . '/..'));
+// Define application root path EARLY
+// define('ROOT_PATH', realpath(__DIR__ . '/..')); // REMOVED from here
 
 // 定义应用程序URL
 define('BASE_URL', $config['base_url']);
@@ -165,5 +165,5 @@ function get_flash_message() {
         unset($_SESSION['flash_message']);
         return $message;
     }
-    return null;
-} 
+    return null; 
+}

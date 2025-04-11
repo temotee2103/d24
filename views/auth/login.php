@@ -167,6 +167,64 @@
             color: #F43F5E;
             border-radius: 10px;
         }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 576px) {
+            body {
+                padding: 15px 0; /* Even less body padding */
+            }
+            .login-container {
+                padding: 0 10px; /* Less container padding */
+            }
+            .card-header {
+                padding: 15px 15px 25px 15px; /* Reduced padding, more bottom for curve */
+            }
+            .card-body {
+                padding: 25px 15px; /* Adjust body padding */
+            }
+            .logo {
+                max-width: 80px; /* Smaller logo */
+                margin-bottom: 0.5rem; /* Less margin */
+            }
+            .card-header h1 {
+                font-size: 1rem; /* Smaller title */
+            }
+            /* Adjust the curve */
+            .card-header::after {
+                height: 40px; /* Less tall curve */
+                bottom: -20px; /* Adjust position */
+            }
+
+            .card-body h4 {
+                 font-size: 1.2rem; 
+                 margin-bottom: 1rem !important;
+            }
+            .form-control {
+                padding: 10px 12px; /* Adjust padding */
+                font-size: 0.9rem; /* Slightly smaller font */
+            }
+            .btn-lg {
+                padding: 10px 16px;
+                font-size: 0.95rem; /* Slightly smaller button font */
+            }
+            .alert {
+                padding: 0.7rem;
+                font-size: 0.85rem;
+            }
+            .form-label {
+                margin-bottom: 5px; /* Less space below label */
+                font-size: 0.9rem;
+            }
+            .mb-4 {
+                 margin-bottom: 1rem !important; /* Reduce spacing between fields */
+            }
+            .mt-5 {
+                 margin-top: 1.5rem !important; /* Reduce space above button */
+            }
+            .mt-4 {
+                margin-top: 1rem !important; /* Reduce space above copyright */
+            }
+        }
     </style>
 </head>
 <body>
@@ -174,7 +232,6 @@
         <div class="modern-card">
             <div class="card-header">
                 <img class="logo" src="<?php echo asset('images/logo.png'); ?>" alt="D24 Logo">
-                <h1 class="h3 mb-0 fw-bold">D24 Dashboard</h1>
             </div>
             
             <div class="card-body">

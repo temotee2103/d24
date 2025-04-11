@@ -307,4 +307,70 @@ class OrderModel {
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * 获取指定代理的所有下线用户 (包括间接下线) 的 ID 列表
+     */
+    private function getSubagentIdsRecursive($agentId) {
+        $userModel = new UserModel(); // Need UserModel instance
+        $subagentIds = [];
+        $directSubagents = $userModel->getSubagents($agentId);
+        
+        foreach ($directSubagents as $subagent) {
+            $subagentIds[] = $subagent['id'];
+            // Recursively get subagents of the subagent
+            $subagentIds = array_merge($subagentIds, $this->getSubagentIdsRecursive($subagent['id']));
+        }
+        return $subagentIds;
+    }
+
+    /**
+     * 获取指定代理的所有下线 (包括间接下线) 在指定日期范围内的订单
+     */
+    public function getSubagentOrdersByDateRange($agentId, $startDate, $endDate) {
+        $subagentIds = $this->getSubagentIdsRecursive($agentId);
+        
+        if (empty($subagentIds)) {
+            return []; // No subagents, no orders
+        }
+        
+        $db = Database::getInstance();
+        // Create placeholders for the IN clause
+        $placeholders = implode(',', array_fill(0, count($subagentIds), '?'));
+        
+        $query = "SELECT o.*, u.username 
+                 FROM orders o 
+                 JOIN users u ON o.user_id = u.id 
+                 WHERE o.user_id IN ({$placeholders}) 
+                 AND DATE(o.created_at) BETWEEN ? AND ?
+                 ORDER BY o.created_at DESC";
+                 
+        $params = array_merge($subagentIds, [$startDate, $endDate]);
+                 
+        $stmt = $db->getConnection()->prepare($query);
+        $stmt->execute($params);
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 获取指定用户在指定日期范围内的所有订单
+     */
+    public function getUserOrdersByDateRange($userId, $startDate, $endDate) {
+        $db = Database::getInstance();
+        
+        $query = "SELECT o.*, u.username 
+                 FROM orders o 
+                 JOIN users u ON o.user_id = u.id 
+                 WHERE o.user_id = :user_id AND DATE(o.created_at) BETWEEN :start_date AND :end_date
+                 ORDER BY o.created_at DESC";
+                 
+        $stmt = $db->getConnection()->prepare($query);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':start_date', $startDate);
+        $stmt->bindParam(':end_date', $endDate);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 } 

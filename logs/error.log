@@ -792,3 +792,68 @@ Stack trace:
   #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
   #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
 
+[2025-04-11 12:53:18] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 12:53:18] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 12:55:17] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 196
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:196]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 12:55:17] PHP Error [2]: Array to string conversion in C:\xampp\htdocs\d24\views\report\financial.php on line 291
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\views\report\financial.php:291]
+  #1 include_once() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:181]
+  #2 ReportController::financial() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 12:55:40] Uncaught Exception: usort(): Argument #1 ($array) must be of type array, null given in C:\xampp\htdocs\d24\controllers\ReportController.php on line 164
+Stack trace:
+#0 C:\xampp\htdocs\d24\controllers\ReportController.php(164): usort(NULL, Object(Closure))
+#1 C:\xampp\htdocs\d24\index.php(106): ReportController->financial()
+#2 {main}
+
+[2025-04-11 12:57:43] Uncaught Exception: usort(): Argument #1 ($array) must be of type array, null given in C:\xampp\htdocs\d24\controllers\ReportController.php on line 164
+Stack trace:
+#0 C:\xampp\htdocs\d24\controllers\ReportController.php(164): usort(NULL, Object(Closure))
+#1 C:\xampp\htdocs\d24\index.php(106): ReportController->financial()
+#2 {main}
+
+[2025-04-11 13:06:31] Uncaught Exception: usort(): Argument #1 ($array) must be of type array, null given in C:\xampp\htdocs\d24\controllers\ReportController.php on line 164
+Stack trace:
+#0 C:\xampp\htdocs\d24\controllers\ReportController.php(164): usort(NULL, Object(Closure))
+#1 C:\xampp\htdocs\d24\index.php(106): ReportController->financial()
+#2 {main}
+
+[2025-04-11 13:10:15] PHP Error [2]: Undefined variable $commissionModel in C:\xampp\htdocs\d24\controllers\ReportController.php on line 277
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:277]
+  #1 ReportController::user() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 13:10:15] Uncaught Exception: Call to a member function getTotalUserCommission() on null in C:\xampp\htdocs\d24\controllers\ReportController.php on line 277
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(106): ReportController->user()
+#1 {main}
+
+[2025-04-11 13:10:19] PHP Error [2]: Undefined variable $commissionModel in C:\xampp\htdocs\d24\controllers\ReportController.php on line 277
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:277]
+  #1 ReportController::user() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 13:10:19] Uncaught Exception: Call to a member function getTotalUserCommission() on null in C:\xampp\htdocs\d24\controllers\ReportController.php on line 277
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(106): ReportController->user()
+#1 {main}
+
+[2025-04-11 13:10:43] PHP Error [2]: Undefined variable $commissionModel in C:\xampp\htdocs\d24\controllers\ReportController.php on line 258
+  #0 custom_error_handler() called at [C:\xampp\htdocs\d24\controllers\ReportController.php:258]
+  #1 ReportController::user() called at [C:\xampp\htdocs\d24\index.php:106]
+
+[2025-04-11 13:10:43] Uncaught Exception: Call to a member function getTotalUserCommission() on null in C:\xampp\htdocs\d24\controllers\ReportController.php on line 258
+Stack trace:
+#0 C:\xampp\htdocs\d24\index.php(106): ReportController->user()
+#1 {main}
+

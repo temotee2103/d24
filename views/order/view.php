@@ -72,18 +72,16 @@
                     <h5 class="card-title">订单内容</h5>
                 </div>
                 <div class="card-body">
-                    <?php 
+                                    <?php 
                     // Check if parsed_content exists and is valid
                     if (isset($parsed_content) && $parsed_content['valid'] && !empty($parsed_content['items'])):
                         // Generate receipt-like format
-                        $lottery_types = [];
-                        foreach ($parsed_content['items'] as $item) {
-                            if (isset($item['lottery_type'])) {
-                                $lottery_types = array_merge($lottery_types, $item['lottery_type']);
-                            }
+                        // Use letter codes for display
+                        $display_lottery_types = $parsed_content['lottery_types_letters'] ?? [];
+                        if (empty($display_lottery_types)) { 
+                             $display_lottery_types = ['M','P','T','S']; // Default
                         }
-                        $lottery_types = array_unique($lottery_types);
-                        $lottery_str = count($lottery_types) > 0 ? '*' . implode('', $lottery_types) : '*MPTS';
+                        $lottery_str = '*' . implode('', $display_lottery_types);
 
                         $grouped_bets = [];
                         foreach ($parsed_content['items'] as $item) {

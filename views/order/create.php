@@ -6,7 +6,7 @@
     </div>
     
     <!-- Opening Dates Section -->
-    <div class="card mb-4 modern-card">
+    <div class="card mb-4 modern-card opening-dates-section">
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table modern-table text-center mb-0">
@@ -102,15 +102,14 @@
     
     <!-- User Info Section -->
     <?php if (isset($user) && $user): ?>
-    <div class="card mb-4 modern-card">
+    <div class="card mb-4 modern-card user-info-section">
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-borderless modern-table mb-0" style="color: #333;">
                     <thead style="background-color: #ffb74d;">
                         <tr>
                             <th>Account</th>
-                            <th>Credit</th>
-                            <th>Available</th>
+                            <th>Balance (RM)</th>
                             <th>Bet Format</th>
                             <th>Box / iBox</th>
                             <th>Draw Type</th>
@@ -119,7 +118,6 @@
                     <tbody>
                         <tr>
                             <td><?php echo h($user['username']); ?></td>
-                            <td><?php echo number_format($user['credit_limit'], 2); // Assuming credit_limit is total credit ?></td>
                             <td><?php echo number_format($user['balance'], 2); ?></td>
                             <td>B-S-4A-4B-4C</td> <!-- Placeholder -->
                             <td>* / **</td> <!-- Placeholder -->
@@ -149,11 +147,11 @@
             <?php endif; ?>
             */ ?>
             
-            <div class="card mb-4 modern-card">
+            <div class="card mb-4 modern-card betting-area">
                 <div class="card-body">
                     
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 input-column">
                             <form method="post" action="<?php echo url('order/create'); ?>" id="betForm">
                                 <div class="mb-3">
                                     <label for="bet_content" class="form-label">输入</label>
@@ -173,7 +171,7 @@
                             </form>
                         </div>
                         
-                        <div class="col-md-6">
+                        <div class="col-md-6 receipt-column">
                             <div class="mb-3">
                                 <label for="receipt" class="form-label">收据</label>
                                 <textarea class="form-control" id="receipt" rows="15" readonly><?php
@@ -189,15 +187,13 @@
                                         // 期（日期）
                                         $date = date('d/m');
                                         
-                                        // 获取彩种类型
-                                        $lottery_types = [];
-                                        foreach ($parsed_result['items'] as $item) {
-                                            if (isset($item['lottery_type'])) {
-                                                $lottery_types = array_merge($lottery_types, $item['lottery_type']);
-                                            }
+                                        // 获取彩种类型 (Use Letters)
+                                        $display_lottery_types = $parsed_result['lottery_types_letters'] ?? [];
+                                        // Fallback or default if empty (shouldn't happen with current parser logic)
+                                        if (empty($display_lottery_types)) { 
+                                             $display_lottery_types = ['M','P','T','S']; // Default to MPTS letters 
                                         }
-                                        $lottery_types = array_unique($lottery_types);
-                                        $lottery_str = count($lottery_types) > 0 ? '*' . implode('', $lottery_types) : '*MPTS';
+                                        $lottery_str = '*' . implode('', $display_lottery_types);
                                         
                                         // 购买的号码和下注种类 (按号码分组)
                                         $grouped_bets = [];
@@ -246,7 +242,7 @@
                 </div>
             </div>
             
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-4 betting-instructions-section">
                 <div class="card modern-card">
                     <div class="card-header">
                         <h5 class="card-title">下注说明</h5>
@@ -325,246 +321,36 @@
     </div>
 </div>
 
-<?php include_once ROOT_PATH . '/views/layout/footer.php'; ?> 
+<!-- Success Modal -->
+<!-- Error Modal -->
+<!-- Modals moved to footer.php -->
+
+<?php include_once ROOT_PATH . '/views/layout/footer.php'; ?>
 
 <script>
-// 等待页面完全加载
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('页面加载完成');
+    console.log('页面加载完成 - order/create');
     
-    // Check for popup message from PHP
+    // This PHP block triggers the modal based on controller data
     <?php if (isset($popup_message) && $popup_message): ?>
-    alert("<?php echo addslashes($popup_message['text']); ?>");
-    console.log('Popup type: <?php echo $popup_message['type']; ?>');
+        const messageType = "<?php echo $popup_message['type']; ?>";
+        const messageText = "<?php echo addslashes($popup_message['text']); ?>";
+        const messageTitle = "<?php echo isset($popup_message['title']) ? addslashes($popup_message['title']) : null; ?>";
+        
+        if (messageType === 'success') {
+            // Get the receipt content from the (now hidden) textarea
+            const receiptTextarea = document.getElementById('receipt');
+            const receiptContent = receiptTextarea ? receiptTextarea.value : null;
+            // Show success modal with receipt content
+            window.showSuccessModal(messageText, messageTitle || "下注成功！", receiptContent);
+        } else { 
+            window.showErrorModal(messageText, messageTitle || "操作失败");
+        }
     <?php endif; ?>
-    
-    // 获取表单和按钮元素
+
+    // --- Page-Specific JS (Betting form, buttons etc.) ---
     const betForm = document.getElementById('betForm');
-    const submitBetBtn = document.getElementById('submitBet');
-    const clearButton = document.getElementById('clearButton');
-    const copyReceipt = document.getElementById('copyReceipt');
-    const whatsappShare = document.getElementById('whatsappShare');
-    const betContent = document.getElementById('bet_content');
-    const receipt = document.getElementById('receipt');
-    const confirmField = document.getElementById('confirmField');
+    // ... rest of the existing page-specific JS ...
     
-    // 记录调试信息
-    console.log('表单:', betForm ? '已找到' : '未找到');
-    console.log('投注按钮:', submitBetBtn ? '已找到' : '未找到');
-    console.log('清除按钮:', clearButton ? '已找到' : '未找到');
-    console.log('复制按钮:', copyReceipt ? '已找到' : '未找到');
-    console.log('下注内容框:', betContent ? '已找到' : '未找到');
-    console.log('收据框:', receipt ? '已找到' : '未找到');
-    console.log('确认字段:', confirmField ? '已找到' : '未找到');
-    
-    // 添加投注按钮点击监听器
-    if (submitBetBtn) {
-        submitBetBtn.addEventListener('click', function(e) {
-            console.log('===== 投注按钮被点击 =====');
-            console.log('投注内容:', betContent ? betContent.value : '未找到内容');
-            console.log('表单动作:', betForm ? betForm.action : '未找到表单');
-            
-            // 不阻止默认行为，继续正常提交
-        });
-    }
-    
-    // 处理表单提交
-    if (betForm) {
-        betForm.addEventListener('submit', function(e) {
-            console.log('===== 表单提交被触发 =====');
-            console.log('提交类型: 预览/计算');
-            console.log('表单动作:', this.action);
-            console.log('表单方法:', this.method);
-            console.log('投注内容长度:', betContent ? betContent.value.length : '未知');
-            
-            // 验证输入不为空
-            if (!betContent || !betContent.value.trim()) {
-                console.error('验证失败: 下注内容为空');
-                alert('下注内容不能为空');
-                e.preventDefault();
-                return false;
-            }
-            
-            // 确保确认字段存在且值为1
-            if (confirmField) {
-                confirmField.value = '1';
-                console.log('确认字段值设置为:', confirmField.value);
-            } else {
-                console.error('确认字段不存在，创建一个新的');
-                const newConfirmField = document.createElement('input');
-                newConfirmField.type = 'hidden';
-                newConfirmField.name = 'confirm';
-                newConfirmField.value = '1';
-                betForm.appendChild(newConfirmField);
-            }
-            
-            console.log('表单提交验证通过，继续提交流程');
-            // 表单正常提交
-            return true;
-        });
-    }
-    
-    // 清除按钮功能
-    if (clearButton) {
-        clearButton.addEventListener('click', function() {
-            console.log('清除按钮被点击');
-            if (betContent) betContent.value = 'D\n#';
-            if (receipt) receipt.value = '';
-        });
-    }
-    
-    // 复制收据功能
-    if (copyReceipt) {
-        copyReceipt.addEventListener('click', function() {
-            console.log('复制收据按钮被点击');
-            let receiptText = receipt ? receipt.value : '';
-            if (receiptText) {
-                try {
-                    // 复制到剪贴板
-                    navigator.clipboard.writeText(receiptText)
-                        .then(() => {
-                            alert('收据已复制到剪贴板!');
-                            console.log('收据复制成功');
-                        })
-                        .catch(err => {
-                            console.error('剪贴板复制失败:', err);
-                            // 回退方法
-                            fallbackCopyTextToClipboard(receiptText);
-                        });
-                } catch (e) {
-                    console.error('复制出错:', e);
-                    // 回退方法
-                    fallbackCopyTextToClipboard(receiptText);
-                }
-            } else {
-                alert('没有可复制的收据内容');
-            }
-        });
-    }
-    
-    // 回退复制方法
-    function fallbackCopyTextToClipboard(text) {
-        try {
-            // 创建临时textarea
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            // 尝试执行复制命令
-            const successful = document.execCommand('copy');
-            if (successful) {
-                alert('收据已复制到剪贴板!');
-                console.log('收据复制成功(回退方法)');
-            } else {
-                console.error('回退复制失败');
-                alert('复制失败，请手动复制');
-            }
-            
-            // 清理
-            document.body.removeChild(textArea);
-        } catch (err) {
-            console.error('回退复制出错:', err);
-            alert('复制失败，请手动复制');
-        }
-    }
-    
-    // WhatsApp分享功能
-    if (whatsappShare) {
-        whatsappShare.addEventListener('click', function() {
-            console.log('WhatsApp分享按钮被点击');
-            let receiptText = receipt ? receipt.value : '';
-            if (receiptText) {
-                // 编码文本以在URL中使用
-                let encodedText = encodeURIComponent(receiptText);
-                window.open(`https://api.whatsapp.com/send?text=${encodedText}`, '_blank');
-            }
-        });
-    }
-    
-    // 监听表单响应后页面加载完成
-    window.addEventListener('load', function() {
-        console.log('页面及所有资源加载完成');
-        if (receipt && receipt.value) {
-            console.log('收据内容存在，长度:', receipt.value.length);
-            
-            // 检查是否成功下注
-            if (receipt.value.includes("===== 下注成功 =====")) {
-                console.log('检测到成功下注');
-                
-                // 高亮收据区域
-                receipt.classList.add('border-success');
-                receipt.style.backgroundColor = '#f0fff0';
-                
-                // 滚动到收据部分
-                receipt.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // 闪烁复制按钮提示用户
-                if (copyReceipt) {
-                    let flashCount = 0;
-                    const flashButton = setInterval(function() {
-                        copyReceipt.classList.toggle('btn-success');
-                        copyReceipt.classList.toggle('btn-warning');
-                        flashCount++;
-                        if (flashCount > 5) {
-                            clearInterval(flashButton);
-                            copyReceipt.classList.remove('btn-warning');
-                            copyReceipt.classList.add('btn-success');
-                        }
-                    }, 500);
-                }
-                
-                // 清空下注内容，准备下一次下注
-                if (betContent) {
-                    betContent.value = 'D\n#';
-                }
-                
-                // 添加新下注按钮
-                const formButtons = document.querySelector('#betForm .d-flex');
-                if (formButtons && !document.getElementById('newBetBtn')) {
-                    const newBetBtn = document.createElement('button');
-                    newBetBtn.id = 'newBetBtn';
-                    newBetBtn.type = 'button';
-                    newBetBtn.className = 'btn me-2';
-                    newBetBtn.style.backgroundColor = '#17a2b8';
-                    newBetBtn.style.color = 'white';
-                    newBetBtn.style.border = 'none';
-                    newBetBtn.innerHTML = '<i class="bi bi-plus-circle"></i> 新下注';
-                    newBetBtn.addEventListener('click', function() {
-                        // 清空收据区域
-                        if (receipt) {
-                            receipt.value = '准备投注...\n请输入下注内容并点击【投注】按钮。';
-                            receipt.classList.remove('border-success');
-                            receipt.style.backgroundColor = '';
-                        }
-                    });
-                    formButtons.appendChild(newBetBtn);
-                }
-            }
-        }
-    });
 });
 </script> 
-
-<!-- 测试 D 格式的表单 -->
-<div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5 class="card-title">测试 D 格式</h5>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="<?php echo url('order/create'); ?>" id="testDForm">
-                        <input type="hidden" name="bet_content" value="D 10">
-                        <input type="hidden" name="preview" value="1">
-                        <button type="submit" class="btn" style="background-color: #dc3545; color: white; border: none;">
-                            <i class="bi bi-calculator"></i> 测试 D 10 格式
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 

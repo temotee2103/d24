@@ -40,6 +40,23 @@ class CommissionModel {
     }
     
     /**
+     * 获取指定用户在指定日期范围内的所有佣金记录
+     */
+    public function getCommissionsByDateRangeAndUser($startDate, $endDate, $userId) {
+        $db = Database::getInstance();
+        
+        $query = "SELECT c.* 
+                 FROM commissions c 
+                 WHERE c.user_id = ? AND DATE(c.created_at) BETWEEN ? AND ?
+                 ORDER BY c.created_at DESC";
+                 
+        $stmt = $db->getConnection()->prepare($query);
+        $stmt->execute([$userId, $startDate, $endDate]);
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
      * 添加佣金记录
      */
     public function addCommission($userId, $amount, $orderId, $note = '') {

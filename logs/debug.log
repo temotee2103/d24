@@ -15681,3 +15681,3023 @@ Array
 )
 
 -------------------------------------------
+[2025-04-11 12:44:57] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9990.00
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [user_balance] => 9990.00
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9990.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 05:36:36
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#1
+    [total] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Generated order number
+Array
+(
+    [order_number] => 202504112065
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Order inserted
+Array
+(
+    [order_id] => 70
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9990.00
+    [new_balance] => 9989
+    [action] => subtract
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] User balance updated
+Array
+(
+    [new_balance] => 9989
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Transaction record created
+-------------------------------------------
+[2025-04-11 12:45:04] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 12:45:04] Order created successfully
+Array
+(
+    [order_id] => 70
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Order created successfully
+Array
+(
+    [order_id] => 70
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 70
+            [order_number] => 202504112065
+            [user_id] => 6
+            [content] => D
+#1
+1234#1
+            [total_amount] => 1.00
+            [status] => pending
+            [created_at] => 2025-04-11 12:45:04
+            [updated_at] => 2025-04-11 12:45:04
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:04] Order created successfully
+Array
+(
+    [order_id] => 70
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:47] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#5
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#5
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#5
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 5
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9989.00
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#5
+    [total_amount] => 5
+    [user_balance] => 9989.00
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9990.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 05:36:36
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#5
+    [total] => 5
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#5
+    [total_amount] => 5
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#5
+    [total_amount] => 5
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Generated order number
+Array
+(
+    [order_number] => 202504115253
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Order inserted
+Array
+(
+    [order_id] => 71
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9989.00
+    [new_balance] => 9984
+    [action] => subtract
+    [amount] => 5
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] User balance updated
+Array
+(
+    [new_balance] => 9984
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Transaction record created
+-------------------------------------------
+[2025-04-11 12:45:54] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 12:45:54] Order created successfully
+Array
+(
+    [order_id] => 71
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Order created successfully
+Array
+(
+    [order_id] => 71
+    [amount] => 5
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 71
+            [order_number] => 202504115253
+            [user_id] => 6
+            [content] => D
+#1
+1234#5
+            [total_amount] => 5.00
+            [status] => pending
+            [created_at] => 2025-04-11 12:45:54
+            [updated_at] => 2025-04-11 12:45:54
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:45:54] Order created successfully
+Array
+(
+    [order_id] => 71
+    [amount] => 5
+)
+
+-------------------------------------------
+[2025-04-11 12:48:44] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#12
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#12
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#12
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 12
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9984.00
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#12
+    [total_amount] => 12
+    [user_balance] => 9984.00
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9984.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 12:45:54
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#12
+    [total] => 12
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#12
+    [total_amount] => 12
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#12
+    [total_amount] => 12
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Generated order number
+Array
+(
+    [order_number] => 202504111640
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Order inserted
+Array
+(
+    [order_id] => 72
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9984.00
+    [new_balance] => 9972
+    [action] => subtract
+    [amount] => 12
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] User balance updated
+Array
+(
+    [new_balance] => 9972
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Transaction record created
+-------------------------------------------
+[2025-04-11 12:48:50] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 12:48:50] Order created successfully
+Array
+(
+    [order_id] => 72
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Order created successfully
+Array
+(
+    [order_id] => 72
+    [amount] => 12
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 72
+            [order_number] => 202504111640
+            [user_id] => 6
+            [content] => D
+#1
+1234#12
+            [total_amount] => 12.00
+            [status] => pending
+            [created_at] => 2025-04-11 12:48:50
+            [updated_at] => 2025-04-11 12:48:50
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:48:50] Order created successfully
+Array
+(
+    [order_id] => 72
+    [amount] => 12
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#123
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#123
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#123
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 123
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9972.00
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#123
+    [total_amount] => 123
+    [user_balance] => 9972.00
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9984.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 12:45:54
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#123
+    [total] => 123
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#123
+    [total_amount] => 123
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#123
+    [total_amount] => 123
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Generated order number
+Array
+(
+    [order_number] => 202504117530
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Order inserted
+Array
+(
+    [order_id] => 73
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9972.00
+    [new_balance] => 9849
+    [action] => subtract
+    [amount] => 123
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] User balance updated
+Array
+(
+    [new_balance] => 9849
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Transaction record created
+-------------------------------------------
+[2025-04-11 12:49:27] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 12:49:27] Order created successfully
+Array
+(
+    [order_id] => 73
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Order created successfully
+Array
+(
+    [order_id] => 73
+    [amount] => 123
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 73
+            [order_number] => 202504117530
+            [user_id] => 6
+            [content] => D
+#1
+1234#123
+            [total_amount] => 123.00
+            [status] => pending
+            [created_at] => 2025-04-11 12:49:27
+            [updated_at] => 2025-04-11 12:49:27
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:49:27] Order created successfully
+Array
+(
+    [order_id] => 73
+    [amount] => 123
+)
+
+-------------------------------------------
+[2025-04-11 12:51:46] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 12:55:15] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:01:20] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:01:48] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:02:43] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:03:25] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:05:02] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:05:15] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:05:51] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:06:22] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:36:14] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:41:27] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:42:26] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:46:49] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:53:33] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#12
+1234#1#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#12
+1234#1#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Processing bet submission
+Array
+(
+    [bet_content] => D
+#12
+1234#1#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 4
+    [items_count] => 2
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9850.00
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#12
+1234#1#1
+    [total_amount] => 4
+    [user_balance] => 9850.00
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9850.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 13:38:08
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#12
+1234#1#1
+    [total] => 4
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#12
+1234#1#1
+    [total_amount] => 4
+    [lottery_types] => MP
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#12
+1234#1#1
+    [total_amount] => 4
+    [lottery_types] => MP
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Generated order number
+Array
+(
+    [order_number] => 202504112729
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Order inserted
+Array
+(
+    [order_id] => 74
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9850.00
+    [new_balance] => 9846
+    [action] => subtract
+    [amount] => 4
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] User balance updated
+Array
+(
+    [new_balance] => 9846
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Transaction record created
+-------------------------------------------
+[2025-04-11 13:53:41] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 13:53:41] Order created successfully
+Array
+(
+    [order_id] => 74
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Order created successfully
+Array
+(
+    [order_id] => 74
+    [amount] => 4
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 74
+            [order_number] => 202504112729
+            [user_id] => 6
+            [content] => D
+#12
+1234#1#1
+            [total_amount] => 4.00
+            [status] => pending
+            [created_at] => 2025-04-11 13:53:41
+            [updated_at] => 2025-04-11 13:53:41
+            [lottery_types] => MP
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:53:41] Order created successfully
+Array
+(
+    [order_id] => 74
+    [amount] => 4
+)
+
+-------------------------------------------
+[2025-04-11 13:54:24] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9846.00
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [user_balance] => 9846.00
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9846.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 13:53:41
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#1
+    [total] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Generated order number
+Array
+(
+    [order_number] => 202504113858
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Order inserted
+Array
+(
+    [order_id] => 75
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9846.00
+    [new_balance] => 9845
+    [action] => subtract
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] User balance updated
+Array
+(
+    [new_balance] => 9845
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Transaction record created
+-------------------------------------------
+[2025-04-11 13:54:47] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 13:54:47] Order created successfully
+Array
+(
+    [order_id] => 75
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Order created successfully
+Array
+(
+    [order_id] => 75
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 75
+            [order_number] => 202504113858
+            [user_id] => 6
+            [content] => D
+#1
+1234#1
+            [total_amount] => 1.00
+            [status] => pending
+            [created_at] => 2025-04-11 13:54:47
+            [updated_at] => 2025-04-11 13:54:47
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:54:47] Order created successfully
+Array
+(
+    [order_id] => 75
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1
+1234#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 1
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9845.00
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [user_balance] => 9845.00
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9846.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 13:53:41
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1
+1234#1
+    [total] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1
+1234#1
+    [total_amount] => 1
+    [lottery_types] => M
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Generated order number
+Array
+(
+    [order_number] => 202504118377
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Order inserted
+Array
+(
+    [order_id] => 76
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9845.00
+    [new_balance] => 9844
+    [action] => subtract
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] User balance updated
+Array
+(
+    [new_balance] => 9844
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Transaction record created
+-------------------------------------------
+[2025-04-11 13:56:10] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 13:56:10] Order created successfully
+Array
+(
+    [order_id] => 76
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Order created successfully
+Array
+(
+    [order_id] => 76
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 76
+            [order_number] => 202504118377
+            [user_id] => 6
+            [content] => D
+#1
+1234#1
+            [total_amount] => 1.00
+            [status] => pending
+            [created_at] => 2025-04-11 13:56:10
+            [updated_at] => 2025-04-11 13:56:10
+            [lottery_types] => M
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:56:10] Order created successfully
+Array
+(
+    [order_id] => 76
+    [amount] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:57:28] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:57:49] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#567
+8888#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#567
+8888#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Processing bet submission
+Array
+(
+    [bet_content] => D
+#567
+8888#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 3
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9844.00
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#567
+8888#1
+    [total_amount] => 3
+    [user_balance] => 9844.00
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9846.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 13:53:41
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#567
+8888#1
+    [total] => 3
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#567
+8888#1
+    [total_amount] => 3
+    [lottery_types] => BKW
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#567
+8888#1
+    [total_amount] => 3
+    [lottery_types] => BKW
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Generated order number
+Array
+(
+    [order_number] => 202504113379
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Order inserted
+Array
+(
+    [order_id] => 77
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9844.00
+    [new_balance] => 9841
+    [action] => subtract
+    [amount] => 3
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] User balance updated
+Array
+(
+    [new_balance] => 9841
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Transaction record created
+-------------------------------------------
+[2025-04-11 13:58:05] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 13:58:05] Order created successfully
+Array
+(
+    [order_id] => 77
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Order created successfully
+Array
+(
+    [order_id] => 77
+    [amount] => 3
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 77
+            [order_number] => 202504113379
+            [user_id] => 6
+            [content] => D
+#567
+8888#1
+            [total_amount] => 3.00
+            [status] => pending
+            [created_at] => 2025-04-11 13:58:05
+            [updated_at] => 2025-04-11 13:58:05
+            [lottery_types] => BKW
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 13:58:05] Order created successfully
+Array
+(
+    [order_id] => 77
+    [amount] => 3
+)
+
+-------------------------------------------
+[2025-04-11 13:58:38] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 15:07:17] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 15:09:30] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 15:09:33] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 1
+            [username] => superadmin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:23:45] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:23:48] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1234567
+1234#1
+
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1234567
+1234#1
+
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1234567
+1234#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 7
+    [items_count] => 1
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] User authenticated
+Array
+(
+    [user_id] => 2
+    [balance] => 990000.00
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] 确认下注请求
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1234567
+1234#1
+    [total_amount] => 7
+    [user_balance] => 990000.00
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+            [password] => $2y$10$UUx4R5m3RfjT7AzlZzR5DeLO3Uhs83AyeZKmWLLdxdOTLmTcBO1Em
+            [nickname] => admin
+            [phone] => 
+            [notes] => 
+            [role] => admin
+            [status] => active
+            [commission_rate] => 100.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 990000.00
+            [parent_id] => 1
+            [created_at] => 2025-04-11 05:34:09
+            [updated_at] => 2025-04-11 05:36:22
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Creating new order
+Array
+(
+    [user_id] => 2
+    [bet_content] => D
+#1234567
+1234#1
+    [total] => 7
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1234567
+1234#1
+    [total_amount] => 7
+    [lottery_types] => 
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 2
+    [content] => D
+#1234567
+1234#1
+    [total_amount] => 7
+    [lottery_types] => 
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Generated order number
+Array
+(
+    [order_number] => 202504117196
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Order inserted
+Array
+(
+    [order_id] => 78
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Balance updated successfully
+Array
+(
+    [user_id] => 2
+    [username] => admin
+    [old_balance] => 990000.00
+    [new_balance] => 989993
+    [action] => subtract
+    [amount] => 7
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] User balance updated
+Array
+(
+    [new_balance] => 989993
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Transaction record created
+-------------------------------------------
+[2025-04-11 18:24:01] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 18:24:01] Order created successfully
+Array
+(
+    [order_id] => 78
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Order created successfully
+Array
+(
+    [order_id] => 78
+    [amount] => 7
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 78
+            [order_number] => 202504117196
+            [user_id] => 2
+            [content] => D
+#1234567
+1234#1
+            [total_amount] => 7.00
+            [status] => pending
+            [created_at] => 2025-04-11 18:24:01
+            [updated_at] => 2025-04-11 18:24:01
+            [lottery_types] => 
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:24:01] Order created successfully
+Array
+(
+    [order_id] => 78
+    [amount] => 7
+)
+
+-------------------------------------------
+[2025-04-11 18:29:49] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:30:01] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:30:17] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:30:26] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:30:38] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:30:47] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:30:53] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:33:07] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 2
+            [username] => admin
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:43:19] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => GET
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] ========== 开始处理下注请求 ==========
+Array
+(
+    [request_method] => POST
+    [request_uri] => /d24/order/create
+    [post_data] => Array
+        (
+            [bet_content] => D
+#1234567
+8787#1#1
+            [confirm] => 1
+        )
+
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] POST request received in order/create
+Array
+(
+    [bet_content] => D
+#1234567
+8787#1#1
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Processing bet submission
+Array
+(
+    [bet_content] => D
+#1234567
+8787#1#1
+    [preview] => 0
+    [confirm] => 1
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Bet parsing result
+Array
+(
+    [valid] => 1
+    [total] => 14
+    [items_count] => 2
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] User authenticated
+Array
+(
+    [user_id] => 6
+    [balance] => 9841.00
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] 确认下注请求
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1234567
+8787#1#1
+    [total_amount] => 14
+    [user_balance] => 9841.00
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] 用户详情
+Array
+(
+    [user_data_type] => array
+    [user_keys] => Array
+        (
+            [0] => id
+            [1] => username
+            [2] => password
+            [3] => nickname
+            [4] => phone
+            [5] => notes
+            [6] => role
+            [7] => status
+            [8] => commission_rate
+            [9] => can_create_subagent
+            [10] => credit_limit
+            [11] => used_credit
+            [12] => balance
+            [13] => parent_id
+            [14] => created_at
+            [15] => updated_at
+        )
+
+    [auth_check] => 1
+    [session_user] => Array
+        (
+            [id] => 6
+            [username] => test
+            [password] => $2y$10$oaLUFTOl0qarDJnCJW2cQ./pBZwfrHHZjVfOsvKs26zzjTvb9UEFy
+            [nickname] => test
+            [phone] => 
+            [notes] => 
+            [role] => agent
+            [status] => active
+            [commission_rate] => 30.00
+            [can_create_subagent] => 1
+            [credit_limit] => 0.00
+            [used_credit] => 0.00
+            [balance] => 9841.00
+            [parent_id] => 2
+            [created_at] => 2025-04-11 05:35:13
+            [updated_at] => 2025-04-11 13:58:05
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Creating new order
+Array
+(
+    [user_id] => 6
+    [bet_content] => D
+#1234567
+8787#1#1
+    [total] => 14
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Calling OrderModel->createOrder
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1234567
+8787#1#1
+    [total_amount] => 14
+    [lottery_types] => 
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Starting to create order in OrderModel
+Array
+(
+    [user_id] => 6
+    [content] => D
+#1234567
+8787#1#1
+    [total_amount] => 14
+    [lottery_types] => 
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Generated order number
+Array
+(
+    [order_number] => 202504119952
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Order inserted
+Array
+(
+    [order_id] => 79
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Balance updated successfully
+Array
+(
+    [user_id] => 6
+    [username] => test
+    [old_balance] => 9841.00
+    [new_balance] => 9827
+    [action] => subtract
+    [amount] => 14
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] User balance updated
+Array
+(
+    [new_balance] => 9827
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Transaction record created
+-------------------------------------------
+[2025-04-11 18:43:28] Commission calculated successfully
+-------------------------------------------
+[2025-04-11 18:43:28] Order created successfully
+Array
+(
+    [order_id] => 79
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Order created successfully
+Array
+(
+    [order_id] => 79
+    [amount] => 14
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Order retrieved successfully
+Array
+(
+    [order] => Array
+        (
+            [id] => 79
+            [order_number] => 202504119952
+            [user_id] => 6
+            [content] => D
+#1234567
+8787#1#1
+            [total_amount] => 14.00
+            [status] => pending
+            [created_at] => 2025-04-11 18:43:28
+            [updated_at] => 2025-04-11 18:43:28
+            [lottery_types] => 
+            [username] => test
+        )
+
+)
+
+-------------------------------------------
+[2025-04-11 18:43:28] Order created successfully
+Array
+(
+    [order_id] => 79
+    [amount] => 14
+)
+
+-------------------------------------------

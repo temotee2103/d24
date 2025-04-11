@@ -3,7 +3,7 @@
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">综合财务报表</h1>
+        <h1 class="h2"><?php echo $report_title ?? '综合财务报表'; ?></h1>
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.print()">
                 <i class="bi bi-printer"></i> 打印
@@ -38,11 +38,13 @@
     <!-- 财务概览 -->
     <div class="row">
         <!-- 总营业额卡片 -->
-        <div class="col-md-3 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="modern-card h-100">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h5 class="card-title">总营业额</h5>
+                        <h5 class="card-title">
+                            <?php echo ($_SESSION['user']['role'] === 'agent') ? '个人及下线总营业额' : '系统总营业额'; ?>
+                        </h5>
                         <h2 class="display-5 text-primary fw-bold">RM<?php echo number_format($financialStats['total_sales'], 2); ?></h2>
                     </div>
                     <div class="icon-box" style="width: 60px; height: 60px; border-radius: 12px; background: rgba(99, 102, 241, 0.1); display: flex; align-items: center; justify-content: center; color: #6366F1; font-size: 1.8rem;">
@@ -52,38 +54,23 @@
             </div>
         </div>
         
-        <!-- 总佣金卡片 -->
-        <div class="col-md-3 mb-4">
+        <!-- 利润 (个人佣金) 卡片 -->
+        <div class="col-md-4 mb-4">
             <div class="modern-card h-100">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h5 class="card-title">总佣金</h5>
-                        <h2 class="display-5 text-warning fw-bold">RM<?php echo number_format($financialStats['total_commission'], 2); ?></h2>
-                    </div>
-                    <div class="icon-box" style="width: 60px; height: 60px; border-radius: 12px; background: rgba(255, 193, 7, 0.1); display: flex; align-items: center; justify-content: center; color: #ffc107; font-size: 1.8rem;">
-                        <i class="bi bi-currency-exchange"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 净利润卡片 -->
-        <div class="col-md-3 mb-4">
-            <div class="modern-card h-100">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5 class="card-title">利润</h5>
+                        <h5 class="card-title">利润 (个人佣金)</h5>
                         <h2 class="display-5 text-success fw-bold">RM<?php echo number_format($financialStats['net_profit'], 2); ?></h2>
                     </div>
                     <div class="icon-box" style="width: 60px; height: 60px; border-radius: 12px; background: rgba(40, 167, 69, 0.1); display: flex; align-items: center; justify-content: center; color: #28a745; font-size: 1.8rem;">
-                        <i class="bi bi-graph-up-arrow"></i>
+                        <i class="bi bi-wallet2"></i>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- 利润率卡片 -->
-        <div class="col-md-3 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="modern-card h-100">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
@@ -116,7 +103,8 @@
         </div>
     </div>
     
-    <!-- 财务交易明细表格 -->
+    <!-- 财务交易明细表格 - Removed as $financialRecords is empty -->
+    <?php /* 
     <div class="modern-card">
         <div class="table-header">
             <div>
@@ -180,11 +168,12 @@
             <?php else: ?>
                 <div class="table-empty-state">
                     <i class="bi bi-info-circle"></i>
-                    没有找到财务交易记录。请调整筛选条件重试。
+                    没有找到详细财务记录。
                 </div>
             <?php endif; ?>
         </div>
     </div>
+    */ ?>
 </div>
 
 <script>
@@ -193,19 +182,17 @@ let chartType = 'line';
 
 document.addEventListener('DOMContentLoaded', function() {
     // 每日数据
-    const dates = [<?php echo isset($chartData['dates']) ? $chartData['dates'] : "'1日', '2日', '3日', '4日', '5日', '6日', '7日'" ?>];
-    const salesData = [<?php echo isset($chartData['sales']) ? implode(',', $chartData['sales']) : "5000, 6200, 4800, 7500, 8900, 7600, 9200" ?>];
-    const commissionData = [<?php echo isset($chartData['commission']) ? implode(',', $chartData['commission']) : "1000, 1240, 960, 1500, 1780, 1520, 1840" ?>];
-    const profitData = [<?php echo isset($chartData['profit']) ? implode(',', $chartData['profit']) : "4000, 4960, 3840, 6000, 7120, 6080, 7360" ?>];
+    const dates = [<?php echo isset($chartData['dates']) && !empty($chartData['dates']) ? implode(', ', $chartData['dates']) : "''"; ?>];
+    const salesData = [<?php echo isset($chartData['sales']) && !empty($chartData['sales']) ? implode(',', $chartData['sales']) : "0"; ?>];
+    const profitData = [<?php echo isset($chartData['profit']) && !empty($chartData['profit']) ? implode(',', $chartData['profit']) : "0"; ?>];
     
     // 创建图表
-    createChart(chartType, dates, salesData, commissionData, profitData);
+    createChart(chartType, dates, salesData, profitData);
 });
 
-function createChart(type, labels, salesData, commissionData, profitData) {
+function createChart(type, labels, salesData, profitData) {
     var ctx = document.getElementById('financialChart').getContext('2d');
     
-    // 销毁现有图表（如果存在）
     if (financialChart) {
         financialChart.destroy();
     }
@@ -216,7 +203,7 @@ function createChart(type, labels, salesData, commissionData, profitData) {
             labels: labels,
             datasets: [
                 {
-                    label: '营业额',
+                    label: '<?php echo ($_SESSION['user']['role'] === 'agent') ? "个人及下线营业额" : "系统营业额"; ?>',
                     data: salesData,
                     backgroundColor: 'rgba(99, 102, 241, 0.2)',
                     borderColor: 'rgba(99, 102, 241, 1)',
@@ -225,16 +212,7 @@ function createChart(type, labels, salesData, commissionData, profitData) {
                     tension: 0.4
                 },
                 {
-                    label: '佣金支出',
-                    data: commissionData,
-                    backgroundColor: 'rgba(255, 193, 7, 0.2)',
-                    borderColor: 'rgba(255, 193, 7, 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: 'rgba(255, 193, 7, 1)',
-                    tension: 0.4
-                },
-                {
-                    label: '净利润',
+                    label: '利润 (个人佣金)',
                     data: profitData,
                     backgroundColor: 'rgba(40, 167, 69, 0.2)',
                     borderColor: 'rgba(40, 167, 69, 1)',
@@ -287,13 +265,11 @@ function createChart(type, labels, salesData, commissionData, profitData) {
 function toggleChartType(type) {
     chartType = type;
     
-    // 重新获取数据并创建图表
-    const dates = [<?php echo isset($chartData['dates']) ? $chartData['dates'] : "'1日', '2日', '3日', '4日', '5日', '6日', '7日'" ?>];
-    const salesData = [<?php echo isset($chartData['sales']) ? implode(',', $chartData['sales']) : "5000, 6200, 4800, 7500, 8900, 7600, 9200" ?>];
-    const commissionData = [<?php echo isset($chartData['commission']) ? implode(',', $chartData['commission']) : "1000, 1240, 960, 1500, 1780, 1520, 1840" ?>];
-    const profitData = [<?php echo isset($chartData['profit']) ? implode(',', $chartData['profit']) : "4000, 4960, 3840, 6000, 7120, 6080, 7360" ?>];
+    const dates = [<?php echo isset($chartData['dates']) && !empty($chartData['dates']) ? implode(', ', $chartData['dates']) : "''"; ?>];
+    const salesData = [<?php echo isset($chartData['sales']) && !empty($chartData['sales']) ? implode(',', $chartData['sales']) : "0"; ?>];
+    const profitData = [<?php echo isset($chartData['profit']) && !empty($chartData['profit']) ? implode(',', $chartData['profit']) : "0"; ?>];
     
-    createChart(type, dates, salesData, commissionData, profitData);
+    createChart(type, dates, salesData, profitData);
 }
 
 function exportChart() {
